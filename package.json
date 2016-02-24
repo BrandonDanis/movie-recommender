@@ -9,8 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.0",
     "colors": "^1.1.2",
     "express": "^4.13.4",
-    "pg-bricks": "^0.4.0"
+    "pg-bricks": "^0.4.0",
+    "request": "^2.69.0"
   }
 }
