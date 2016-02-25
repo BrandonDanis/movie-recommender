@@ -1,27 +1,25 @@
-DROP TABLE 'movies';
-CREATE TABLE 'movies' (
-  'id' int(11) NOT NULL auto_increment,
-  'overview' text NOT NULL,
-  'release_date' varchar(255) NOT NULL,
-  'runtime' int(11) NOT NULL,
-  'genre_id' int(11),
-  'poster' varchar(255) NOT NULL,
-  'rating' int(11) NOT NULL,
-  'title' text NOT NULL,
-  'vote_average' float NOT NULL,
-  'vote_count' int(11) NOT NULL,
+DROP TABLE movies;
+CREATE TABLE movies (
+  id int(11) NOT NULL auto_increment,
+  overview text NOT NULL,
+  release_date varchar(255) NOT NULL,
+  runtime int(11) NOT NULL,
+  genre_id int(11),
+  poster varchar(255) NOT NULL,
+  rating int(11) NOT NULL,
+  title text NOT NULL,
   PRIMARY KEY  ('id'),
   FOREIGN KEY ('genre_id') REFERENCES 'genres'
 );
 
-DROP TABLE 'genres';
-CREATE TABLE 'genres' (
-  'id' int(11) NOT NULL auto_increment,
-  'name' varchar(255) NOT NULL,
+DROP TABLE genres;
+CREATE TABLE genres (
+  id int(11) NOT NULL auto_increment,
+  name varchar(255) NOT NULL,
   PRIMARY KEY  ('id')
 );
 
-INSERT INTO 'genres' ('name') VALUES
+INSERT INTO genres (name) VALUES
 ('Action'),
 ('Adventure'),
 ('Animation'),
