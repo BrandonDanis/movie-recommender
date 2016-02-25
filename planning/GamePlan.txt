@@ -1,0 +1,40 @@
+Movie Recommender
+
+1. Design database schema
+2. Create database
+3. Fill database with movies
+
+
+
+
+
+
+
+
+//DB
+
+MOVIE
+	movieId
+	title
+	year
+	rating
+	----
+	directorId
+	genreIds
+
+GENRES
+	genreId
+	name
+
+DIRECTOR
+	directorId
+	name
+	----
+	movieIds
+
+ACTORS
+	actorId
+	name
+	dateOfBirth
+	----
+	movieIds

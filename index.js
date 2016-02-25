@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 var movieURL = 'http://api.themoviedb.org';
 
 app.get('/', function(req,res) {
-	request('https://api.themoviedb.org/3/movie/550?api_key=ff0f435fed2525ddcffd5b5a4af3fcd3', function(err,response,body) {
+	request('https://api.themoviedb.org/3/movie/1?api_key=ff0f435fed2525ddcffd5b5a4af3fcd3', function(err,response,body) {
 		console.log(body);
 	});
 });
