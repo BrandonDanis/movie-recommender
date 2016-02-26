@@ -64,3 +64,13 @@ CREATE TABLE movies_genres (
     FOREIGN KEY (movie_id) ELEMENT REFERENCES movies(id),
     FOREIGN KEY (genre_id) ELEMENT REFERENCES genres(id)
 );
+
+DROP TABLE cast;
+CREATE TABLE cast (
+	id serial,
+	movie_id integer NOT NULL,
+	name varchar(255) NOT NULL,
+	character_name varchar(255) NUT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (movie_id) REFERENCES movies(id)
+);
