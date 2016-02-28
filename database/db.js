@@ -16,7 +16,41 @@ CREATE TABLE genres (
   name varchar(255) NOT NULL
 );
 
-//populating
+//relationship table for movies and genres
+DROP TABLE movies_genres;
+CREATE TABLE movies_genres (
+    movie_id integer NOT NULL,
+    genre_id integer NOT NULL,
+    FOREIGN KEY (movie_id) ELEMENT REFERENCES movies(id),
+    FOREIGN KEY (genre_id) ELEMENT REFERENCES genres(id)
+);
+
+DROP TABLE cast;
+CREATE TABLE cast (
+	id serial,
+	movie_id integer NOT NULL,
+	name varchar(255) NOT NULL,
+	character_name varchar(255) NUT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (movie_id) REFERENCES movies(id)
+);
+
+DROP TABLE movies_directors;
+CREATE TABLE movies_directors (
+	movie_id integer NOT NULL,
+	director_id integer NOT NULL,
+	FOREIGN KEY (movie_id) ELEMENT REFERENCES movies(id),
+    FOREIGN KEY (director_id) ELEMENT REFERENCES directors(id)
+);
+
+DROP TABLE directors;
+CREATE TABLE directors (
+	id serial,
+	name varchar(255) NOT NULL,
+	PRIMARY KEY(id)
+);
+
+//populating genres
 INSERT INTO genres (name) VALUES
 ('Action'),
 ('Adventure'),
@@ -53,37 +87,3 @@ INSERT INTO genres (name) VALUES
 ('Thriller'),
 ('War'),
 ('Western');
-
-//relationship table for movies and genres
-DROP TABLE movies_genres;
-CREATE TABLE movies_genres (
-    movie_id integer NOT NULL,
-    genre_id integer NOT NULL,
-    FOREIGN KEY (movie_id) ELEMENT REFERENCES movies(id),
-    FOREIGN KEY (genre_id) ELEMENT REFERENCES genres(id)
-);
-
-DROP TABLE cast;
-CREATE TABLE cast (
-	id serial,
-	movie_id integer NOT NULL,
-	name varchar(255) NOT NULL,
-	character_name varchar(255) NUT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY (movie_id) REFERENCES movies(id)
-);
-
-DROP TABLE movies_directors;
-CREATE TABLE movies_directors (
-	movie_id integer NOT NULL,
-	director_id integer NOT NULL,
-	FOREIGN KEY (movie_id) ELEMENT REFERENCES movies(id),
-    FOREIGN KEY (director_id) ELEMENT REFERENCES directors(id)
-);
-
-DROP TABLE directors;
-CREATE TABLE directors (
-	id serial,
-	name varchar(255) NOT NULL,
-	PRIMARY KEY(id)
-);
