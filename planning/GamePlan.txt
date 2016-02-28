@@ -13,28 +13,28 @@ Movie Recommender
 
 //DB
 
-MOVIE
+MOVIEs
 	movieId
 	title
 	year
 	rating
 	----
 	directorId
-	genreIds
+	genreId
 
 GENRES
 	genreId
 	name
 
-DIRECTOR
+DIRECTORs
 	directorId
 	name
 	----
-	movieIds
+	movieId
 
 ACTORS
 	actorId
 	name
 	dateOfBirth
 	----
-	movieIds
+	movieId
