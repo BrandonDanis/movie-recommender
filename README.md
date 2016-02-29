@@ -1,5 +1,5 @@
 #Netflix 2.0
-#####Don't know what to watch? This is the app for you!
+Don't know what to watch? This is the app for you!
 ***
 
 <strong>Created by:</strong>
