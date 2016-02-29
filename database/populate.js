@@ -44,7 +44,7 @@ for(var i=0;i<moviesArray.length;++i)
 	var movieToAdd = {
 		overview: moviesArray[i]['overview'],
 		release_date: moviesArray[i]['release_date'],
-		runtime: 10,
+		runtime: moviesArray[i]['runtime'],
 		poster: moviesArray[i]['poster'],
 		rating: 0,
 		moviedb_id: moviesArray[i]['id'],
