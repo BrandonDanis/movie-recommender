@@ -21,7 +21,7 @@ DROP TABLE movies_genres;
 CREATE TABLE movies_genres (
     movie_id integer NOT NULL,
     genre_id integer NOT NULL,
-    FOREIGN KEY (movie_id) REFERENCES movies(id),
+    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
     FOREIGN KEY (genre_id) REFERENCES genres(id)
 );
 

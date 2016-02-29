@@ -37,7 +37,7 @@ var genresDict = {
 };
 
 
-for(var i=0;i<moviesArray.length-179;i++)
+for(var i=0;i<10;i++)
 {
 
 	var movieToAdd = {
@@ -71,7 +71,7 @@ for(var i=0;i<moviesArray.length-179;i++)
 
 							db.insert('movies_genres', genre_movie).returning('*').rows(function(err,rows){
 								if(!err){
-									console.log(rows[0]);
+									console.log("Movie-Genre relationship created".green);
 								}else{
 									console.log("Error: Can't add movie_genre relation".red);
 								}
