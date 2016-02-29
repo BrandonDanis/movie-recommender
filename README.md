@@ -1,6 +1,6 @@
-#Netflix 2.0
-#####Don't know what to watch? This is the app for you!
-***
+![alt tag](http://i.imgur.com/sQYa4Up.png)
+</br>
+Don't know what to watch? This is the app for you!
 
 <strong>Created by:</strong>
 ```javascript
