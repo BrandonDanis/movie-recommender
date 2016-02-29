@@ -42,8 +42,11 @@ app.get('/', function(req, res) {
 //users
 require('./routes/users-route.js')(app);
 
-//users
+//session
 require('./routes/session-route.js')(app);
+
+//session
+require('./routes/movies-route.js')(app);
 
 //logout
 app.get('/logout', function(req, res)
