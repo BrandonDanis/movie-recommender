@@ -95,3 +95,15 @@ INSERT INTO genres (name) VALUES
 ('Thriller'),
 ('War'),
 ('Western');
+
+
+//users
+DROP TABLE users;
+CREATE TABLE users (
+    id serial,
+    username VARCHAR(25) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    ssid VARCHAR(20),
+    datecreated TIMESTAMP NOT NULL DEFAULT(NOW(),
+    PRIMARY KEY(id)
+);
