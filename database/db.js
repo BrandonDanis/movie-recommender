@@ -6,7 +6,7 @@ CREATE TABLE movies (
   runtime integer NOT NULL,
   poster varchar(255) NOT NULL,
   rating integer,
-  moviedbID integer NOT NULL,
+  moviedb_id integer UNIQUE NOT NULL,
   title text NOT NULL,
   PRIMARY KEY(id)
 );
