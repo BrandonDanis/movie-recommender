@@ -5,7 +5,7 @@ CREATE TABLE movies (
   release_date varchar(255) NOT NULL,
   runtime integer NOT NULL,
   poster varchar(255) NOT NULL,
-  rating integer NOT NULL,
+  rating integer,
   title text NOT NULL,
   PRIMARY KEY(id)
 );
