@@ -37,7 +37,7 @@ var genresDict = {
 };
 
 
-for(var i=0;i<10;i++)
+for(var i=0;i<moviesArray.length-170;i++)
 {
 
 	var movieToAdd = {
@@ -53,25 +53,30 @@ for(var i=0;i<10;i++)
 	db.insert('movies', movieToAdd).returning('*').rows(function(err,rows){
 		if(!err){
 			if(rows[0] != null){
-				console.log(('Movie added | id: '+rows[0].id).green);
+				console.log((rows[0].title + ' added | id: '+rows[0].id).green);
 
 				//relation table
 				var genresArray = moviesArray[i]['genre_ids'];
 				var movieID = rows[0].id;
+				var movieObject = rows[0];
 
 				for(var k=0;k<genresArray.length;k++)
 				{
 					db.select().from('genres').where('name', genresDict[genresArray[k]]).rows(function(err,genreRows){
 						if(!err){
 
+							var genreId = genreRows[0]['id'];
+							var genreName = genreRows[0]['name'];
+
 							var genre_movie = {
-								movie_id: movieID,
-								genre_id: genreRows[0]['id'],
+								movie_id: rows[0].id,
+								genre_id: genreId,
 							};
 
 							db.insert('movies_genres', genre_movie).returning('*').rows(function(err,rows){
 								if(!err){
-									console.log("Movie-Genre relationship created".green);
+									// console.log("Movie-Genre relationship created".green);
+									console.log((movieObject.title + ' --> ' + genreName).yellow);
 								}else{
 									console.log("Error: Can't add movie_genre relation".red);
 								}
