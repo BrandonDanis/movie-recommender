@@ -13,10 +13,33 @@ var GENRES_FILENAME = 'genres.json';
 var genresJSON = fs.readFileSync(GENRES_FILENAME);
 var genresArray = JSON.parse(genresJSON);
 
+var genresDict = {
+	28: "Action",
+	12: "Adventure",
+	16: "Animation",
+	35: "Comedy",
+	80: "Crime",
+	99: "Documentary",
+	18: "Drama",
+	10751: "Family",
+	14: "Fantasy",
+	10769: "Foreign",
+	36: "History",
+	27: "Horror",
+	10402: "Music",
+	9648: "Mystery",
+	10749: "Romance",
+	878: "Science Fiction",
+	10770: "TV Movie",
+	53: "Thriller",
+	10752: "War",
+	37: "Western",
+};
 
 
-for(var i=0;i<moviesArray.length;i++)
+for(var i=0;i<moviesArray.length-179;i++)
 {
+
 	var movieToAdd = {
 		overview: moviesArray[i]['overview'],
 		release_date: moviesArray[i]['release_date'],
@@ -33,7 +56,32 @@ for(var i=0;i<moviesArray.length;i++)
 				console.log(('Movie added | id: '+rows[0].id).green);
 
 				//relation table
-				//var genres = moviesArray[i]['genre_ids'];
+				var genresArray = moviesArray[i]['genre_ids'];
+				var movieID = rows[0].id;
+
+				for(var k=0;k<genresArray.length;k++)
+				{
+					db.select().from('genres').where('name', genresDict[genresArray[k]]).rows(function(err,genreRows){
+						if(!err){
+
+							var genre_movie = {
+								movie_id: movieID,
+								genre_id: genreRows[0]['id'],
+							};
+
+							db.insert('movies_genres', genre_movie).returning('*').rows(function(err,rows){
+								if(!err){
+									console.log(rows[0]);
+								}else{
+									console.log("Error: Can't add movie_genre relation".red);
+								}
+							});
+
+						}else{
+							console.log("Error: Can't find genre".red);
+						}
+					});
+				}
 
 			}else{
 				console.log('404: Uh-Oh'.red);
@@ -46,17 +94,3 @@ for(var i=0;i<moviesArray.length;i++)
 	});
 
 }
-
-
-//SCHEMA
-// CREATE TABLE movies (
-//   id serial,
-//   overview text NOT NULL,
-//   release_date varchar(255) NOT NULL,
-//   runtime integer NOT NULL,
-//   poster varchar(255) NOT NULL,
-//   rating integer,
-//   moviedbID integer NOT NULL,
-//   title text NOT NULL,
-//   PRIMARY KEY(id)
-// );
