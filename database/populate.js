@@ -36,8 +36,9 @@ var genresDict = {
 	37: "Western",
 };
 
+var movieGenresDict = {};
 
-for(var i=0;i<moviesArray.length-170;i++)
+for(var i=0;i<moviesArray.length;++i)
 {
 
 	var movieToAdd = {
@@ -50,43 +51,16 @@ for(var i=0;i<moviesArray.length-170;i++)
 		title: moviesArray[i]['title']
 	};
 
+	movieGenresDict[moviesArray[i]['title']] = moviesArray[i]['genre_ids'];
+
 	db.insert('movies', movieToAdd).returning('*').rows(function(err,rows){
 		if(!err){
 			if(rows[0] != null){
 				console.log((rows[0].title + ' added | id: '+rows[0].id).green);
 
-				//relation table
-				var genresArray = moviesArray[i]['genre_ids'];
-				var movieID = rows[0].id;
 				var movieObject = rows[0];
 
-				for(var k=0;k<genresArray.length;k++)
-				{
-					db.select().from('genres').where('name', genresDict[genresArray[k]]).rows(function(err,genreRows){
-						if(!err){
-
-							var genreId = genreRows[0]['id'];
-							var genreName = genreRows[0]['name'];
-
-							var genre_movie = {
-								movie_id: rows[0].id,
-								genre_id: genreId,
-							};
-
-							db.insert('movies_genres', genre_movie).returning('*').rows(function(err,rows){
-								if(!err){
-									// console.log("Movie-Genre relationship created".green);
-									console.log((movieObject.title + ' --> ' + genreName).yellow);
-								}else{
-									console.log("Error: Can't add movie_genre relation".red);
-								}
-							});
-
-						}else{
-							console.log("Error: Can't find genre".red);
-						}
-					});
-				}
+				addMovieGenreRelation(movieObject,movieGenresDict[movieObject.title]);
 
 			}else{
 				console.log('404: Uh-Oh'.red);
@@ -97,5 +71,44 @@ for(var i=0;i<moviesArray.length-170;i++)
 			}
 		}
 	});
+
+}
+
+addMovieGenreRelation = function(movieObject,genresArray)
+{
+
+	var movieId = movieObject.id;
+	var movieTitle = movieObject.title;
+
+	console.log(genresArray);
+
+	for(var k=0;k<genresArray.length;k++)
+	{
+
+		db.select().from('genres').where('name', genresDict[genresArray[k]]).rows(function(err,rows){
+			if(!err){
+
+				var genreId = rows[0]['id'];
+				var genreName = rows[0]['name'];
+
+				var genre_movie = {
+					movie_id: movieId,
+					genre_id: genreId,
+				};
+
+				db.insert('movies_genres', genre_movie).returning('*').rows(function(err,rows){
+					if(!err){
+						// console.log("Movie-Genre relationship created".green);
+						console.log((movieTitle + ' --> ' + genreName).yellow);
+					}else{
+						console.log("Error: Can't add movie_genre relation".red);
+					}
+				});
+
+			}else{
+				console.log("Error: Can't find genre".red);
+			}
+		});
+	}
 
 }
