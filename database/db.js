@@ -104,6 +104,6 @@ CREATE TABLE users (
     username VARCHAR(25) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
     ssid VARCHAR(20),
-    datecreated TIMESTAMP NOT NULL DEFAULT(NOW(),
+    datecreated TIMESTAMP NOT NULL DEFAULT(NOW()),
     PRIMARY KEY(id)
 );
