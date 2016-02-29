@@ -1,34 +1,61 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var colors = require('colors');
+var cors = require('cors');
 var request = require('request');
+
+var session = require('client-sessions');
+var cookieParser = require('cookie-parser');
 
 var app = express();
 
 app.use(bodyParser.urlencoded( {extended: false} ));
 app.use(bodyParser.json());
+app.use(cors());
 
-var movieURL = 'http://api.themoviedb.org';
-var apiKey = 'ff0f435fed2525ddcffd5b5a4af3fcd3';
+app.use(session({
+	cookieName: 'session',
+	secret: 'keyboard_cat',
+	duration: 1000 * 60 * 60 * 24 * 7, //one week session
+	activeDuration: 1000 * 60 * 60 * 24, //interation extends session by one day
+	httpOnly: true,
+	secure: true,
+	ephemeral: true
+}));
 
-app.get('/', function(req,res) {
-	request('https://api.themoviedb.org/3/movie/550?api_key=ff0f435fed2525ddcffd5b5a4af3fcd3', function(err,response,body) {
-		console.log(body);
-	});
+var session = require('./lib/session.js');
+
+app.get('/', function(req, res) {
+	if(req.session && req.session.ssid != null & req.session.username != null) {
+		session.checkSession(req.session.username, req.session.ssid, function(status) {
+			if(status['status'] = 200){
+				res.sendFile(path.join(__dirname + '/app/index.html'));
+			}else{
+				res.sendFile(path.join(__dirname + '/app/login.html'));
+			}
+		});
+	}else{
+		res.sendFile(path.join(__dirname + '/app/login.html'));
+	}
 });
 
+//users
+require('./routes/users-route.js')(app);
 
-var movieDB = require('moviedb')(apiKey);
+//users
+require('./routes/session-route.js')(app);
 
-app.get('/popular-movies', function(req,res) {
-	movieDB.miscPopularMovies(function(err,res) {
+//logout
+app.get('/logout', function(req, res)
+{
+    req.session.reset();
+    res.redirect('/');
+});
 
-		var movies = res.results;
-		for(var i=0;i<movies.length;i++){
-			console.log(movies[i]['title']);
-		}
-
-	});
+//404 catch
+app.use(function(req, res)
+{
+	res.status(404).json({status: 404, reason: "Route not found", session: req.session});
 });
 
 app.listen(process.env.PORT || 8080);
