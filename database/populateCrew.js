@@ -157,7 +157,7 @@ addDirectorMovieRelation = function (movieID, directorID) {
     db.insert('movies_directors', directorMovie).returning('*').row(function (err, row) {
         if (!err) {
             if (row != null) {
-                console.log((directorInfoDict[directorID]['movie']).cyan + ' | ' + row['movie_id'] + ' Directed by '.yellow + row['director_id'] + (' relationship created').green);
+                console.log((directorInfoDict[directorID]['movie']).cyan + ' | ' + row['movie_id'] + ' Directed by '.america + row['director_id'] + (' relationship created').green);
             } else {
                 console.log('Uh oh'.red);
             }
