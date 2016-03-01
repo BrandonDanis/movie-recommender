@@ -1,9 +1,14 @@
 
 body
 {
-	background: #517fa4; /* fallback for old browsers */
-	background: -webkit-linear-gradient(to left, #517fa4 , #243949); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to left, #517fa4 , #243949); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	/*background: #517fa4; /* fallback for old browsers */
+	/*background: -webkit-linear-gradient(to left, #517fa4 , #243949); /* Chrome 10-25, Safari 5.1-6 */
+	/*background: linear-gradient(to left, #517fa4 , #243949); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+	background-image: url("http://www.hdwallpapers.in/walls/interstellar-wide.jpg");
+
+	background-size: cover;
 }
 
 /***************/
@@ -17,14 +22,20 @@ body
 	padding: 50px 0;
 	display: table;
 	color: white;
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 .wrapper
 {
-	padding: 50px;
+	padding: 50px 35%;
 	vertical-align: middle;
 	height: 100%;
 	display: table-cell;
+}
+
+.wrapper .row
+{
+
 }
 
 .header-container
