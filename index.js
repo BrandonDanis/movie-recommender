@@ -18,6 +18,7 @@ app.get('/', function(req, res) {
 
 //session
 require('./routes/movies-route.js')(app);
+require('./routes/directors-route.js')(app);
 
 //404 catch
 app.use(function(req, res)
