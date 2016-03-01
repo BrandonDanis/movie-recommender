@@ -14,7 +14,7 @@ var allMoviesId = [];
 
 var movieNameDict = {};
 
-db.raw('SELECT title,id,moviedb_id FROM movies').rows(function (err, rows) {
+db.raw('SELECT id,title,moviedb_id FROM movies ORDER BY title').rows(function (err, rows) {
     if (!err) {
         if (rows[0] != null) {
 
