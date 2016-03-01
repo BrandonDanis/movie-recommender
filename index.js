@@ -7,6 +7,8 @@ var request = require('request');
 var cookieSession = require('client-sessions');
 var cookieParser = require('cookie-parser');
 
+var path = require('path');
+
 var app = express();
 
 app.use(bodyParser.urlencoded( {extended: false} ));
@@ -26,7 +28,7 @@ app.use(cookieSession({
 var session = require('./lib/session.js');
 
 app.get('/', function(req, res) {
-	if(req.session && req.session.ssid != null & req.session.username != null) {
+	if(req.session && req.session.ssid != null && req.session.username != null) {
 		session.checkSession(req.session.username, req.session.ssid, function(status) {
 			if(status['status'] = 200){
 				res.sendFile(path.join(__dirname + '/app/index.html'));
@@ -50,6 +52,48 @@ require('./routes/session-route.js')(app);
 
 //users
 require('./routes/users-route.js')(app);
+
+//TEMP paths till I figure how to do it
+app.get('/js/index.js', function(req, res)
+{
+	res.sendFile(path.join(__dirname + '/app/js/index.js'));
+});
+
+app.get('/js/api.js', function(req, res)
+{
+	res.sendFile(path.join(__dirname + '/app/js/api.js'));
+});
+
+app.get('/js/sweetalert.min.js', function(req, res)
+{
+	res.sendFile(path.join(__dirname + '/app/js/sweetalert.min.js'));
+});
+
+app.get('/style/index.css', function(req, res)
+{
+	res.sendFile(path.join(__dirname + '/app/style/index.css'));
+});
+
+app.get('/style/sweetalert.css', function(req, res)
+{
+	res.sendFile(path.join(__dirname + '/app/style/sweetalert.css'));
+});
+
+app.get('/js/login.js', function(req, res)
+{
+	res.sendFile(path.join(__dirname + '/app/js/login.js'));
+});
+
+app.get('/style/login.css', function(req, res)
+{
+	res.sendFile(path.join(__dirname + '/app/style/login.css'));
+});
+
+app.get('/js/loginApi.js', function(req, res)
+{
+	res.sendFile(path.join(__dirname + '/app/js/loginApi.js'));
+});
+
 
 //logout
 app.get('/logout', function(req, res)
