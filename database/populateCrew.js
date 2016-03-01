@@ -7,108 +7,112 @@ var API_KEY = '476bbe4282fb66cfbd54f6da2d3d28fe';
 
 // var dbUrl = process.env.DATABASE_URL ? process.env.DATABASE_URL + '?ssl=true' : '/var/run/postgresql/';
 var dbUrl = 'postgres://localhost:5432/Netflix2';
-var db = require('pg-bricks').configure( dbUrl );
+var db = require('pg-bricks').configure(dbUrl);
 
 var allMovies = [];
 var allMoviesId = [];
 
-db.raw('SELECT title,id,moviedb_id FROM movies').rows(function(err,rows){
-	if(!err){
-		if(rows[0] != null){
+db.raw('SELECT title,id,moviedb_id FROM movies').rows(function (err, rows) {
+    if (!err) {
+        if (rows[0] != null) {
 
-			for(var i=0;i<rows.length-179;i++){
+            for (var i = 0; i < rows.length - 179; i++) {
 
-				//just incase
-				allMovies[i] = rows[i]['title'];
-				allMoviesId[i] = rows[i]['moviedb_id'];
+                //just incase
+                allMovies[i] = rows[i]['title'];
+                allMoviesId[i] = rows[i]['moviedb_id'];
 
-				getCrew(rows[i]['title'],rows[i]['id'],rows[i]['moviedb_id']);
+                getCrew(rows[i]['title'], rows[i]['id'], rows[i]['moviedb_id']);
 
-			}
+            }
 
-		}else{
-			console.log('No rows returned');
-		}
-	}else{
-		console.log(err);
-	}
+        } else {
+            console.log('No rows returned');
+        }
+    } else {
+        console.log(err);
+    }
 });
 
 var castInfoDict = {};
 
-getCrew = function(movieTitle,movieId,movieDB_Id){
+getCrew = function (movieTitle, movieId, movieDB_Id) {
 
-	request(('https://api.themoviedb.org/3/movie/' + movieDB_Id + '/credits?api_key=' + API_KEY), function (error, response, body) {
-		if (!error && response.statusCode == 200) {
+    request(('https://api.themoviedb.org/3/movie/' + movieDB_Id + '/credits?api_key=' + API_KEY), function (error, response, body) {
+        if (!error && response.statusCode == 200) {
 
-			var parsedBody = JSON.parse(body);
-	    	var crewArray = parsedBody.crew;
-			var castArray = parsedBody.cast;
+            var parsedBody = JSON.parse(body);
+            var crewArray = parsedBody.crew;
+            var castArray = parsedBody.cast;
 
-			for(var i=0;i<castArray.length;i++){
-				//console.log((movieTitle).green + ' | ' + castArray[i]['character'] + (' played by ').yellow + castArray[i]['name']);
+            for (var i = 0; i < castArray.length; i++) {
+                //console.log((movieTitle).green + ' | ' + castArray[i]['character'] + (' played by ').yellow + castArray[i]['name']);
 
-				var castToAdd = {
-					name: castArray[i]['name'],
-					imageurl: castArray[i]['profile_path'],
-					moviedb_id: castArray[i]['id']
-				};
+                var castToAdd = {
+                    name: castArray[i]['name'],
+                    imageurl: castArray[i]['profile_path'],
+                    moviedb_id: castArray[i]['id']
+                };
 
-				castInfoDict[castArray[i]['id']] = {role: castArray[i]['character'], movie: movieTitle, movieId: movieId};
+                castInfoDict[castArray[i]['id']] = {
+                    role: castArray[i]['character'],
+                    movie: movieTitle,
+                    movieId: movieId
+                };
 
-				db.insert('casts',castToAdd).returning('*').rows(function(err,rows) {
-					if(!err){
-						if(rows[0] != null){
-							console.log((rows[0]['name'] + ' added to the database').green);
+                db.insert('casts', castToAdd).returning('*').rows(function (err, rows) {
+                    if (!err) {
+                        if (rows[0] != null) {
+                            console.log((rows[0]['name'] + ' added to the database').green);
 
-							addCastMovieRelation(rows[0]['moviedb_id']);
+                            addCastMovieRelation(rows[0]['moviedb_id']);
 
-						}else{
-							console.log('Uh-Oh'.red);
-						}
-					}else if(err['code'] == 23505){
-						console.log((castToAdd['name'] + " already in database").yellow);
-					}else{
-						console.log(err);
-					}
-				});
+                        } else {
+                            console.log('Uh-Oh'.red);
+                        }
+                    } else if (err['code'] == 23505) {
+                        console.log((castToAdd['name'] + " already in database").yellow);
+                    } else {
+                        console.log(err);
+                    }
+                });
 
-			}
+            }
 
-			// for(var x=0;x<crewArray.length;x++){
-			// 	if(crewArray[x]['job'] == 'Director'){
-			// 		//console.log((movieTitle).green + ' | ' + (' Directed by ').cyan + crewArray[x]['name']);
-			// 	}
-			// }
-			//console.log('');
+            // for(var x=0;x<crewArray.length;x++){
+            // 	if(crewArray[x]['job'] == 'Director'){
+            // 		//console.log((movieTitle).green + ' | ' + (' Directed by ').cyan + crewArray[x]['name']);
+            // 	}
+            // }
+            //console.log('');
 
-		}else{
-			console.log(body);
-		}
-  	});
+        } else {
+            console.log(body);
+        }
+    });
 
 }
 
-addCastMovieRelation = function(castId){
+addCastMovieRelation = function (castId) {
 
-	var castInfo = castInfoDict[castId];
+    var castInfo = castInfoDict[castId];
 
-	var cast_movie = {
-		movie_id: castInfo.movieId,
-		cast_id: castInfo.id,
-		character: castInfo.role
-	};
+    var cast_movie = {
+        movie_id: castInfo.movieId,
+        cast_id: castInfo.id,
+        character: castInfo.role
+    };
 
-	db.insert('movies_casts',cast_movie).returning('*').rows(function(err,rows) {
-		if(!err){
-			if(rows[0] != null){
-				console.log((rows[0]['movie_id']).green + ' | ' + rows[0]['character'] + (' played by ').yellow + rows[0]['cast_id']);
-			}else{
-				console.log('uh oh'.red);
-			}
-		}else{
-			console.log(err.detail);
-		}
-	});
+    db.insert('movies_casts', cast_movie).returning('*').rows(function (err, rows) {
+        if (!err) {
+            if (rows[0] != null) {
+                console.log((rows[0]['movie_id']).green + ' | ' + rows[0]['character'] + (' played by ').yellow + rows[0]['cast_id']);
+            } else {
+                console.log('uh oh'.red);
+            }
+        } else {
+            console.log(err.detail);
+        }
+    });
 
 }
