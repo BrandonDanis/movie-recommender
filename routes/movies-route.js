@@ -49,4 +49,28 @@ module.exports = function(app) {
 		});
 	});
 
+	app.get('/getMoviesFromGenre', function(req,res) {
+		if(req.query.genreName != null) {
+			movies.genres.getMoviesByGenreName(req.query.genreName,function(status) {
+				if(status['status'] == 200){
+					console.log("Movies by genre name found");
+					res.json(status);
+				}else{
+					res.json(status);
+				}
+			});
+		}else if(req.query.genreId != null){
+			movies.genres.getMoviesByGenreId(,function(status) {
+				if(status['status'] == 200){
+					console.log("Movies by genre id found");
+					res.json(status);
+				}else{
+					res.json(status);
+				}
+			});
+		}else{
+			res.json({status: 400, reason: 'Improper parameters'});
+		}
+	});
+
 }
