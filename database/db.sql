@@ -39,7 +39,7 @@ CREATE TABLE casts (
 	id serial,
 	name varchar(255) NOT NULL,
     imageurl varchar(255),
-    moviedb_id integer UNIQUE NOT NULL
+    moviedb_id integer UNIQUE NOT NULL,
 	PRIMARY KEY (id)
 );
 
