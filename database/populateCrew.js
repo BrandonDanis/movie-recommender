@@ -6,7 +6,7 @@ var request = require('request');
 var API_KEY = '476bbe4282fb66cfbd54f6da2d3d28fe';
 
 // var dbUrl = process.env.DATABASE_URL ? process.env.DATABASE_URL + '?ssl=true' : '/var/run/postgresql/';
-var dbUrl = 'postgres://silver_android:pokemonxy3DS@localhost:5432/netflix2';
+var dbUrl = 'postgres://localhost:5432/Netflix2';
 var db = require('pg-bricks').configure(dbUrl);
 
 var allMovies = [];
