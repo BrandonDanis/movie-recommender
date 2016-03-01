@@ -60,7 +60,7 @@ module.exports = function(app) {
 				}
 			});
 		}else if(req.query.genreId != null){
-			movies.genres.getMoviesByGenreId(,function(status) {
+			movies.genres.getMoviesByGenreId(req.query.genreId,function(status) {
 				if(status['status'] == 200){
 					console.log("Movies by genre id found");
 					res.json(status);
