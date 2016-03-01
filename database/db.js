@@ -29,25 +29,25 @@ DROP TABLE movies_casts;
 CREATE TABLE movies_casts (
 	movie_id integer NOT NULL,
 	cast_id integer NOT NULL,
-	FOREIGN KEY (movie_id) REFERENCES movies(id),
-    FOREIGN KEY (cast_id) REFERENCES casts(id)
+    character varchar(255) NOT NULL,
+	FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
+    FOREIGN KEY (cast_id) REFERENCES casts(id) ON DELETE CASCADE
 );
 
 DROP TABLE casts;
 CREATE TABLE casts (
 	id serial,
-	movie_id integer NOT NULL,
 	name varchar(255) NOT NULL,
-	character_name varchar(255) NUT NULL,
-	PRIMARY KEY (id),
-	FOREIGN KEY (movie_id) REFERENCES movies(id)
+    imageurl varchar(255),
+    moviedb_id integer UNIQUE NOT NULL
+	PRIMARY KEY (id)
 );
 
 DROP TABLE movies_directors;
 CREATE TABLE movies_directors (
 	movie_id integer NOT NULL,
 	director_id integer NOT NULL,
-	FOREIGN KEY (movie_id) REFERENCES movies(id),
+	FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
     FOREIGN KEY (director_id) REFERENCES directors(id)
 );
 

@@ -80,8 +80,6 @@ addMovieGenreRelation = function(movieObject,genresArray)
 	var movieId = movieObject.id;
 	var movieTitle = movieObject.title;
 
-	console.log(genresArray);
-
 	for(var k=0;k<genresArray.length;k++)
 	{
 
