@@ -4,8 +4,7 @@ module.exports = function(app) {
 	var movies = require('../lib/movies.js');
 
 	app.get('/movies', function(req,res) {
-
-		movies.getAll(function(status) {
+		movies.getAllMovies(function(status) {
 			if(status['status'] == 200){
 				console.log("All movies found".green);
 				res.json(status);
@@ -13,7 +12,6 @@ module.exports = function(app) {
 				res.json(status);
 			}
 		});
-
 	});
 
 	app.get('/specific-movie', function(req,res) {
@@ -38,6 +36,17 @@ module.exports = function(app) {
 		}else{
 			res.json({status: 400, reason: 'Improper parameters'});
 		}
+	});
+
+	app.get('/all-genres', function(req,res) {
+		movies.genres.getAll(function(status) {
+			if(status['status'] == 200){
+				console.log("All genres found");
+				res.json(status);
+			}else{
+				res.json(status);
+			}
+		});
 	});
 
 }
