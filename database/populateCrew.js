@@ -12,6 +12,8 @@ var db = require('pg-bricks').configure( dbUrl );
 var allMovies = [];
 var allMoviesId = [];
 
+var movieNameDict = {};
+
 db.raw('SELECT title,id,moviedb_id FROM movies').rows(function(err,rows){
 	if(!err){
 		if(rows[0] != null){
@@ -21,6 +23,8 @@ db.raw('SELECT title,id,moviedb_id FROM movies').rows(function(err,rows){
 				//just incase
 				allMovies[i] = rows[i]['title'];
 				allMoviesId[i] = rows[i]['moviedb_id'];
+
+				movieNameDict[rows[i]['id']] = allMovies[i];
 
 				getCrew(rows[i]['title'],rows[i]['id'],rows[i]['moviedb_id']);
 
@@ -61,7 +65,7 @@ getCrew = function(movieTitle,movieId,movieDB_Id){
 						if(rows[0] != null){
 							console.log((rows[0]['name'] + ' added to the database').green);
 
-							addCastMovieRelation(rows[0]['moviedb_id']);
+							addCastMovieRelation(rows[0]['id'],rows[0]['moviedb_id']);
 
 						}else{
 							console.log('Uh-Oh'.red);
@@ -89,20 +93,20 @@ getCrew = function(movieTitle,movieId,movieDB_Id){
 
 }
 
-addCastMovieRelation = function(castId){
+addCastMovieRelation = function(id,castId){
 
 	var castInfo = castInfoDict[castId];
 
 	var cast_movie = {
 		movie_id: castInfo.movieId,
-		cast_id: castInfo.id,
+		cast_id: id,
 		character: castInfo.role
 	};
 
 	db.insert('movies_casts',cast_movie).returning('*').rows(function(err,rows) {
 		if(!err){
 			if(rows[0] != null){
-				console.log((rows[0]['movie_id']).green + ' | ' + rows[0]['character'] + (' played by ').yellow + rows[0]['cast_id']);
+				console.log(movieNameDict[5275].cyan + ' | ' + rows[0]['character'] + (' played by ').yellow + rows[0]['cast_id'] + (' relationship created.').green);
 			}else{
 				console.log('uh oh'.red);
 			}
