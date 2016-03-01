@@ -26,7 +26,7 @@ app.use(session({
 var session = require('./lib/session.js');
 
 app.get('/', function(req, res) {
-	if(req.session && req.session.ssid != null & req.session.username != null) {
+	if(req.session && req.session.ssid != null && req.session.username != null) {
 		session.checkSession(req.session.username, req.session.ssid, function(status) {
 			if(status['status'] = 200){
 				res.sendFile(path.join(__dirname + '/app/index.html'));
