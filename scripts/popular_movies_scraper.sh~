@@ -1,0 +1,4 @@
+python scraper.py 40 5
+python movie_runtime_loader.py 5
+python fix_json_files.py 5
+python runtime_merge.py 5

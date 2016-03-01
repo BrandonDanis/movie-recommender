@@ -2,7 +2,13 @@ import json
 import requests
 import time
 
-json_data = open('popular_movies_data.json').read()
+import sys
+
+arguments = sys.argv
+
+json_data = open('popular_movies_data_' + arguments[1] + '.json').read()
+
+file_name = 'popular_movies_runtimes_' + arguments[1] + '.json'
 
 data = json.loads(json_data)
 runtimes = []
@@ -13,12 +19,15 @@ runtime_json = {}
 try:
     for file_json_data in data:
         if i % 10 == 0 and len(runtimes) != 0:
-            with open('popular_movies_runtimes.json', 'a') as outfile:
+            with open(file_name, 'a') as outfile:
                 print(runtimes)
                 print('Writing to JSON file...')
                 json.dump(runtimes, outfile)
                 print('Completed writing to JSON file...')
-                runtimes.clear()
+                # Python 2
+                del runtimes[:]
+                # Python 3
+                # runtimes.clear()
                 print(runtimes)
 
         id = file_json_data['id']
@@ -41,7 +50,7 @@ try:
 finally:
     print('Ended at ID ' + str(id))
     print(runtime_json)
-    with open('popular_movies_runtimes.json', 'a') as outfile:
+    with open(file_name, 'a') as outfile:
         print(runtimes)
         print('Writing to JSON file...')
         json.dump(runtimes, outfile)
