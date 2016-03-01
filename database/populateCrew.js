@@ -6,7 +6,7 @@ var request = require('request');
 var API_KEY = '476bbe4282fb66cfbd54f6da2d3d28fe';
 
 // var dbUrl = process.env.DATABASE_URL ? process.env.DATABASE_URL + '?ssl=true' : '/var/run/postgresql/';
-var dbUrl = 'postgres://localhost:5432/Netflix2';
+var dbUrl = 'postgres://silver_android:pokemonxy3DS@localhost:5432/netflix2';
 var db = require('pg-bricks').configure(dbUrl);
 
 var allMovies = [];
@@ -83,12 +83,39 @@ getCrew = function (movieTitle, movieId, movieDB_Id) {
 
             }
 
-            // for(var x=0;x<crewArray.length;x++){
-            // 	if(crewArray[x]['job'] == 'Director'){
-            // 		//console.log((movieTitle).green + ' | ' + (' Directed by ').cyan + crewArray[x]['name']);
-            // 	}
-            // }
-            //console.log('');
+            for (var x = 0; x < crewArray.length; x++) {
+                var crew = crewArray[x];
+                if (crew['job'] == 'Director') {
+                    //console.log((movieTitle).green + ' | ' + (' Directed by ').cyan + crew['name']);
+
+                    var directorToAdd = {
+                        name: crew['name'],
+                        moviedb_id: crew['id'],
+                        imageurl: crew['profile_path']
+                    };
+
+                    db.insert('directors', directorToAdd).returning('*').row(function (err, row) {
+                        if (!err) {
+                            if (row != null) {
+                                console.log((row['name'] + ' added to database').green);
+
+                                directorInfoDict[row['id']] = {
+                                    movie: movieTitle
+                                };
+
+                                addDirectorMovieRelation(movieId, row['id']);
+                            } else {
+                                console.log('Uh oh'.red);
+                            }
+                        }
+                        else if (err['code'] == 23505) {
+                            console.log(("Director already in database").yellow);
+                        } else {
+                            console.log(err);
+                        }
+                    });
+                }
+            }
 
         } else {
             console.log(body);
@@ -120,6 +147,22 @@ addCastMovieRelation = function (id, castId) {
     });
 };
 
-addDirectorMovieRelation = function (id, directorID) {
+addDirectorMovieRelation = function (movieID, directorID) {
 
+    var directorMovie = {
+        movie_id: movieID,
+        director_id: directorID
+    };
+
+    db.insert('movies_directors', directorMovie).returning('*').row(function (err, row) {
+        if (!err) {
+            if (row != null) {
+                console.log((directorInfoDict[directorID]['movie']).cyan + ' | ' + row['movie_id'] + ' Directed by '.yellow + row['director_id'] + (' relationship created').green);
+            } else {
+                console.log('Uh oh'.red);
+            }
+        } else {
+            console.log((err.detail).red)
+        }
+    });
 };
