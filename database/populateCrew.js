@@ -38,6 +38,7 @@ db.raw('SELECT id,title,moviedb_id FROM movies ORDER BY title').rows(function (e
 });
 
 var castInfoDict = {};
+var directorInfoDict = {};
 
 getCrew = function (movieTitle, movieId, movieDB_Id) {
 
@@ -94,7 +95,7 @@ getCrew = function (movieTitle, movieId, movieDB_Id) {
         }
     });
 
-}
+};
 
 addCastMovieRelation = function (id, castId) {
 
@@ -117,4 +118,8 @@ addCastMovieRelation = function (id, castId) {
             console.log(err.detail);
         }
     });
+};
+
+addDirectorMovieRelation = function (id, directorID) {
+
 };

@@ -108,4 +108,4 @@ addMovieGenreRelation = function (movieObject, genresArray) {
         });
     }
 
-}
+};
