@@ -2,7 +2,7 @@ module.exports = function (app) {
 
     var movies = require('../lib/movies.js');
 
-    app.get('/movies', function (req, res) {
+    app.get('/movies', function(req, res) {
         movies.getAllMovies(function (status) {
             if (status['status'] == 200) {
                 console.log("All movies found".green);
@@ -13,7 +13,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/specific-movie', function (req, res) {
+    app.get('/specific-movie', function(req, res) {
         if (req.query.id != null) {
             movies.findSpecificMovie.byId(req.query.id, function (status) {
                 if (status['status'] == 200) {
@@ -37,7 +37,31 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/all-genres', function (req, res) {
+	app.get('/allMovieInfo', function(req,res) {
+		if (req.query.id != null) {
+            movies.findSpecificMovie.allInfoById(req.query.id, function (status) {
+                if (status['status'] == 200) {
+                    console.log("Specific movie found".green);
+                    res.json(status);
+                } else {
+                    res.json(status);
+                }
+            });
+        } else if (req.query.title != null) {
+            movies.findSpecificMovie.allInfoByTitle(req.query.title, function (status) {
+                if (status['status'] == 200) {
+                    console.log("Specific movie found".green);
+                    res.json(status);
+                } else {
+                    res.json(status);
+                }
+            });
+        } else {
+            res.json({status: 400, reason: 'Improper parameters'});
+        }
+	});
+
+    app.get('/all-genres', function(req, res) {
         movies.genres.getAll(function (status) {
             if (status['status'] == 200) {
                 console.log("All genres found");
@@ -48,7 +72,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/getMoviesFromGenre', function (req, res) {
+    app.get('/getMoviesFromGenre', function(req, res) {
         if (req.query.genreName != null) {
             movies.genres.getMoviesByGenreName(req.query.genreName, function (status) {
                 if (status['status'] == 200) {
