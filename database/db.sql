@@ -48,17 +48,20 @@ CREATE TABLE movies_directors (
 	movie_id integer NOT NULL,
 	director_id integer NOT NULL,
 	FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
-    FOREIGN KEY (director_id) REFERENCES directors(id)
+    FOREIGN KEY (director_id) REFERENCES directors(id) ON DELETE CASCADE
 );
 
 DROP TABLE directors;
+--moviedb_id is the director ID from MovieDB
 CREATE TABLE directors (
 	id serial,
 	name varchar(255) NOT NULL,
+    imageurl varchar(255),
+    moviedb_id integer UNIQUE NOT NULL,
 	PRIMARY KEY(id)
 );
 
-//populating genres
+--populating genres
 INSERT INTO genres (name) VALUES
 ('Action'),
 ('Adventure'),
@@ -97,7 +100,7 @@ INSERT INTO genres (name) VALUES
 ('Western');
 
 
-//users
+--users
 DROP TABLE users;
 CREATE TABLE users (
     id serial,
