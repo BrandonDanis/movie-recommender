@@ -28,7 +28,12 @@ module.exports = function(app) {
 			});
 		}else if(req.query.title != null){
 			movies.findSpecificMovie.byTitle(req.query.title, function(status) {
-				
+				if(status['status'] == 200){
+					console.log("Specific movie found".green);
+					res.json(status);
+				}else{
+					res.json(status);
+				}
 			});
 		}else{
 			res.json({status: 400, reason: 'Improper parameters'});
