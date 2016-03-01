@@ -18,7 +18,7 @@ db.raw('SELECT title,id,moviedb_id FROM movies').rows(function(err,rows){
 	if(!err){
 		if(rows[0] != null){
 
-			for(var i=0;i<rows.length-179;i++){
+			for(var i=0;i<rows.length-175;i++){
 
 				//just incase
 				allMovies[i] = rows[i]['title'];
@@ -71,7 +71,7 @@ getCrew = function(movieTitle,movieId,movieDB_Id){
 							console.log('Uh-Oh'.red);
 						}
 					}else if(err['code'] == 23505){
-						console.log((castToAdd['name'] + " already in database").yellow);
+						console.log(("Already in database").yellow);
 					}else{
 						console.log(err);
 					}
@@ -106,7 +106,7 @@ addCastMovieRelation = function(id,castId){
 	db.insert('movies_casts',cast_movie).returning('*').rows(function(err,rows) {
 		if(!err){
 			if(rows[0] != null){
-				console.log(movieNameDict[5275].cyan + ' | ' + rows[0]['character'] + (' played by ').yellow + rows[0]['cast_id'] + (' relationship created.').green);
+				console.log((movieNameDict[rows[0]['movie_id']]).cyan + ' | ' + rows[0]['character'] + (' played by ').yellow + rows[0]['cast_id'] + (' relationship created.').green);
 			}else{
 				console.log('uh oh'.red);
 			}
