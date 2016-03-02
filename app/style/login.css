@@ -6,8 +6,8 @@ body
 	/*background: linear-gradient(to left, #517fa4 , #243949); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 
-	background-image: url("http://www.hdwallpapers.in/walls/interstellar-wide.jpg");
-	/*background-image: url("/img/interstellar.jpg");*/
+	/*background-image: url("http://www.hdwallpapers.in/walls/interstellar-wide.jpg");*/
+	background-image: url('../img/interstellar.jpg');
 	/*background-image: url("http://www.hdwallpapers.in/walls/marvel_deadpool_movie-wide.jpg");*/
 	background-size: cover;
 }
