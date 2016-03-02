@@ -25,7 +25,7 @@ app.use(cookieSession({
 	ephemeral: true
 }));
 
-app.use(express.static(path.join(_dirname, 'app')));
+app.use(express.static(path.join(__dirname, 'app')));
 
 var session = require('./lib/session.js');
 
