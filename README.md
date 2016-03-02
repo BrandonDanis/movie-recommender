@@ -20,5 +20,10 @@ GET /getMoviesFromGenre //returns all movies from a specific genre
 var movies = 'routes/directors-route.js';
 GET /directors //returns all directors
 GET /director //returns a specific director
+
+var users = 'routes/users-route.js';
+POST /users //adding a user to the database
+GET /users //returns a specific user
+DELETE /users //deletes the specified user
 ```
 
