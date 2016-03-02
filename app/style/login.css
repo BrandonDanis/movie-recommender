@@ -7,7 +7,8 @@ body
 
 
 	background-image: url("http://www.hdwallpapers.in/walls/interstellar-wide.jpg");
-
+	/*background-image: url("/img/interstellar.jpg");*/
+	/*background-image: url("http://www.hdwallpapers.in/walls/marvel_deadpool_movie-wide.jpg");*/
 	background-size: cover;
 }
 
@@ -31,11 +32,6 @@ body
 	vertical-align: middle;
 	height: 100%;
 	display: table-cell;
-}
-
-.wrapper .row
-{
-
 }
 
 .header-container

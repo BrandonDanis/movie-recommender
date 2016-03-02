@@ -4,9 +4,9 @@
 
 var directors = require('../lib/directors.js');
 
-module.exports = function (router) {
+module.exports = function(app) {
 
-    router.get('/directors', function (req, res) {
+    app.get('/directors', function(req, res) {
 
         directors.getAll(function (result) {
             if (result['status'] == 200) {
@@ -18,7 +18,7 @@ module.exports = function (router) {
         })
     });
 
-    router.get('/director', function (req, res) {
+    app.get('/director', function(req, res) {
         var queries = req.query;
 
         if (queries['id']) {
@@ -35,7 +35,7 @@ module.exports = function (router) {
                 if (result['status'] == 200) {
                     console.log("Director found".green);
                 }
-
+                
                 res.status(result['status']);
                 res.json(result);
             });

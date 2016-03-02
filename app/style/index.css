@@ -1,0 +1,31 @@
+
+
+.wrapper
+{
+	padding: 50px;
+	vertical-align: middle;
+	height: 100%;
+}
+
+.wrapper .container
+{
+
+}
+
+.movieBox
+{
+	margin: 20px 10px;
+	width: 185px;
+	display: inline-block;
+}
+
+.movieInfo
+{
+	text-align: center;
+}
+
+.movieInfo h4
+{
+	margin: 5px 0;
+	color: #000;
+}
