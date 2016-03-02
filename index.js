@@ -25,8 +25,6 @@ app.use(cookieSession({
 	ephemeral: true
 }));
 
-app.use(express.static(path.join(__dirname, 'app')));
-
 var session = require('./lib/session.js');
 
 app.get('/', function(req, res) {
@@ -42,6 +40,8 @@ app.get('/', function(req, res) {
 		res.sendFile(path.join(__dirname + '/app/login.html'));
 	}
 });
+
+app.use(express.static(path.join(__dirname, 'app')));
 
 //movies
 require('./routes/movies-route.js')(app);
@@ -60,6 +60,7 @@ require('./routes/users-route.js')(app);
 app.get('/logout', function(req, res)
 {
     req.session.reset();
+	req.session.ssid == 0;
     res.redirect('/');
 });
 
