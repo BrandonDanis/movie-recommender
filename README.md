@@ -7,3 +7,23 @@ Don't know what to watch? This is the app for you!
 var Rushil_Perera = "https://github.com/silverAndroid";
 var Brandon_Danis = "https://github.com/BrandonDanis";
 ```
+
+<strong>API Endpoints:</strong>
+
+```javascript
+var movies = 'routes/movies-route.js';
+GET /movies //returns all movies  
+GET /specific-movie //returns a specific movie 
+GET /all-genres //returns all genres  
+GET /getMoviesFromGenre //returns all movies from a specific genre
+
+var movies = 'routes/directors-route.js';
+GET /directors //returns all directors
+GET /director //returns a specific director
+
+var users = 'routes/users-route.js';
+POST /users //adding a user to the database
+GET /users //returns a specific user
+DELETE /users //deletes the specified user
+```
+
