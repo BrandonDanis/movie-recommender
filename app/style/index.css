@@ -1,35 +1,42 @@
 
-
-.wrapper
-{
-	padding: 50px;
-	vertical-align: middle;
-	height: 100%;
+.wrapper {
+    padding: 50px;
+    vertical-align: middle;
+    height: 100%;
 }
 
-.wrapper .container
-{
+.wrapper .container {
 
 }
 
-.movieBox
-{
-	margin: 20px 10px;
-	width: 185px;
-	display: inline-block;
+.movieBox {
+    margin: 20px 10px;
+    width: 185px;
+    display: inline-block;
 }
 
-.movieInfo
-{
-	text-align: center;
+.movieInfo {
+    text-align: center;
 }
 
-.movieInfo h4
-{
-	margin: 5px 0;
-	color: #000;
+.movieInfo h4 {
+    margin: 5px 0;
+    color: #000;
+}
+
+#box {
+    height: 50px;
+    width: 500px;
+}
+
+#search-box {
+    height: 50px;
+    width: 500px;
+    font-size: 200%;
 }
 
 #search-icon {
-	float: right;
+    position: relative;
+    top: 20px;
+    left: 15px;
 }
