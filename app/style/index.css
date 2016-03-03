@@ -42,6 +42,24 @@ h1,h2,h3,h4,h5,h6,p
 	letter-spacing: 1px;
 }
 
+.searchContainer
+{
+	max-width: 50%;
+	padding: 25px 0;
+	margin: auto;
+}
+
+/*SEARCH FORM*/
+.search-form {
+    border-radius: 30px 0px 0px 30px;
+    /*border-radius:Top-left, Top-right, Bottom-right, Bottom-left;*/
+}
+/*to cange only one form and not all give unique class name like  class="search-form" */
+ .search-btn {
+    border-radius: 0px 30px 30px 0px;
+    cursor:pointer;
+}
+
 
 .wrapper {
     padding: 50px;
@@ -63,25 +81,9 @@ h1,h2,h3,h4,h5,h6,p
     text-align: center;
 }
 
-#box {
-    height: 50px;
-    width: 500px;
-}
-
-#search-box {
-    height: 50px;
-    width: 500px;
-    font-size: 200%;
-}
 .movieInfo h4
 {
 	font-weight: 300;
 	margin: 5px 0;
 	color: #000;
-}
-
-#search-icon {
-    position: relative;
-    top: 20px;
-    left: 15px;
 }
