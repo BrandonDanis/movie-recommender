@@ -5,9 +5,15 @@ module.exports = function (app) {
     var searchEngine = require('../lib/search.js');
 
     app.get('/search', function (req, res) {
-        searchEngine.search(req.query['search'], function (result) {
-            res.status(result['status']);
-            res.json(result);
-        })
+        var query = req.query['term'];
+        if (query != null) {
+            searchEngine.search(req.query['term'], function (result) {
+                res.status(result['status']);
+                res.json(result);
+            });
+        } else {
+            res.status(400);
+            res.json({status: 400, reason: 'Improper parameters'});
+        }
     })
 };

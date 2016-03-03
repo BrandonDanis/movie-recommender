@@ -5,8 +5,8 @@ logout = function () {
 };
 
 $('#search-box').autocomplete({
-    serviceUrl: '/search',
-    onSelect: function (suggestion) {
-        alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+    source: '/search',
+    response: function (event, ui) {
+        console.log(ui['content'][1][0]);
     }
 });
