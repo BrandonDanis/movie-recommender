@@ -43,31 +43,36 @@ h1,h2,h3,h4,h5,h6,p
 }
 
 
-
-.wrapper
-{
-	padding: 50px;
-	vertical-align: middle;
-	height: 100%;
+.wrapper {
+    padding: 50px;
+    vertical-align: middle;
+    height: 100%;
 }
 
-.wrapper .container
-{
+.wrapper .container {
 
 }
 
-.movieBox
-{
-	margin: 20px 10px;
-	width: 185px;
-	display: inline-block;
+.movieBox {
+    margin: 20px 10px;
+    width: 185px;
+    display: inline-block;
 }
 
-.movieInfo
-{
-	text-align: center;
+.movieInfo {
+    text-align: center;
 }
 
+#box {
+    height: 50px;
+    width: 500px;
+}
+
+#search-box {
+    height: 50px;
+    width: 500px;
+    font-size: 200%;
+}
 .movieInfo h4
 {
 	font-weight: 300;
@@ -76,5 +81,7 @@ h1,h2,h3,h4,h5,h6,p
 }
 
 #search-icon {
-	float: right;
+    position: relative;
+    top: 20px;
+    left: 15px;
 }
