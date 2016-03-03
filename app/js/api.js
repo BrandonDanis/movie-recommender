@@ -10,4 +10,10 @@ function Api()
 		});
 	}
 
+	this.getAllMovies = function(callback) {
+		$.get(apiUrl + '/movies', {}, function(res){
+			callback(res);
+		});
+	}
+
 }
