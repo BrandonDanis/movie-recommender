@@ -19,7 +19,12 @@ $('#search-box').autocomplete({
                         var object = objects[key];
                         console.log(objects[key]);
                         console.log(object['title']);
-                        var listObject = {label: object['title'], value: object['id']};
+                        var listObject = {
+                            label: object['title'],
+                            value: object['id'],
+                            imageURL: object['poster'],
+                            description: object['overview']
+                        };
                         list.push(listObject);
                     }
                 }
@@ -28,7 +33,15 @@ $('#search-box').autocomplete({
             }
         });
     }
-});
+}).autocomplete("instance")._renderItem = function (ul, item) {
+    if (item.description.length > 68)
+        item.description = item.description.substring(0, 65) + '...';
+    return $("<li>")
+        .append("<div><p style='float: left; padding-right: 5px; margin: 0'> <img id='autocomplete-icon' height='50px' " +
+            "src=https://image.tmdb.org/t/p/w185" + item.imageURL + "></p><p><b>" + item.label + "</b><br>" +
+            item.description + "</p></div>")
+        .appendTo(ul);
+};
 
 loadMovies = function() {
 
