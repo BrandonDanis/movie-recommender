@@ -34,14 +34,20 @@ $('#search-box').autocomplete({
         });
     }
 }).autocomplete("instance")._renderItem = function (ul, item) {
-    if (item.description.length > 68)
-        item.description = item.description.substring(0, 65) + '...';
+    if (item.description.length > 78)
+        item.description = item.description.substring(0, 75) + '...';
     return $("<li>")
         .append("<div><p style='float: left; padding-right: 5px; margin: 0'> <img id='autocomplete-icon' " +
             "height='50px' src=https://image.tmdb.org/t/p/w185" + item.imageURL + "></p><p style='font-weight: 300'><b>"
             + item.title + "</b><br>" + item.description + "</p></div>")
         .appendTo(ul);
 };
+
+window.addEventListener('keydown', function (e) {
+    if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
+        e.preventDefault();
+    }
+});
 
 loadMovies = function() {
 
