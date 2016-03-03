@@ -44,7 +44,7 @@ $('#search-box').autocomplete({
 };
 
 window.addEventListener('keydown', function (e) {
-    if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
+    if (e.keyCode === 114 || ((e.metaKey || e.ctrlKey) && e.keyCode === 70)) {
         $('html, body').animate({
             scrollTop: 0
         }, 1000);
