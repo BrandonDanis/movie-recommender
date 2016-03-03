@@ -2,13 +2,60 @@ h1, h2, h3, h4, h5, h6, p {
     font-family: 'Oswald', sans-serif;
 }
 
-/*HEAER PANEL*/
-.headerPanel {
-    width: 100%;
-    height: 400px;
-    background-image: url('../img/interstellar.jpg');
-    background-position: center;
-    background-size: cover;
+.headerPanel
+{
+	width: 100%;
+	height: 50%;
+	background-image: url('../img/interstellar.jpg');
+	background-position: center;
+	background-size: cover;
+
+	text-align: center;
+}
+
+.wrapper-headerPanel
+{
+	width: 100%;
+	height: 100%;
+	padding: 150px 100px;
+	vertical-align: middle;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.headerPanel h1
+{
+	font-weight: 700;
+	font-size: 50px;
+	color: #fff;
+	margin: 0;
+	letter-spacing: 1px;
+}
+
+.headerPanel p
+{
+	font-weight: 300;
+	font-size: 20px;
+	color: #dedcdc;
+	margin: 0;
+	letter-spacing: 1px;
+}
+
+.searchContainer
+{
+	max-width: 50%;
+	padding: 25px 0;
+	margin: auto;
+}
+
+/*SEARCH FORM*/
+.search-form {
+    border-radius: 30px 0px 0px 30px;
+    /*border-radius:Top-left, Top-right, Bottom-right, Bottom-left;*/
+}
+/*to cange only one form and not all give unique class name like  class="search-form" */
+ .search-btn {
+    border-radius: 0px 30px 30px 0px;
+    cursor:pointer;
 }
 
 .wrapper {
@@ -40,12 +87,6 @@ h1, h2, h3, h4, h5, h6, p {
     height: 50px;
     width: 500px;
     font-size: 200%;
-}
-
-.movieInfo h4 {
-    font-weight: 300;
-    margin: 5px 0;
-    color: #000;
 }
 
 #search-icon {
@@ -104,4 +145,10 @@ h1, h2, h3, h4, h5, h6, p {
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     background-image: none;
+}
+.movieInfo h4
+{
+	font-weight: 300;
+	margin: 5px 0;
+	color: #000;
 }

@@ -15,20 +15,27 @@
 	<body style="padding-top: 0px;">
 
 		<section class="headerPanel">
+			<div class="wrapper-headerPanel">
+				<h1>Netflix 2.0</h1>
+				<p>Don't know what to watch?</p>
 
+				<div class="searchContainer">
+					<form autocomplete="off">
+	    				<div class="input-group">
+	        				<input type="text" class="form-control search-form" type="text" aria-autocomplete="both" id="search-box">
+	        					<!--DO NOT NEED TRAILING SLASH "/" As HTML5 FORMS SLASHES ARE NO LONGER REQUIRED-->
+							<span class="input-group-btn">
+								<button type="submit" class="btn btn-primary search-btn" data-target="#search-form" name="q"><i class="fa fa-search"></i></button>
+							</span>
+						</div>
+					</form>
+				</div>
+
+			</div>
 		</section>
 
 
 		<div class="wrapper">
-
-			<div>
-				<form autocomplete="off">
-					<label id="box">
-						<input type="text" aria-autocomplete="both" id="search-box">
-					</label>
-                    <embed src="./img/ic_search.svg" id="search-icon">
-				</form>
-			</div>
 
 			<div class="container" id="movieContainer">
 
