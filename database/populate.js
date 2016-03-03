@@ -5,11 +5,12 @@ var colors = require('colors');
 var dbUrl = 'postgres://localhost:5432/Netflix2';
 var db = require('pg-bricks').configure(dbUrl);
 
-var MOVIES_FILENAME = 'movies.json';
+//var MOVIES_FILENAME = 'data/movies.json';
+var MOVIES_FILENAME = 'data/popular_movies_runtimes_merged_10.json';
 var contentJSON = fs.readFileSync(MOVIES_FILENAME);
 var moviesArray = JSON.parse(contentJSON);
 
-var GENRES_FILENAME = 'genres.json';
+var GENRES_FILENAME = 'data/genres.json';
 var genresJSON = fs.readFileSync(GENRES_FILENAME);
 var genresArray = JSON.parse(genresJSON);
 
