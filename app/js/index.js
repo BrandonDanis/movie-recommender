@@ -34,8 +34,8 @@ $('#search-box').autocomplete({
         });
     }
 }).autocomplete("instance")._renderItem = function (ul, item) {
-    if (item.description.length > 68)
-        item.description = item.description.substring(0, 65) + '...';
+    if (item.description.length > 78)
+        item.description = item.description.substring(0, 75) + '...';
     return $("<li>")
         .append("<div><p style='float: left; padding-right: 5px; margin: 0'> <img id='autocomplete-icon' " +
             "height='50px' src=https://image.tmdb.org/t/p/w185" + item.imageURL + "></p><p style='font-weight: 300'><b>"
@@ -43,19 +43,31 @@ $('#search-box').autocomplete({
         .appendTo(ul);
 };
 
-loadMovies = function() {
+window.addEventListener('keydown', function (e) {
+    if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 1000);
+        setTimeout(function () {
+            $("#search-box").focus();
+        }, 1000);
+        e.preventDefault();
+    }
+});
 
-    api.getAllMovies(function(res){
+loadMovies = function () {
+
+    api.getAllMovies(function (res) {
 
         var moviesArray = res['movies'];
 
-        if(res['status'] == 200){
+        if (res['status'] == 200) {
 
-            for(var i=0;i<moviesArray.length;i++){
-                $('#movieContainer').append(generateMovieDiv(moviesArray[i]['title'],moviesArray[i]['poster']));
+            for (var i = 0; i < moviesArray.length; i++) {
+                $('#movieContainer').append(generateMovieDiv(moviesArray[i]['title'], moviesArray[i]['poster']));
             }
 
-        }else{
+        } else {
             console.log('Error getting movies');
         }
 
@@ -63,7 +75,7 @@ loadMovies = function() {
 
 };
 
-generateMovieDiv = function(movieTitle,posterUrl) {
+generateMovieDiv = function (movieTitle, posterUrl) {
 
     var divTemplate = '<div class="movieBox"><div class="imageContainer"><img src="https://image.tmdb.org/t/p/w185~IMGURL~" width="185" height="278"/></div><div class="movieInfo"><h4>~MOVIETITLE~</h4></div></div>';
 
