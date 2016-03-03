@@ -1,1 +1,13 @@
 node_modules
+.idea
+scripts/loop_test.sh~
+scripts/popular_movies_runtimes_merged.json
+scripts/popular_movies_runtimes_merged_10.json
+scripts/popular_movies_runtimes_merged_2.json
+scripts/popular_movies_runtimes_merged_3.json
+scripts/popular_movies_runtimes_merged_4.json
+scripts/popular_movies_runtimes_merged_5.json
+scripts/popular_movies_runtimes_merged_6.json
+scripts/popular_movies_runtimes_merged_7.json
+scripts/popular_movies_runtimes_merged_8.json
+scripts/popular_movies_runtimes_merged_9.json
