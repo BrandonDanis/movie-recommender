@@ -20,7 +20,7 @@ $('#search-box').autocomplete({
                         console.log(objects[key]);
                         console.log(object['title']);
                         var listObject = {
-                            label: object['title'],
+                            title: object['title'],
                             value: object['id'],
                             imageURL: object['poster'],
                             description: object['overview']
@@ -37,9 +37,9 @@ $('#search-box').autocomplete({
     if (item.description.length > 68)
         item.description = item.description.substring(0, 65) + '...';
     return $("<li>")
-        .append("<div><p style='float: left; padding-right: 5px; margin: 0'> <img id='autocomplete-icon' height='50px' " +
-            "src=https://image.tmdb.org/t/p/w185" + item.imageURL + "></p><p><b>" + item.label + "</b><br>" +
-            item.description + "</p></div>")
+        .append("<div><p style='float: left; padding-right: 5px; margin: 0'> <img id='autocomplete-icon' " +
+            "height='50px' src=https://image.tmdb.org/t/p/w185" + item.imageURL + "></p><p style='font-weight: 300'><b>"
+            + item.title + "</b><br>" + item.description + "</p></div>")
         .appendTo(ul);
 };
 
