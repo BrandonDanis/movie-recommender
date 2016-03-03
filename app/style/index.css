@@ -72,6 +72,8 @@ h1, h2, h3, h4, h5, h6, p {
     margin: 20px 10px;
     width: 185px;
     display: inline-block;
+    height: 347px;
+    vertical-align: middle;
 }
 
 .movieInfo {
