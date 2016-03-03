@@ -61,6 +61,12 @@ h1, h2, h3, h4, h5, h6, p {
 .wrapper .container {
 
 }
+.movieInfo h4
+{
+    font-weight: 300;
+    margin: 5px 0;
+    color: #000;
+}
 
 .movieBox {
     margin: 20px 10px;
@@ -87,6 +93,14 @@ h1, h2, h3, h4, h5, h6, p {
     position: relative;
     top: 20px;
     left: 15px;
+}
+
+#autocomplete-icon {
+    display: inline-block;
+    max-width: 50px;
+    max-height: 50px;
+    width: auto;
+    height: auto;
 }
 
 /*autocomplete styling*/
@@ -139,10 +153,4 @@ h1, h2, h3, h4, h5, h6, p {
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     background-image: none;
-}
-.movieInfo h4
-{
-	font-weight: 300;
-	margin: 5px 0;
-	color: #000;
 }
