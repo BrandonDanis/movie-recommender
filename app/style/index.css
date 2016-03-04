@@ -9,7 +9,6 @@ h1, h2, h3, h4, h5, h6, p {
 	background-image: url('../img/interstellar.jpg');
 	background-position: center;
 	background-size: cover;
-
 	text-align: center;
 }
 
@@ -139,4 +138,13 @@ h1, h2, h3, h4, h5, h6, p {
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     background-image: none;
+}
+
+.fa-stack:hover
+{
+    color: white;
+}
+.fa-stack i:hover
+{
+    color: black;
 }

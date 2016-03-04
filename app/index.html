@@ -13,7 +13,10 @@
 	</header>
 
 	<body style="padding-top: 0;">
-
+		<span class="fa-stack fa-lg" style="position:fixed; top:5;left:5;">
+		  <i class="fa fa-circle fa-stack-2x"></i>
+		  <i class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
+		</span>
 		<section class="headerPanel">
 			<div class="wrapper-headerPanel">
 				<div class="" style="display:table-cell;vertical-align:middle;">
@@ -54,6 +57,19 @@
 	<script type = 'text/javascript'>
 		$(document).ready(function() {
 			loadMovies();
+
+			$(".fa-stack.fa-lg").on("click", function() {
+
+				if($('body').css("background-color") == "rgb(255, 255, 255)"){
+					$('body').css("background-color","rgb(0, 0, 0)");
+					$('.movieInfo h4').css("color","#FFFFFF");
+				}else{
+					$('body').css("background-color","rgb(255, 255, 255)");
+					$('.movieInfo h4').css("color","#000000");
+				}
+
+			});
+
 		});
 	</script>
 
