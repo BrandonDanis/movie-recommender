@@ -63,7 +63,7 @@ loadMovies = function () {
 
         if (res['status'] == 200) {
 
-            for (var i = 0; i < (200 || moviesArray.length); i++) {
+            for (var i = 0; i < (moviesArray.length); i++) {
                 $('#movieContainer').append(generateMovieDiv(moviesArray[i]['title'], moviesArray[i]['poster']));
             }
 

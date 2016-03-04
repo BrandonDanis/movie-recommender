@@ -1,0 +1,61 @@
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Oswald', sans-serif;
+}
+
+.headerPanel
+{
+	width: 100%;
+	height: 180px;
+	background-image: url('../img/interstellar.jpg');
+	background-position: center;
+	background-size: cover;
+	text-align: center;
+}
+
+.wrapper-headerPanel
+{
+	width: 100%;
+	height: 100%;
+	display: table;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.headerPanel h1
+{
+	font-weight: 700;
+	font-size: 50px;
+	color: #fff;
+	margin: 0;
+	letter-spacing: 1px;
+}
+
+.headerPanel p
+{
+	font-weight: 300;
+	font-size: 20px;
+	color: #dedcdc;
+	margin: 0;
+	letter-spacing: 1px;
+}
+
+.headerContent
+{
+	display:table-cell;
+	vertical-align:middle;
+}
+
+.leftContent
+{
+	color: #ffffff;
+	display: table-cell;
+	vertical-align: middle;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.rightContent
+{
+	color: #ffffff;
+	display: table-cell;
+	vertical-align: middle;
+	background-color: rgba(0, 0, 0, 0.3);
+}
