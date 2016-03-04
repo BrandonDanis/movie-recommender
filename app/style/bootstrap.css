@@ -1727,11 +1727,7 @@ hr {
 /*========================================================
                      HEADER  Section
 =========================================================*/
-header {
-  background: url("../images/header-bg.jpg") no-repeat #1d1d1d;
-  -webkit-background-size: cover;
-  background-size: cover;
-}
+
 header h1,
 header h2,
 header h3,
