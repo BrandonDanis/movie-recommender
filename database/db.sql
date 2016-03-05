@@ -94,7 +94,7 @@ INSERT INTO genres (name) VALUES
 ('Sporting Event'),
 ('Sports Film'),
 ('Suspense'),
-('TV movie'),
+('TV Movie'),
 ('Thriller'),
 ('War'),
 ('Western');
