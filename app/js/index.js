@@ -82,7 +82,7 @@ loadMovies = function () {
 
 generateMovieDiv = function (movieTitle, posterUrl) {
 
-    var divTemplate = '<div class="movieBox"><div class="imageContainer"><img src="https://image.tmdb.org/t/p/w185~IMGURL~" width="185" height="278"/></div><div class="movieInfo"><h4>~MOVIETITLE~</h4></div></div>';
+    var divTemplate = '<div class="movieBox"><a href="./movie?title=~MOVIETITLE~"><div class="imageContainer"><img src="https://image.tmdb.org/t/p/w185~IMGURL~" width="185" height="278"/></div><div class="movieInfo"><h4>~MOVIETITLE~</h4></div></a></div>';
 
     divTemplate = divTemplate.replace(/~IMGURL~/g, posterUrl);
     divTemplate = divTemplate.replace(/~MOVIETITLE~/g, movieTitle);
