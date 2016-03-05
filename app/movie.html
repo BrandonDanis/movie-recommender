@@ -4,84 +4,76 @@
     <meta charset="UTF-8">
     <title>*Insert movie here*</title>
     <link rel="stylesheet" href="style/movie.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Oswald:700,400,300' rel='stylesheet' type='text/css'>
-    <script src="https://fb.me/react-0.14.7.min.js"
-            integrity="sha384-zTm/dblzLXQNp3CgY+hfaC/WJ6h4XtNrePh2CW2+rO9GPuNiPb9jmthvAL+oI/dQ"
-            crossorigin="anonymous"></script>
-    <script src="https://fb.me/react-dom-0.14.7.min.js"
-            integrity="sha384-ntqCsHbLdMxT352UbhPbT7fqjE8xi4jLmQYQa8mYR+ylAapbXRfdsDweueDObf7m"
-            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./style/bootstrap.css">
+</head>
+<body>
+    <section class="headerPanel">
+
+    </section>
+    <br>
+    <section>
+        <div class="wrapper">
+
+            <div class="container-fluid">
+                <div class="row">
+                    <p style="float: left;">
+                        <img id="poster" src="https://image.tmdb.org/t/p/w185/inVq3FRqcYIRl2la8iZikYYxFNR.jpg">
+                    </p>
+                    <p class="col-md-8">
+                        <h2>Deadpool (2016)</h2>
+                        <br>
+                        <b>Directed by:</b> Tim Miller
+                        <br>
+                        <b>Genres:</b> Adventure, Action, Comedy
+                        <br>
+                        <span class="rating">
+                            <span class="star">
+                                <i class="fa fa-star-o"></i>
+                            </span>
+                            <span class="star">
+                                <i class="fa fa-star-o"></i>
+                            </span>
+                            <span class="star">
+                                <i class="fa fa-star-o"></i>
+                            </span>
+                            <span class="star">
+                                <i class="fa fa-star-o"></i>
+                            </span>
+                            <span class="star">
+                                <i class="fa fa-star-o"></i>
+                            </span>
+                        </span>
+                    </p>
+                </div>
+
+                <div class="row col-md-12">
+                    <button style="margin-left: 15px">Trailer</button>
+                </div>
+
+                <div class="row col-md-12">
+                    <div>
+                        <h3>Description:</h3>
+                        Based upon Marvel Comics’ most unconventional anti-hero, DEADPOOL tells the origin story of former
+                        Special Forces operative turned mercenary Wade Wilson, who after being subjected to a rogue
+                        experiment
+                        that leaves him with accelerated healing powers, adopts the alter ego Deadpool. Armed with his new
+                        abilities and a dark, twisted sense of humor, Deadpool hunts down the man who nearly destroyed his
+                        life.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+    <script src="https://fb.me/react-0.14.7.min.js"></script>
+    <script src="https://fb.me/react-dom-0.14.7.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript">
         $(function () {
             $(".headerPanel").load("nav.html");
         });
     </script>
-</head>
-<body>
-<section class="headerPanel">
-    <!--<div class="wrapper-headerPanel">
-        <div class="" style="display:table-cell; vertical-align:middle;">
-            <h1>Netflix 2.0</h1>
-            <p>Don't know what to watch?</p>
-        </div>
-    </div>-->
-</section>
-<br>
-<section>
-    <div class="wrapper">
 
-        <div class="container-fluid">
-            <div class="row">
-                <p style="float: left;">
-                    <img id="poster" src="https://image.tmdb.org/t/p/w185/inVq3FRqcYIRl2la8iZikYYxFNR.jpg">
-                </p>
-                <p class="col-md-8">
-                    <h2>Deadpool (2016)</h2>
-                    <br>
-                    <b>Directed by:</b> Tim Miller
-                    <br>
-                    <b>Genres:</b> Adventure, Action, Comedy
-                    <br>
-                    <span class="rating">
-                        <span class="star">
-                            <i class="fa fa-star-o"></i>
-                        </span>
-                        <span class="star">
-                            <i class="fa fa-star-o"></i>
-                        </span>
-                        <span class="star">
-                            <i class="fa fa-star-o"></i>
-                        </span>
-                        <span class="star">
-                            <i class="fa fa-star-o"></i>
-                        </span>
-                        <span class="star">
-                            <i class="fa fa-star-o"></i>
-                        </span>
-                    </span>
-                </p>
-            </div>
-
-            <div class="row col-md-12">
-                <button style="margin-left: 15px">Trailer</button>
-            </div>
-
-            <div class="row col-md-12">
-                <div>
-                    <h3>Description:</h3>
-                    Based upon Marvel Comics’ most unconventional anti-hero, DEADPOOL tells the origin story of former
-                    Special Forces operative turned mercenary Wade Wilson, who after being subjected to a rogue
-                    experiment
-                    that leaves him with accelerated healing powers, adopts the alter ego Deadpool. Armed with his new
-                    abilities and a dark, twisted sense of humor, Deadpool hunts down the man who nearly destroyed his
-                    life.
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-</body>
 </html>
