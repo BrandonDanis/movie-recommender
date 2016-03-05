@@ -1,0 +1,36 @@
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Oswald', sans-serif;
+}
+
+div .row {
+    padding:0 10px 10px;
+}
+
+#poster {
+    padding-right:20px;
+}
+
+.rating {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+}
+.rating > span {
+    display: inline-block;
+    position: relative;
+    width: 1.1em;
+    font-family:FontAwesome;
+    font-weight:normal;
+    font-style:normal;
+}
+.rating > span:hover,
+.rating > span:hover ~ span {
+    color: transparent;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+    content: "\f005";
+    position: absolute;
+    left: 0;
+    color: gold;
+}
