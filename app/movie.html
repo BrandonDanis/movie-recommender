@@ -8,20 +8,28 @@
     <link rel="stylesheet" href="./style/bootstrap.css">
 </head>
 <body>
-<section class="headerPanel">
-    <div class="container-fluid">
-        <!--where the movie goes-->
-    </div>
-</section>
+    <section class="headerPanel">
 
-<script src="https://fb.me/react-0.14.7.min.js"
-        integrity="sha384-zTm/dblzLXQNp3CgY+hfaC/WJ6h4XtNrePh2CW2+rO9GPuNiPb9jmthvAL+oI/dQ"
-        crossorigin="anonymous"></script>
-<script src="https://fb.me/react-dom-0.14.7.min.js"
-        integrity="sha384-ntqCsHbLdMxT352UbhPbT7fqjE8xi4jLmQYQa8mYR+ylAapbXRfdsDweueDObf7m"
-        crossorigin="anonymous"></script>
+    </section>
+    <br>
+    <section>
+        <div class="wrapper">
+
+            <div class="container-fluid">
+
+            </div>
+        </div>
+    </section>
+</body>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="js/api.js" type="text/javascript"></script>
 <script src="js/movie.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".headerPanel").load("nav.html");
+    });
+</script>
 <script type="text/javascript">
     $(document).ready(function () {
         function getParameterByName(name, url) {
@@ -34,17 +42,13 @@
             return decodeURIComponent(results[2].replace(/\+/g, " "));
         }
 
-        loadMovie(getParameterByName('id'));
-    });
-</script>
-</body>
-
-<script src="https://fb.me/react-0.14.7.min.js"></script>
-<script src="https://fb.me/react-dom-0.14.7.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-        $(".headerPanel").load("nav.html");
+        if (getParameterByName('id') != null) {
+            loadMovie(getParameterByName('id'));
+        } else if (getParameterByName('title') != null) {
+            loadMovie(getParameterByName('title'));
+        } else {
+            loadMovie('');
+        }
     });
 </script>
 
