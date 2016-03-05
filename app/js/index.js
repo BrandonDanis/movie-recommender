@@ -21,7 +21,7 @@ $('#search-box').autocomplete({
                         console.log(object['title']);
                         var listObject = {
                             title: object['title'],
-                            value: object['id'],
+                            value: object['title'],
                             imageURL: object['poster'],
                             description: object['overview']
                         };
@@ -32,6 +32,11 @@ $('#search-box').autocomplete({
                 res(list);
             }
         });
+    },
+    select: function (event, ui) {
+        console.log(event);
+        console.log(ui);
+        window.location = 'http://localhost:8080/movie?title=' + ui.item.title;
     }
 }).autocomplete("instance")._renderItem = function (ul, item) {
     if (item.description.length > 78)
