@@ -2,7 +2,7 @@ var fs = require('fs');
 var colors = require('colors');
 
 // var dbUrl = process.env.DATABASE_URL ? process.env.DATABASE_URL + '?ssl=true' : '/var/run/postgresql/';
-var dbUrl = 'postgres://localhost:5432/Netflix2';
+var dbUrl = process.env.DATABASE_URL || 'postgres://localhost:5432/Netflix2';
 var db = require('pg-bricks').configure(dbUrl);
 
 //var MOVIES_FILENAME = 'data/movies.json';
@@ -91,7 +91,7 @@ addMovieGenreRelation = function (movieObject, genresArray) {
 
                 var genre_movie = {
                     movie_id: movieId,
-                    genre_id: genreId,
+                    genre_id: genreId
                 };
 
                 db.insert('movies_genres', genre_movie).returning('*').rows(function (err, rows) {
