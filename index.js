@@ -72,7 +72,6 @@ require('./routes/users-route.js')(app);
 //search
 require('./routes/search-route.js')(app);
 
-
 //logout
 app.get('/logout', function(req, res)
 {
