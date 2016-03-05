@@ -21,5 +21,4 @@ function Api()
 			callback(res);
 		});
 	};
-
 }
