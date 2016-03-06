@@ -5,7 +5,6 @@
 var api = new Api();
 
 loadMovie = function (idTitle) {
-<<<<<<< HEAD
 
     var url = window.location.href;
 
@@ -36,18 +35,6 @@ loadMovie = function (idTitle) {
         //add failsafe for no parameters provided
     }
 
-=======
-    api.getSpecificMovie(idTitle, function (res) {
-        if (res['status'] == 200) {
-            $('.container-fluid').append(generateMovie(res['movie']));
-            $('title').html(res['movie']['title']);
-            setRating(res['movie']['rating']);
-        } else {
-            console.log(res);
-            console.log('Error loading movie');
-        }
-    });
->>>>>>> c960e38ce46e126ccc277bda425475b66af1cfa9
 };
 
 generateMovie = function (movie) {
@@ -64,8 +51,6 @@ generateMovie = function (movie) {
         .replace('~MOVIERELEASEYEAR~', movie.release_date.split('-')[0]).replace('~MOVIEDESCRIPTION~', movie.overview)
         .replace('~MOVIEGENRES~', movie.genres.join(', ')).replace('~MOVIEDIRECTOR~', movie.director.name);
 };
-<<<<<<< HEAD
-=======
 
 $(document).on('click', '.star', function() {
     var rating = 5 - ($(this).index());
@@ -103,4 +88,3 @@ function setRating(rating) {
         }
     }
 }
->>>>>>> c960e38ce46e126ccc277bda425475b66af1cfa9

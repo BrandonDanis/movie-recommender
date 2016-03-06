@@ -37,6 +37,30 @@ module.exports = function (app) {
         }
     });
 
+    app.get('/findAllMovieInfo', function (req, res) {
+        if(req.query.title != null){
+            movies.findCompleteMovieInfo.byTitle(req.query.title, function (status) {
+                if (status['status'] == 200) {
+                    console.log("Specific movie found".green);
+                    res.json(status);
+                }else{
+                    res.json(status);
+                }
+            });
+        }else if(req.query.id != null){
+            movies.findCompleteMovieInfo.byId(req.query.id, function (status) {
+                if (status['status'] == 200) {
+                    console.log("Specific movie found".green);
+                    res.json(status);
+                }else{
+                    res.json(status);
+                }
+            });
+        }else{
+            res.json({status: 404, reason: 'Improper parameters'});
+        }
+    });
+
     app.get('/all-genres', function (req, res) {
         movies.genres.getAll(function (status) {
             if (status['status'] == 200) {
