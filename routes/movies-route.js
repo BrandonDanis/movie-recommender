@@ -6,39 +6,35 @@ module.exports = function (app) {
         movies.getAllMovies(function (status) {
             if (status['status'] == 200) {
                 console.log("All movies found".green);
-                res.status(status['status']);
                 res.json(status);
             } else {
-                res.status(status['status']);
                 res.json(status);
             }
         });
     });
 
-    app.get('/specific-movie/:id([0-9]+)', function (req, res) {
-        movies.findSpecificMovie.byId(req.params.id, function (status) {
-            if (status['status'] == 200) {
-                res.status(status['status']);
-                console.log("Specific movie found".green);
-                res.json(status);
-            } else {
-                res.status(status['status']);
-                res.json(status);
-            }
-        });
-    });
-
-    app.get('/specific-movie/:title', function (req, res) {
-        movies.findSpecificMovie.byTitle(req.params.title, function (status) {
-            if (status['status'] == 200) {
-                res.status(status['status']);
-                console.log("Specific movie found".green);
-                res.json(status);
-            } else {
-                res.status(status['status']);
-                res.json(status);
-            }
-        });
+    app.get('/specific-movie', function (req, res) {
+        if(req.query.title != null){
+            movies.findSpecificMovie.byTitle(req.query.title, function (status) {
+                if (status['status'] == 200) {
+                    console.log("Specific movie found".green);
+                    res.json(status);
+                }else{
+                    res.json(status);
+                }
+            });
+        }else if(req.query.id != null){
+            movies.findSpecificMovie.byId(req.query.id, function (status) {
+                if (status['status'] == 200) {
+                    console.log("Specific movie found".green);
+                    res.json(status);
+                }else{
+                    res.json(status);
+                }
+            });
+        }else{
+            res.json({status: 404, reason: 'Improper parameters'});
+        }
     });
 
     app.get('/specific-movie', function (req, res) {
@@ -49,11 +45,9 @@ module.exports = function (app) {
     app.get('/all-genres', function (req, res) {
         movies.genres.getAll(function (status) {
             if (status['status'] == 200) {
-                res.status(status['status']);
                 console.log("All genres found");
                 res.json(status);
             } else {
-                res.status(status['status']);
                 res.json(status);
             }
         });
@@ -63,22 +57,18 @@ module.exports = function (app) {
         if (req.query.genreName != null) {
             movies.genres.getMoviesByGenreName(req.query.genreName, function (status) {
                 if (status['status'] == 200) {
-                    res.status(status['status']);
                     console.log("Movies by genre name found");
                     res.json(status);
                 } else {
-                    res.status(status['status']);
                     res.json(status);
                 }
             });
         } else if (req.query.genreId != null) {
             movies.genres.getMoviesByGenreId(req.query.genreId, function (status) {
                 if (status['status'] == 200) {
-                    res.status(status['status']);
                     console.log("Movies by genre id found");
                     res.json(status);
                 } else {
-                    res.status(status['status']);
                     res.json(status);
                 }
             });

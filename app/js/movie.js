@@ -5,15 +5,36 @@
 var api = new Api();
 
 loadMovie = function (idTitle) {
-    api.getSpecificMovie(idTitle, function (res) {
-        if (res['status'] == 200) {
-            $('.container-fluid').append(generateMovie(res['movie']));
-            $('title').html(res['movie']['title']);
-        } else {
-            console.log(res);
-            console.log('Error loading movie');
-        }
-    });
+
+    var url = window.location.href;
+
+    var movieTitle = window.url("?title",url);
+    var movieId = window.url("?id",url);
+
+    if(movieTitle != null){
+        api.getSpecificMovieByTitle(movieTitle, function (res) {
+            if (res['status'] == 200) {
+                $('.container-fluid').append(generateMovie(res['movie']));
+                $('title').html(res['movie']['title']);
+            } else {
+                console.log(res);
+                console.log('Error loading movie');
+            }
+        });
+    }else if(movieId != null){
+        api.getSpecificMovieById(movieId, function (res) {
+            if (res['status'] == 200) {
+                $('.container-fluid').append(generateMovie(res['movie']));
+                $('title').html(res['movie']['title']);
+            } else {
+                console.log(res);
+                console.log('Error loading movie');
+            }
+        });
+    }else{
+        //add failsafe for no parameters provided
+    }
+
 };
 
 generateMovie = function (movie) {
@@ -30,4 +51,3 @@ generateMovie = function (movie) {
         .replace('~MOVIERELEASEYEAR~', movie.release_date.split('-')[0]).replace('~MOVIEDESCRIPTION~', movie.overview)
         .replace('~MOVIEGENRES~', movie.genres.join(', ')).replace('~MOVIEDIRECTOR~', movie.director.name);
 };
-

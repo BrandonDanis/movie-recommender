@@ -16,8 +16,14 @@ function Api()
 		});
 	};
 
-	this.getSpecificMovie = function (idTitle, callback) {
-		$.get(apiUrl + '/specific-movie/' + idTitle, {}, function (res) {
+	this.getSpecificMovieById = function (idTitle, callback) {
+		$.get(apiUrl + '/specific-movie', {id: idTitle}, function (res) {
+			callback(res);
+		});
+	};
+
+	this.getSpecificMovieByTitle = function (titleString, callback) {
+		$.get(apiUrl + '/specific-movie', {title: titleString}, function (res) {
 			callback(res);
 		});
 	};
