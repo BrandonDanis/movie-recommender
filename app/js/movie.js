@@ -15,19 +15,23 @@ loadMovie = function (idTitle) {
     self.movieId = window.url("?id",url);
 
     if(self.movieTitle != null){
-        api.getSpecificMovieByTitle(self.movieTitle, function (res) {
+        api.getSpecificMovieByTitle(self.movieTitle, function(res) {
             processData("movie",res);
+        });
+        api.getRatingByTitle(self.movieTitle, function(res) {
+            processData("rating",res);
         });
         //get director
         //get casts
-        //get rating
     }else if(self.movieId != null){
-        api.getSpecificMovieById(self.movieId, function (res) {
+        api.getSpecificMovieById(self.movieId, function(res) {
             processData("movie",res);
+        });
+        api.getRatingById(self.movieId, function(res) {
+            processData("rating",res);
         });
         //get director
         //get casts
-        //get rating
     }else{
         //add failsafe for no parameters provided
     }
@@ -44,6 +48,7 @@ processData = function(type,data) {
             setupMovieInfo(data['movie']);
             break;
         case "rating":
+            setRating(data['rating']['rating']);
             break;
         case "director":
             break;
@@ -116,7 +121,7 @@ $(document).on('click', '.star', function() {
     }
 });
 
-function setRating(rating) {
+setRating = function(rating) {
     for (var i = 1; i <= 5; i++) {
         var id = '#' + i;
         if (i <= rating) {

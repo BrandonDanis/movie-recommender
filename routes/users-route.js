@@ -10,7 +10,6 @@ module.exports = function(app) {
         console.log('Attempting to create user'.yellow);
         if(req.body.username != null && req.body.password != null){
             users.add(req.body.username, req.body.password, function(status) {
-                res.status(status['status']);
                 res.json(status);
             });
         }else{
@@ -25,13 +24,11 @@ module.exports = function(app) {
         if(req.query.username != null){
             console.log('Attempting to find user by username.'.yellow);
             users.get.byUsername(req.query.username, function(status) {
-                res.status(status['status']);
                 res.json(status);
             });
         }else if(req.query.userId != null){
             console.log('Attempting to find user by id.'.yellow);
             users.get.byId(req.query.userId, function(status) {
-                res.status(status['status']);
                 res.json(status);
             });
         }else{
@@ -46,13 +43,11 @@ module.exports = function(app) {
         if(req.query.username != null){
             console.log('Attempting to delete user by username'.yellow);
             users.delete.byUsername(req.query.username, function(status) {
-                res.status(status['status']);
                 res.json(status);
             });
         }else if(req.query.userId != null){
             console.log('Attempting to delete user by id'.yellow);
             users.delete.byId(req.query.userId, function(status) {
-                res.status(status['status']);
                 res.json(status);
             });
         }else{
@@ -62,25 +57,47 @@ module.exports = function(app) {
 
     });
 
-  app.post('/rate', function (req, res) {
-      if (req.session.username != null && req.body.movieIdTitle != null && req.body.rating != null) {
+  app.post('/rating', function (req, res) {
+
+      if(req.session.username != null && req.body.movieId != null && req.body.rating != null) {
           var body = req.body;
-          var isID = body.movieIdTitle.match(/[0-9]+/g);
+          var isID = body.movieId.match(/[0-9]+/g);
+
           if (isID) {
-              users.rate.withID(req.session.username, body.movieIdTitle, body.rating, function (result) {
-                  res.status(result['status']);
-                  res.json(result);
+              users.postRating.withID(req.session.username, body.movieId, body.rating, function (status) {
+                  res.json(status);
               });
-          } else {
-              users.rate.withTitle(req.session.username, body.movieIdTitle, body.rating, function (result) {
-                  res.status(result['status']);
-                  res.json(result);
+          }else{
+              users.postRating.withTitle(req.session.username, body.movieId, body.rating, function (status) {
+                  res.json(status);
               });
           }
-      } else {
-          res.status(400);
+      }else{
           res.json({status: 400, reason: 'Improper parameters'});
       }
+
+  });
+
+  app.get('/rating', function(req,res) {
+
+     if(req.session.username != null){
+
+         if(req.query.movieId != null){
+            users.getRating.byId(req.session.username, req.query.movieId, function(status) {
+                res.json(status);
+            });
+         }else if(req.query.movieTitle != null){
+             users.getRating.byTitle(req.session.username, req.query.movieTitle, function(status) {
+                 res.json(status);
+             });
+         }else{
+             res.json({status: 400, reason: 'Movie info param isn\'t valid.'});
+         }
+
+     }else{
+         res.json({status: 400, reason: 'Session username isn\'t valid.'});
+     }
+
   });
 
 };

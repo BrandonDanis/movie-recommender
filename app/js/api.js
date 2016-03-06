@@ -17,20 +17,33 @@ function Api()
 	};
 
 	this.getSpecificMovieById = function (idTitle, callback) {
-		$.get(apiUrl + '/specific-movie', {id: idTitle}, function (res) {
+		$.get(apiUrl + '/specific-movie', {id: idTitle}, function(res) {
 			callback(res);
 		});
 	};
 
 	this.getSpecificMovieByTitle = function (titleString, callback) {
-		$.get(apiUrl + '/specific-movie', {title: titleString}, function (res) {
+		$.get(apiUrl + '/specific-movie', {title: titleString}, function(res) {
 			callback(res);
 		});
 	};
 
 	this.rate = function (movieIDTitle, rating, callback) {
-		$.post(apiUrl + '/rate', {movieIdTitle: movieIDTitle, rating: rating}, function (res) {
+		$.post(apiUrl + '/rating', {movieId: movieIDTitle, rating: rating}, function(res) {
 			callback(res);
 		});
 	}
+
+	this.getRatingById = function(movieId, callback) {
+		$.get(apiUrl + '/rating', {movieId: movieId}, function(res) {
+			callback(res);
+		});
+	}
+
+	this.getRatingByTitle = function(movieIDTitle, callback) {
+		$.get(apiUrl + '/rating', {movieTitle: movieIDTitle}, function(res) {
+			callback(res);
+		});
+	}
+
 }
