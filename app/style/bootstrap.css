@@ -5753,11 +5753,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #444444;
   background-color: transparent;
 }
-@media (max-width: 767px) {
-  .navbar {
-    display: none;
-  }
-}
 .caret {
   display: inline-block;
   width: 0;
@@ -5879,14 +5874,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .open > a {
   outline: 0;
-}
-@media (max-width: 767px) {
-  .dropdown-menu {
-    display: block;
-    position: relative;
-    float: none;
-    width: auto;
-  }
 }
 .sf-menu > li > ul li {
   position: relative;

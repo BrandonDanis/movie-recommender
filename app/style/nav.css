@@ -12,6 +12,10 @@ header {
   color: #fff;
 }
 
+body {
+    padding: 0px !important;
+}
+
 .header_mod {
   background: #1d1d1d;
 }
@@ -31,4 +35,23 @@ header h6 {
 }
 .header_mod {
   background: #1d1d1d;
+}
+
+@media (max-width: 767px) {
+  .dropdown-menu {
+    display: block;
+    position: relative;
+    float: none;
+    width: auto;
+  }
+}
+
+.navbar-default .navbar-header {
+    margin-left: 0;
+}
+
+.navbar-header {
+    text-align: center;
+    width: 100%;
+    margin: 0;
 }
