@@ -9,6 +9,7 @@ loadMovie = function (idTitle) {
         if (res['status'] == 200) {
             $('.container-fluid').append(generateMovie(res['movie']));
             $('title').html(res['movie']['title']);
+            setRating(res['movie']['rating']);
         } else {
             console.log(res);
             console.log('Error loading movie');
@@ -36,25 +37,11 @@ $(document).on('click', '.star', function() {
 
     if (getParameterByName('id') != null) {
         api.rate(getParameterByName('id'), rating, function (result) {
-            for (var i = 1; i <= 5; i++) {
-                var id = '#' + i;
-                if (i <= result['rating']) {
-                    $(id).removeClass('fa-star-o').addClass('fa-star').css('color', 'gold');
-                } else {
-                    $(id).removeClass('fa-star').addClass('fa-star-o').css('color', '');
-                }
-            }
+            setRating(result['rating']);
         });
     } else if (getParameterByName('title') != null) {
         api.rate(getParameterByName('title'), rating, function (result) {
-            for (var i = 1; i <= 5; i++) {
-                var id = '#' + i;
-                if (i <= result['rating']) {
-                    $(id).removeClass('fa-star-o').addClass('fa-star').css('color', 'gold');
-                } else {
-                    $(id).removeClass('fa-star').addClass('fa-star-o').css('color', '');
-                }
-            }
+            setRating(result['rating']);
         });
     } else {
         console.log('Bad parameters');
@@ -69,4 +56,15 @@ function getParameterByName(name, url) {
     if (!results) return null;
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function setRating(rating) {
+    for (var i = 1; i <= 5; i++) {
+        var id = '#' + i;
+        if (i <= rating) {
+            $(id).removeClass('fa-star-o').addClass('fa-star').css('color', 'gold');
+        } else {
+            $(id).removeClass('fa-star').addClass('fa-star-o').css('color', '');
+        }
+    }
 }
