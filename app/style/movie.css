@@ -1,4 +1,4 @@
-html body h1 h2 h3 h4 h5 h6 p {
+html body h1 h2 h3 h4 h5 h6 {
     font-family: 'Oswald', sans-serif;
 }
 
@@ -13,15 +13,15 @@ html body h1 h2 h3 h4 h5 h6 p {
     font-weight: 300;
 }
 
-.movieWrapper .col-md-3
-{
-    text-align: center;
-}
-
-.movieTitleContainer h1
+.movieWrapper h1
 {
     font-size: 45px;
     font-weight: 500;
+}
+
+.movieWrapper .col-md-3
+{
+    text-align: center;
 }
 
 .directorContainer
@@ -42,6 +42,13 @@ html body h1 h2 h3 h4 h5 h6 p {
 .trailerContainer button
 {
     width: 185px;
+}
+
+.overviewContainer p
+{
+    margin: 0;
+    padding: 10px 0;
+    color: #000;
 }
 
 

@@ -71,6 +71,11 @@ setupMovieInfo = function(movie) {
     genresSTR = genresSTR.replace('~ALLGENRES~',allGenreSTR);
     $('.genresContainer').append(genresSTR);
 
+    //Movie overview
+    var overviewSTR = '<p>~TEXT~</p>';
+    overviewSTR = overviewSTR.replace('~TEXT~',movie['overview']);
+    $('.overviewContainer').append(overviewSTR);
+
 
 };
 
