@@ -13,23 +13,11 @@ loadMovie = function (idTitle) {
 
     if(movieTitle != null){
         api.getSpecificMovieByTitle(movieTitle, function (res) {
-            if (res['status'] == 200) {
-                $('.container-fluid').append(generateMovie(res['movie']));
-                $('title').html(res['movie']['title']);
-            } else {
-                console.log(res);
-                console.log('Error loading movie');
-            }
+            processData("movie",res);
         });
     }else if(movieId != null){
         api.getSpecificMovieById(movieId, function (res) {
-            if (res['status'] == 200) {
-                $('.container-fluid').append(generateMovie(res['movie']));
-                $('title').html(res['movie']['title']);
-            } else {
-                console.log(res);
-                console.log('Error loading movie');
-            }
+            processData("movie",res);
         });
     }else{
         //add failsafe for no parameters provided
@@ -37,19 +25,32 @@ loadMovie = function (idTitle) {
 
 };
 
-generateMovie = function (movie) {
-    var movieHTML = "<div class=\"row\"><p style=\"float: left;\"><img id=\"poster\" " +
-        "src=\"https://image.tmdb.org/t/p/w185~IMGURL~\"/></p><p><h2>~MOVIETITLE~ " +
-        "(~MOVIERELEASEYEAR~)</h2><br/><b>Directed by:</b> ~MOVIEDIRECTOR~<br/><b>Genres:</b> ~MOVIEGENRES~<br/>" +
-        "<span class=\"rating\"><span class=\"star\"><i class=\"fa fa-star-o\" id=\"5\"></i></span><span class=\"star\">" +
-        "<i class=\"fa fa-star-o\"id=\"4\"></i></span><span class=\"star\"><i class=\"fa fa-star-o\"id=\"3\"></i></span>" +
-        "<span class=\"star\"><i class=\"fa fa-star-o\"id=\"2\"></i></span><span class=\"star\"><i class=\"fa fa-star-o\"" +
-        "id=\"1\"></i></span></span></p></div><div class=\"row col-md-12\"><button style=\"margin-left: 15px\">Trailer" +
-        "</button></div><div class=\"row col-md-12\"><div><h3>Description:</h3>~MOVIEDESCRIPTION~</div></div>";
+processData = function(type,data) {
 
-    return movieHTML.replace('~IMGURL~', movie.poster).replace('~MOVIETITLE~', movie.title)
-        .replace('~MOVIERELEASEYEAR~', movie.release_date.split('-')[0]).replace('~MOVIEDESCRIPTION~', movie.overview)
-        .replace('~MOVIEGENRES~', movie.genres.join(', ')).replace('~MOVIEDIRECTOR~', movie.director.name);
+    if(data['status'] != 200)
+        console.log('Error loading movie: ' + data);
+
+    switch (type) {
+        case "movie":
+            setupMovieInfo(data['movie']);
+            break;
+        default:
+            console.log('Not a case');
+    }
+
+}
+
+//poster,title,release_date,overview,genres,director name
+//replace('~MOVIERELEASEYEAR~', movie.release_date.split('-')[0])
+
+setupMovieInfo = function(movie) {
+
+    $('title').html(movie['title']);
+
+    var imgSTR = '<img src="https://image.tmdb.org/t/p/w185/~IMGURL~" width="185" height="278">';
+    imgSTR = imgSTR.replace('~IMGURL~',movie['poster']);
+    $('.imageContainer').append(imgSTR);
+
 };
 
 $(document).on('click', '.star', function() {
