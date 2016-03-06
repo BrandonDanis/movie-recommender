@@ -40,9 +40,6 @@ processData = function(type,data) {
 
 }
 
-//poster,title,release_date,overview,genres,director name
-//replace('~MOVIERELEASEYEAR~', movie.release_date.split('-')[0])
-
 setupMovieInfo = function(movie) {
 
     //HTML Page Title
