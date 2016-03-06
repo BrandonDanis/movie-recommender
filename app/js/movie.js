@@ -4,21 +4,30 @@
 
 var api = new Api();
 
+self.movieTitle;
+self.movieId;
+
 loadMovie = function (idTitle) {
 
     var url = window.location.href;
 
-    var movieTitle = window.url("?title",url);
-    var movieId = window.url("?id",url);
+    self.movieTitle = window.url("?title",url);
+    self.movieId = window.url("?id",url);
 
-    if(movieTitle != null){
-        api.getSpecificMovieByTitle(movieTitle, function (res) {
+    if(self.movieTitle != null){
+        api.getSpecificMovieByTitle(self.movieTitle, function (res) {
             processData("movie",res);
         });
-    }else if(movieId != null){
-        api.getSpecificMovieById(movieId, function (res) {
+        //get director
+        //get casts
+        //get rating
+    }else if(self.movieId != null){
+        api.getSpecificMovieById(self.movieId, function (res) {
             processData("movie",res);
         });
+        //get director
+        //get casts
+        //get rating
     }else{
         //add failsafe for no parameters provided
     }
@@ -33,6 +42,10 @@ processData = function(type,data) {
     switch (type) {
         case "movie":
             setupMovieInfo(data['movie']);
+            break;
+        case "rating":
+            break;
+        case "director":
             break;
         default:
             console.log('Not a case');
@@ -49,7 +62,6 @@ setupMovieInfo = function(movie) {
     var imgSTR = '<img src="https://image.tmdb.org/t/p/w185/~IMGURL~" width="185" height="278">';
     imgSTR = imgSTR.replace('~IMGURL~',movie['poster']);
     $('.imageContainer').append(imgSTR);
-
 
     //Movie Title
     var movieTitleSTR = '<h1>~MOVIETITLE~ (~DATE~)</h1>';
@@ -76,11 +88,11 @@ setupMovieInfo = function(movie) {
     overviewSTR = overviewSTR.replace('~TEXT~',movie['overview']);
     $('.overviewContainer').append(overviewSTR);
 
-
 };
 
 setupDirectorInfo = function(director) {
 
+    //Director name
     var directorSTR = '<h3><strong>Directed by:</strong> <a href="/director?id=~DIRID~">~DIRNAME~</a></h3>';
     directorSTR = directorSTR.replace('~DIRID~',director['id']);
     directorSTR = directorSTR.replace('~DIRNAME~',director['name']);
@@ -91,28 +103,18 @@ setupDirectorInfo = function(director) {
 $(document).on('click', '.star', function() {
     var rating = 5 - ($(this).index());
 
-    if (getParameterByName('id') != null) {
-        api.rate(getParameterByName('id'), rating, function (result) {
+    if (self.movieId != null) {
+        api.rate(self.movieId, rating, function (result) {
             setRating(result['rating']);
         });
-    } else if (getParameterByName('title') != null) {
-        api.rate(getParameterByName('title'), rating, function (result) {
+    } else if (self.movieTitle != null) {
+        api.rate(self.movieTitle, rating, function (result) {
             setRating(result['rating']);
         });
     } else {
         console.log('Bad parameters');
     }
 });
-
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
 
 function setRating(rating) {
     for (var i = 1; i <= 5; i++) {
