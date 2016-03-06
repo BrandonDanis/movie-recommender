@@ -37,11 +37,6 @@ module.exports = function (app) {
         }
     });
 
-    app.get('/specific-movie', function (req, res) {
-        res.status(400);
-        res.json({status: 400, reason: 'Improper parameters'});
-    });
-
     app.get('/all-genres', function (req, res) {
         movies.genres.getAll(function (status) {
             if (status['status'] == 200) {

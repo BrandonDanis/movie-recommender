@@ -1,112 +1,117 @@
-DROP TABLE movies;
+DROP TABLE IF EXISTS movies;
 CREATE TABLE movies (
-  id serial,
-  overview text NOT NULL,
-  release_date varchar(255) NOT NULL,
-  runtime integer NOT NULL,
-  poster varchar(255) NOT NULL,
-  rating integer,
-  moviedb_id integer UNIQUE NOT NULL,
-  title text NOT NULL,
-  PRIMARY KEY(id)
+  id           SERIAL,
+  overview     TEXT           NOT NULL,
+  release_date VARCHAR(255)   NOT NULL,
+  runtime      INTEGER        NOT NULL,
+  poster       VARCHAR(255)   NOT NULL,
+  rating       INTEGER,
+  moviedb_id   INTEGER UNIQUE NOT NULL,
+  title        TEXT           NOT NULL,
+  PRIMARY KEY (id)
 );
 
-DROP TABLE genres;
+DROP TABLE IF EXISTS genres;
 CREATE TABLE genres (
-  id serial PRIMARY KEY,
-  name varchar(255) NOT NULL
+  id   SERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL
 );
 
-DROP TABLE movies_genres;
+DROP TABLE IF EXISTS movies_genres;
 CREATE TABLE movies_genres (
-    movie_id integer NOT NULL,
-    genre_id integer NOT NULL,
-    FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
-    FOREIGN KEY (genre_id) REFERENCES genres(id)
+  movie_id INTEGER NOT NULL,
+  genre_id INTEGER NOT NULL,
+  FOREIGN KEY (movie_id) REFERENCES movies (id) ON DELETE CASCADE,
+  FOREIGN KEY (genre_id) REFERENCES genres (id)
 );
 
-DROP TABLE movies_casts;
-CREATE TABLE movies_casts (
-	movie_id integer NOT NULL,
-	cast_id integer NOT NULL,
-    character varchar(255) NOT NULL,
-	FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
-    FOREIGN KEY (cast_id) REFERENCES casts(id) ON DELETE CASCADE
-);
-
-DROP TABLE casts;
+DROP TABLE IF EXISTS casts;
 CREATE TABLE casts (
-	id serial,
-	name varchar(255) NOT NULL,
-    imageurl varchar(255),
-    moviedb_id integer UNIQUE NOT NULL,
-	PRIMARY KEY (id)
+  id         SERIAL,
+  name       VARCHAR(255)   NOT NULL,
+  imageurl   VARCHAR(255),
+  moviedb_id INTEGER UNIQUE NOT NULL,
+  PRIMARY KEY (id)
 );
 
-DROP TABLE movies_directors;
-CREATE TABLE movies_directors (
-	movie_id integer NOT NULL,
-	director_id integer NOT NULL,
-	FOREIGN KEY (movie_id) REFERENCES movies(id) ON DELETE CASCADE,
-    FOREIGN KEY (director_id) REFERENCES directors(id) ON DELETE CASCADE
+DROP TABLE IF EXISTS movies_casts;
+CREATE TABLE movies_casts (
+  movie_id  INTEGER      NOT NULL,
+  cast_id   INTEGER      NOT NULL,
+  character VARCHAR(255) NOT NULL,
+  FOREIGN KEY (movie_id) REFERENCES movies (id) ON DELETE CASCADE,
+  FOREIGN KEY (cast_id) REFERENCES casts (id) ON DELETE CASCADE
 );
 
-DROP TABLE directors;
---moviedb_id is the director ID from MovieDB
+DROP TABLE IF EXISTS directors;
 CREATE TABLE directors (
-	id serial,
-	name varchar(255) NOT NULL,
-    imageurl varchar(255),
-    moviedb_id integer UNIQUE NOT NULL,
-	PRIMARY KEY(id)
+  id         SERIAL,
+  name       VARCHAR(255)   NOT NULL,
+  imageurl   VARCHAR(255),
+  moviedb_id INTEGER UNIQUE NOT NULL,
+  PRIMARY KEY (id)
 );
 
---populating genres
+DROP TABLE IF EXISTS movies_directors;
+CREATE TABLE movies_directors (
+  movie_id    INTEGER NOT NULL,
+  director_id INTEGER NOT NULL,
+  FOREIGN KEY (movie_id) REFERENCES movies (id) ON DELETE CASCADE,
+  FOREIGN KEY (director_id) REFERENCES directors (id) ON DELETE CASCADE
+);
+
 INSERT INTO genres (name) VALUES
-('Action'),
-('Adventure'),
-('Animation'),
-('Comedy'),
-('Crime'),
-('Disaster'),
-('Documentary'),
-('Drama'),
-('Eastern'),
-('Erotic'),
-('Family'),
-('Fan Film'),
-('Fantasy'),
-('Film Noir'),
-('Foreign'),
-('History'),
-('Holiday'),
-('Horror'),
-('Indie'),
-('Music'),
-('Musical'),
-('Mystery'),
-('Neo-noir'),
-('Road Movie'),
-('Romance'),
-('Science Fiction'),
-('Short'),
-('Sport'),
-('Sporting Event'),
-('Sports Film'),
-('Suspense'),
-('TV Movie'),
-('Thriller'),
-('War'),
-('Western');
+  ('Action'),
+  ('Adventure'),
+  ('Animation'),
+  ('Comedy'),
+  ('Crime'),
+  ('Disaster'),
+  ('Documentary'),
+  ('Drama'),
+  ('Eastern'),
+  ('Erotic'),
+  ('Family'),
+  ('Fan Film'),
+  ('Fantasy'),
+  ('Film Noir'),
+  ('Foreign'),
+  ('History'),
+  ('Holiday'),
+  ('Horror'),
+  ('Indie'),
+  ('Music'),
+  ('Musical'),
+  ('Mystery'),
+  ('Neo-noir'),
+  ('Road Movie'),
+  ('Romance'),
+  ('Science Fiction'),
+  ('Short'),
+  ('Sport'),
+  ('Sporting Event'),
+  ('Sports Film'),
+  ('Suspense'),
+  ('TV Movie'),
+  ('Thriller'),
+  ('War'),
+  ('Western');
 
-
---users
-DROP TABLE users;
+DROP TABLE IF EXISTS users;
 CREATE TABLE users (
-    id serial,
-    username VARCHAR(25) NOT NULL UNIQUE,
-    password VARCHAR(100) NOT NULL,
-    ssid VARCHAR(20),
-    datecreated TIMESTAMP NOT NULL DEFAULT(NOW()),
-    PRIMARY KEY(id)
+  id          SERIAL,
+  username    VARCHAR(25)  NOT NULL UNIQUE,
+  password    VARCHAR(100) NOT NULL,
+  ssid        VARCHAR(20),
+  datecreated TIMESTAMP    NOT NULL DEFAULT (NOW()),
+  PRIMARY KEY (id)
+);
+
+DROP TABLE IF EXISTS ratings;
+CREATE TABLE ratings (
+  username VARCHAR(25) NOT NULL,
+  movie_id INTEGER     NOT NULL,
+  rating   INTEGER     NOT NULL,
+  FOREIGN KEY (username) REFERENCES users (username),
+  FOREIGN KEY (movie_id) REFERENCES movies (id)
 );

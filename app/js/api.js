@@ -27,4 +27,10 @@ function Api()
 			callback(res);
 		});
 	};
+
+	this.rate = function (movieIDTitle, rating, callback) {
+		$.post(apiUrl + '/rate', {movieIdTitle: movieIDTitle, rating: rating}, function (res) {
+			callback(res);
+		});
+	}
 }
