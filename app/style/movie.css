@@ -51,6 +51,18 @@ html body h1 h2 h3 h4 h5 h6 {
     color: #000;
 }
 
+/* BOOTSTRAP OVERRIDE */
+@media (min-width: 1000px) {
+    .col-md-9 {
+        width: 75% !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .container {
+        text-align: center;
+    }
+}
 
 /* RATING STARS */
 .rating {
