@@ -21,25 +21,31 @@ module.exports = function(app) {
     app.get('/director', function(req, res) {
         var queries = req.query;
 
-        if (queries['id']) {
-            directors.findSpecificDirector.byID(queries['id'], function (result) {
-                if (result['status'] == 200) {
+        if(queries['id']) {
+            directors.findSpecificDirector.byID(queries['id'], function (status) {
+                if (status['status'] == 200) {
                     console.log("Director found".green);
                 }
 
-                res.status(result['status']);
-                res.json(result);
+                res.json(status);
             });
-        } else if (queries['name']) {
-            directors.findSpecificDirector.byName(queries['name'], function (result) {
-                if (result['status'] == 200) {
+        }else if(queries['name']) {
+            directors.findSpecificDirector.byName(queries['name'], function (status) {
+                if (status['status'] == 200) {
+                    console.log("Director found".green);
+                }
+
+                res.json(status);
+            });
+        }else if(queries['movieId']){
+            directors.findSpecificDirector.byMovieId(queries['movieId'], function(status) {
+                if (status['status'] == 200) {
                     console.log("Director found".green);
                 }
                 
-                res.status(result['status']);
-                res.json(result);
+                res.json(status);
             });
-        } else {
+        }else {
             res.json({status: 400, reason: 'Improper parameters'});
         }
     })

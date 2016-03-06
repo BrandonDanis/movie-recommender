@@ -46,4 +46,10 @@ function Api()
 		});
 	}
 
+	this.getDirectorByMovieId = function(movieId, callback) {
+		$.get(apiUrl + '/director', {movieId: movieId}, function(res) {
+			callback(res);
+		});
+	}
+
 }

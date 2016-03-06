@@ -30,7 +30,9 @@ loadMovie = function (idTitle) {
         api.getRatingById(self.movieId, function(res) {
             processData("rating",res);
         });
-        //get director
+        api.getDirectorByMovieId(self.movieId, function(res) {
+            processData("director",res);
+        });
         //get casts
     }else{
         //add failsafe for no parameters provided
@@ -40,8 +42,10 @@ loadMovie = function (idTitle) {
 
 processData = function(type,data) {
 
-    if(data['status'] != 200)
-        console.log('Error loading movie: ' + data);
+    if(data['status'] != 200){
+        console.log('Error loading: ' + type);
+        return;
+    }
 
     switch (type) {
         case "movie":
@@ -51,6 +55,8 @@ processData = function(type,data) {
             setRating(data['rating']['rating']);
             break;
         case "director":
+            console.log(data);
+            setupDirectorInfo(data);
             break;
         default:
             console.log('Not a case');
@@ -98,9 +104,8 @@ setupMovieInfo = function(movie) {
 setupDirectorInfo = function(director) {
 
     //Director name
-    var directorSTR = '<h3><strong>Directed by:</strong> <a href="/director?id=~DIRID~">~DIRNAME~</a></h3>';
-    directorSTR = directorSTR.replace('~DIRID~',director['id']);
-    directorSTR = directorSTR.replace('~DIRNAME~',director['name']);
+    var directorSTR = '<h3><strong>Directed by:</strong> <a href="/director?name=~DIRNAME~">~DIRNAME~</a></h3>';
+    directorSTR = directorSTR.replace(/~DIRNAME~/g,director['director']['name']);
     $('.directorContainer').append(directorSTR);
 
 }
