@@ -45,13 +45,46 @@ processData = function(type,data) {
 
 setupMovieInfo = function(movie) {
 
+    //HTML Page Title
     $('title').html(movie['title']);
 
+    //Movie Poster
     var imgSTR = '<img src="https://image.tmdb.org/t/p/w185/~IMGURL~" width="185" height="278">';
     imgSTR = imgSTR.replace('~IMGURL~',movie['poster']);
     $('.imageContainer').append(imgSTR);
 
+
+    //Movie Title
+    var movieTitleSTR = '<h1>~MOVIETITLE~ (~DATE~)</h1>';
+    movieTitleSTR = movieTitleSTR.replace('~MOVIETITLE~',movie['title']);
+    movieTitleSTR = movieTitleSTR.replace('~DATE~',movie['release_date'].split('-')[0]);
+    $('.movieTitleContainer').append(movieTitleSTR);
+
+    //Movie genres
+    var genresSTR = '<h3><strong>Genres:</strong> ~ALLGENRES~</h3>';
+    var singleGenreSTR = '<a href="/getMoviesFromGenre?genreName=~GENRE~">~GENRE~</a>';
+    var allGenreSTR = '';
+    for(var i=0;i<movie['genres'].length;i++){
+        var item = singleGenreSTR;
+        if(i != 0)
+            allGenreSTR = allGenreSTR + (', ');
+        item = item.replace(/~GENRE~/g,movie['genres'][i]);
+        allGenreSTR = allGenreSTR + item;
+    }
+    genresSTR = genresSTR.replace('~ALLGENRES~',allGenreSTR);
+    $('.genresContainer').append(genresSTR);
+
+
 };
+
+setupDirectorInfo = function(director) {
+
+    var directorSTR = '<h3><strong>Directed by:</strong> <a href="/director?id=~DIRID~">~DIRNAME~</a></h3>';
+    directorSTR = directorSTR.replace('~DIRID~',director['id']);
+    directorSTR = directorSTR.replace('~DIRNAME~',director['name']);
+    $('.directorContainer').append(directorSTR);
+
+}
 
 $(document).on('click', '.star', function() {
     var rating = 5 - ($(this).index());

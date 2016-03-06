@@ -1,15 +1,32 @@
-html body h1, h2, h3, h4, h5, h6, p {
+html body h1 h2 h3 h4 h5 h6 p {
     font-family: 'Oswald', sans-serif;
 }
 
 .movieWrapper
 {
-    padding: 20px 0;
+    padding: 20px 20px;
 }
 
 .imageContainer
 {
     text-align: center;
+}
+
+.movieTitleContainer h1
+{
+    font-size: 45px;
+    font-weight: 500;
+}
+
+.directorContainer
+{
+    padding: 10px 0;
+}
+
+.movieWrapper h3
+{
+    font-size: 18px;
+    font-weight: 300;
 }
 
 
