@@ -11,15 +11,16 @@ $('#search-box').autocomplete({
             dataType: 'json',
             type: 'GET',
             success: function (data) {
-                console.log(data);
+                // console.log(data);
                 var objects = data['movies'];
                 var list = [];
                 for (var key in objects) {
                     if (objects.hasOwnProperty(key)) {
                         var object = objects[key];
-                        console.log(objects[key]);
-                        console.log(object['title']);
+                        // console.log(objects[key]);
+                        // console.log(object['title']);
                         var listObject = {
+                            id: object['id'],
                             title: object['title'],
                             value: object['title'],
                             imageURL: object['poster'],
@@ -28,15 +29,13 @@ $('#search-box').autocomplete({
                         list.push(listObject);
                     }
                 }
-                console.log(list);
+                // console.log(list);
                 res(list);
             }
         });
     },
     select: function (event, ui) {
-        console.log(event);
-        console.log(ui);
-        window.location = 'http://localhost:8080/movie?title=' + ui.item.title;
+        window.location = 'http://localhost:8080/movie?id=' + ui.item.id;
     }
 }).autocomplete("instance")._renderItem = function (ul, item) {
     if (item.description.length > 78)
