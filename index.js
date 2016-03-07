@@ -69,6 +69,9 @@ require('./routes/session-route.js')(app);
 //users
 require('./routes/users-route.js')(app);
 
+//casts
+require('./routes/casts-route.js')(app);
+
 //search
 require('./routes/search-route.js')(app);
 

@@ -8,13 +8,13 @@ module.exports = function(app) {
 
     app.get('/directors', function(req, res) {
 
-        directors.getAll(function (result) {
-            if (result['status'] == 200) {
+        directors.getAll(function (status) {
+            if (status['status'] == 200) {
                 console.log("All directors found".green);
             }
 
-            res.status(result['status']);
-            res.json(result);
+            res.status(status['status']);
+            res.json(status);
         })
     });
 
@@ -42,7 +42,7 @@ module.exports = function(app) {
                 if (status['status'] == 200) {
                     console.log("Director found".green);
                 }
-                
+
                 res.json(status);
             });
         }else {

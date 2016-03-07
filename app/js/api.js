@@ -52,4 +52,10 @@ function Api()
 		});
 	}
 
+	this.getCastsById = function(movieId, callback) {
+		$.get(apiUrl + '/casts', {movieId: movieId}, function(res) {
+			callback(res);
+		});
+	}
+
 }

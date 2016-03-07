@@ -21,8 +21,10 @@ loadMovie = function (idTitle) {
         api.getRatingByTitle(self.movieTitle, function(res) {
             processData("rating",res);
         });
+        api.getCastsByTitle(self.movieTitle, function(res) {
+            processData("casts",res);
+        });
         //get director
-        //get casts
     }else if(self.movieId != null){
         api.getSpecificMovieById(self.movieId, function(res) {
             processData("movie",res);
@@ -33,7 +35,9 @@ loadMovie = function (idTitle) {
         api.getDirectorByMovieId(self.movieId, function(res) {
             processData("director",res);
         });
-        //get casts
+        api.getCastsById(self.movieId, function(res) {
+            processData("casts",res);
+        });
     }else{
         //add failsafe for no parameters provided
     }
@@ -56,6 +60,9 @@ processData = function(type,data) {
             break;
         case "director":
             setupDirectorInfo(data);
+            break;
+        case "casts":
+            console.log(data);
             break;
         default:
             console.log('Not a case');
