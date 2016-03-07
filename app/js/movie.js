@@ -55,7 +55,6 @@ processData = function(type,data) {
             setRating(data['rating']['rating']);
             break;
         case "director":
-            console.log(data);
             setupDirectorInfo(data);
             break;
         default:
