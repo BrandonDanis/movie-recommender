@@ -62,6 +62,7 @@ processData = function(type,data) {
             setupDirectorInfo(data);
             break;
         case "casts":
+            setupCastsInfo(data['casts']);
             console.log(data);
             break;
         default:
@@ -107,6 +108,26 @@ setupMovieInfo = function(movie) {
 
 };
 
+setupCastsInfo = function(casts) {
+
+    var castTitle = '<h1>Casts: </h1>';
+    $('.castsContainer').append(castTitle);
+
+    var castTemplate = '<p><strong>~CHAR~</strong> played by <strong>~ACTORNAME~</strong></p>';
+
+    for(var i=0; i<casts.length; i++) {
+
+        var castTemp = castTemplate;
+        castTemp = castTemp.replace('~CHAR~',casts[i]['character']);
+        castTemp = castTemp.replace('~ACTORNAME~',casts[i]['name']);
+
+        $('.castsContainer').append(castTemp);
+
+
+    }
+
+};
+
 setupDirectorInfo = function(director) {
 
     //Director name
@@ -114,7 +135,7 @@ setupDirectorInfo = function(director) {
     directorSTR = directorSTR.replace(/~DIRNAME~/g,director['director']['name']);
     $('.directorContainer').append(directorSTR);
 
-}
+};
 
 $(document).on('click', '.star', function() {
     var rating = 5 - ($(this).index());
