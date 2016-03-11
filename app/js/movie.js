@@ -122,6 +122,7 @@ setupCastsInfo = function(casts) {
         castTemp = castTemp.replace('~ACTORNAME~',casts[i]['name']);
 
         $('.castsContainer').append(castTemp);
+        
 
 
     }
