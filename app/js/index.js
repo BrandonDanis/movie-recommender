@@ -1,5 +1,19 @@
 var api = new Api();
 
+setupPage = function() {
+
+    var url = window.location.href;
+
+    var path = window.url('path');
+
+    if(path == '/genres'){
+        loadGenres();
+    }else {
+        loadMovies();
+    }
+
+}
+
 logout = function () {
     api.logout();
 };
@@ -90,3 +104,32 @@ generateMovieDiv = function (movieId, movieTitle, posterUrl) {
     return divTemplate;
 
 };
+
+loadGenres = function() {
+
+    api.getAllGenres(function(res) {
+
+        if(res['status'] == 200){
+
+            for(var i=0; i< res['genres'].length; i++){
+                $('#movieContainer').append(generateGenres(res['genres'][i]['name'],'Herro'));
+            }
+
+        }else{
+            //error loading posts.
+        }
+
+    });
+
+}
+
+generateGenres = function(genreName, imageUrl) {
+
+    var divTemplate = '<div class="movieBox"><a href="./genre?name=~GENRENAME~"><div class="imageContainer"><img src="https://image.tmdb.org/t/p/w185~IMGURL~" width="185" height="278"/></div><div class="movieInfo"><h4>~GENRENAME~</h4></div></a></div>';
+
+    divTemplate = divTemplate.replace(/~IMGURL~/g, imageUrl);
+    divTemplate = divTemplate.replace(/~GENRENAME~/g, genreName);
+
+    return divTemplate;
+
+}

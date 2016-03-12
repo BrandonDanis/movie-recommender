@@ -58,4 +58,10 @@ function Api()
 		});
 	}
 
+	this.getAllGenres = function(callback) {
+		$.get(apiUrl + '/all-genres', {}, function(res) {
+			callback(res);
+		});
+	}
+
 }

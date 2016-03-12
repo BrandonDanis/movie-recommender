@@ -55,6 +55,20 @@ app.get('/movie', function(req, res) {
 	}
 });
 
+app.get('/genres', function(req, res) {
+	if(req.session && req.session.ssid != null && req.session.username != null) {
+		session.checkSession(req.session.username, req.session.ssid, function(status) {
+			if(status['status'] = 200){
+				res.sendFile(path.join(__dirname + '/app/index.html'));
+			}else{
+				res.sendFile(path.join(__dirname + '/app/login.html'));
+			}
+		});
+	}else{
+		res.sendFile(path.join(__dirname + '/app/login.html'));
+	}
+});
+
 app.use(express.static(path.join(__dirname, 'app')));
 
 //movies
@@ -86,7 +100,7 @@ app.get('/logout', function(req, res)
 //404 catch
 app.use(function(req, res)
 {
-	res.status(404).json({status: 404, reason: "Route not found", session: req.session});
+	res.status(404).json({status: 404, reason: "Route not found"});
 });
 
 app.listen(process.env.PORT || 8080);
