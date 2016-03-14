@@ -31,7 +31,7 @@ while i < 11:
     f = open(file_name, 'r').read()
     movie_data = json.loads(f)
 
-    connection = psycopg2.connect(database='netflix2', user='silver_android', password='pokemonxy3DS',
+    connection = psycopg2.connect(database='netflix2_test', user='silver_android', password='pokemonxy3DS',
                                   host='localhost')
     db = connection.cursor()
 
