@@ -136,14 +136,12 @@ rows = db.fetchall()
 for row in rows:
     db.execute('SELECT COUNT(*) FROM movies_casts WHERE movie_id = %s', (row[0],))
     row_check = db.fetchone()
-    print row_check
-    if row_check[0] == '0L':
+    if row_check[0] == 0:
         get_crew(row[1], row[0], row[2])
     else:
         db.execute('SELECT COUNT(*) FROM movies_directors WHERE movie_id = %s', (row[0],))
         row_check = db.fetchone()
-        print row_check
-        if row_check[0] == '0L':
+        if row_check[0] == 0:
             get_crew(row[1], row[0], row[2])
         else:
             print 'Movie relations already exist'
