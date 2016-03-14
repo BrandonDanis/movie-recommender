@@ -1,4 +1,4 @@
-for i in 5 6 7 8 9 10
+for i in 11 12 13 14 15 16 17 18 19 20
 do
 	python scraper.py $(($(($i - 1)) * 10)) $i
 	python movie_runtime_loader.py $i
