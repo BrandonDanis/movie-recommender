@@ -91,6 +91,49 @@ h1, h2, h3, h4, h5, h6, p {
     height: auto;
 }
 
+.nav-container
+{
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+.nav-items
+{
+
+}
+
+.nav-items h1
+{
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+    padding-bottom: 1px;
+}
+
+.cmn-t-underline
+{
+  position: relative;
+  color: #ff3296;
+}
+
+.cmn-t-underline:after
+{
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 4px;
+  background-color: white;
+  content: "";
+  transition: width 0.2s;
+}
+
+.cmn-t-underline:hover:after
+{
+  width: 100%;
+}
+
 /*autocomplete styling*/
 
 .ui-autocomplete {

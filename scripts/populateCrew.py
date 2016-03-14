@@ -127,8 +127,7 @@ director_info_dict = {}
 
 api_key = '476bbe4282fb66cfbd54f6da2d3d28fe'
 
-connection = psycopg2.connect(database='netflix2', user='silver_android', password='pokemonxy3DS',
-                              host='localhost')
+connection = psycopg2.connect(database='Netflix2',host='localhost')
 db = connection.cursor()
 
 db.execute('SELECT id,title,moviedb_id FROM movies ORDER BY id')
