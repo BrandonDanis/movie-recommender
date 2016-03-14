@@ -37,10 +37,10 @@ try:
                 'https://api.themoviedb.org/3/movie/' + str(id) + '?api_key=476bbe4282fb66cfbd54f6da2d3d28fe')
             runtime_json = runtime_load.json()
             if 'title' not in runtime_json:
-                print('Waiting 60 seconds because going over request limit...')
-                time.sleep(60)
+                print('Waiting 5 seconds because going over request limit...')
+                time.sleep(5)
                 run = True
-                print('Finished waiting 60 seconds...')
+                print('Finished waiting 5 seconds...')
             else:
                 run = False
         runtime = {'id': id, 'title': runtime_json['title'], 'runtime': runtime_json['runtime']}
