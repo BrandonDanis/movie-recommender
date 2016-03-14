@@ -22,7 +22,8 @@ CREATE TABLE movies_genres (
   movie_id INTEGER NOT NULL,
   genre_id INTEGER NOT NULL,
   FOREIGN KEY (movie_id) REFERENCES movies (id) ON DELETE CASCADE,
-  FOREIGN KEY (genre_id) REFERENCES genres (id)
+  FOREIGN KEY (genre_id) REFERENCES genres (id),
+  UNIQUE (movie_id, genre_id)
 );
 
 DROP TABLE IF EXISTS casts;
@@ -38,9 +39,10 @@ DROP TABLE IF EXISTS movies_casts;
 CREATE TABLE movies_casts (
   movie_id  INTEGER      NOT NULL,
   cast_id   INTEGER      NOT NULL,
-  character VARCHAR(255) NOT NULL,
+  character VARCHAR(500) NOT NULL,
   FOREIGN KEY (movie_id) REFERENCES movies (id) ON DELETE CASCADE,
-  FOREIGN KEY (cast_id) REFERENCES casts (id) ON DELETE CASCADE
+  FOREIGN KEY (cast_id) REFERENCES casts (id) ON DELETE CASCADE,
+  UNIQUE (movie_id, cast_id)
 );
 
 DROP TABLE IF EXISTS directors;
@@ -57,7 +59,8 @@ CREATE TABLE movies_directors (
   movie_id    INTEGER NOT NULL,
   director_id INTEGER NOT NULL,
   FOREIGN KEY (movie_id) REFERENCES movies (id) ON DELETE CASCADE,
-  FOREIGN KEY (director_id) REFERENCES directors (id) ON DELETE CASCADE
+  FOREIGN KEY (director_id) REFERENCES directors (id) ON DELETE CASCADE,
+  UNIQUE (movie_id, director_id)
 );
 
 INSERT INTO genres (name) VALUES
@@ -70,7 +73,6 @@ INSERT INTO genres (name) VALUES
   ('Documentary'),
   ('Drama'),
   ('Eastern'),
-  ('Erotic'),
   ('Family'),
   ('Fan Film'),
   ('Fantasy'),
@@ -113,5 +115,6 @@ CREATE TABLE ratings (
   movie_id INTEGER     NOT NULL,
   rating   INTEGER     NOT NULL,
   FOREIGN KEY (username) REFERENCES users (username),
-  FOREIGN KEY (movie_id) REFERENCES movies (id)
+  FOREIGN KEY (movie_id) REFERENCES movies (id),
+  UNIQUE (username, movie_id)
 );
