@@ -64,4 +64,10 @@ function Api()
 		});
 	}
 
+	this.getMostPopularByGenre = function(callback) {
+		$.get(apiUrl + '/getMostPopularByGenre', {}, function(res) {
+			callback(res);
+		});
+	}
+
 }

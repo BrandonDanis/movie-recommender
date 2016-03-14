@@ -109,18 +109,35 @@ loadGenres = function() {
 
     api.getAllGenres(function(res) {
 
-        if(res['status'] == 200){
+        api.getMostPopularByGenre(function(popMoviesRes) {
 
-            for(var i=0; i< res['genres'].length; i++){
-                $('#movieContainer').append(generateGenres(res['genres'][i]['name'],'Herro'));
+            var popMovies = popMoviesRes['movies'];
+            console.log(popMovies);
+            if(res['status'] == 200){
+
+                for(var i=0; i< res['genres'].length; i++){
+                    $('#movieContainer').append(generateGenres(res['genres'][i]['name'],findMovie(popMovies,res['genres'][i]['name'])));
+                }
+
+            }else{
+                //error loading posts.
             }
 
-        }else{
-            //error loading posts.
-        }
+        });
 
     });
 
+}
+
+findMovie = function(array, genre){
+    for(var i=0; i<array.length; i++){
+        if(array[i] != null){
+            if(array[i]['name'] == genre){
+                return array[i]['poster'];
+            }
+        }
+    }
+    return 'fail';
 }
 
 generateGenres = function(genreName, imageUrl) {
