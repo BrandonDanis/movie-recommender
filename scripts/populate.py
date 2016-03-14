@@ -24,8 +24,8 @@ genresDict = {
     37: "Western"
 }
 
-i = 1
-while i < 11:
+i = 11
+while i < 21:
     print i
     file_name = 'popular_movies_runtimes_merged_' + str(i) + '.json'
     f = open(file_name, 'r').read()
@@ -61,8 +61,6 @@ while i < 11:
             for genreID in movie['genre_ids']:
                 db.execute('SELECT id FROM genres WHERE name=%s', (genresDict[genreID],))
                 row = db.fetchone()
-                if movie['title'] == 'Ice Age: A Mammoth Christmas':
-                    print(str(genreID) + '\n' + str(row))
 
                 genre_movie = {
                     'movie_id': movie['id'],
