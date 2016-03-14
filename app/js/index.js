@@ -158,6 +158,10 @@ generateGenres = function(genreName, imageUrl) {
 
 loadSpecificGenre = function(genreName) {
 
+    var header = '<div class="row"><div class="col-md-12"><h1>~GENRENAME~</h1></div></div>'
+    header = header.replace(/~GENRENAME~/g,genreName);
+    $('#movieContainer').append(header);
+
     api.getMovieByGenreName(genreName, function(res) {
 
         console.log(res);
