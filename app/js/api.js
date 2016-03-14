@@ -70,4 +70,10 @@ function Api()
 		});
 	}
 
+	this.getMovieByGenreName = function(name, callback) {
+		$.get(apiUrl + '/getMoviesFromGenre', {genreName: name}, function(res) {
+			callback(res);
+		});
+	}
+
 }

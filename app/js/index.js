@@ -6,8 +6,14 @@ setupPage = function() {
 
     var path = window.url('path');
 
+    var genre = window.url("?name",url);
+
     if(path == '/genres'){
-        loadGenres();
+        if(genre){
+            loadSpecificGenre(genre);
+        }else{
+            loadGenres();
+        }
     }else {
         loadMovies();
     }
@@ -142,11 +148,36 @@ findMovie = function(array, genre){
 
 generateGenres = function(genreName, imageUrl) {
 
-    var divTemplate = '<div class="movieBox"><a href="./genre?name=~GENRENAME~"><div class="imageContainer"><img src="https://image.tmdb.org/t/p/w185~IMGURL~" width="185" height="278"/></div><div class="movieInfo"><h4>~GENRENAME~</h4></div></a></div>';
+    var divTemplate = '<div class="movieBox"><a href="./genres?name=~GENRENAME~"><div class="imageContainer"><img src="https://image.tmdb.org/t/p/w185~IMGURL~" width="185" height="278"/></div><div class="movieInfo"><h4>~GENRENAME~</h4></div></a></div>';
 
     divTemplate = divTemplate.replace(/~IMGURL~/g, imageUrl);
     divTemplate = divTemplate.replace(/~GENRENAME~/g, genreName);
 
     return divTemplate;
+}
+
+loadSpecificGenre = function(genreName) {
+
+    var header = '<div class="row"><div class="col-md-12"><h1>~GENRENAME~</h1></div></div>'
+    header = header.replace(/~GENRENAME~/g,genreName);
+    $('#movieContainer').append(header);
+
+    api.getMovieByGenreName(genreName, function(res) {
+
+        console.log(res);
+
+        var moviesArray = res['movies'];
+
+        if (res['status'] == 200) {
+
+            for (var i = 0; i < (200 || moviesArray.length); i++) {
+                $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
+            }
+
+        } else {
+            console.log('Error getting movies');
+        }
+
+    });
 
 }
