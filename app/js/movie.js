@@ -89,7 +89,7 @@ setupMovieInfo = function(movie) {
 
     //Movie genres
     var genresSTR = '<h3><strong>Genres:</strong> ~ALLGENRES~</h3>';
-    var singleGenreSTR = '<a href="/getMoviesFromGenre?genreName=~GENRE~">~GENRE~</a>';
+    var singleGenreSTR = '<a href="/genres?name=~GENRE~">~GENRE~</a>';
     var allGenreSTR = '';
     for(var i=0;i<movie['genres'].length;i++){
         var item = singleGenreSTR;
@@ -122,7 +122,7 @@ setupCastsInfo = function(casts) {
         castTemp = castTemp.replace('~ACTORNAME~',casts[i]['name']);
 
         $('.castsContainer').append(castTemp);
-        
+
 
 
     }
