@@ -1,4 +1,3 @@
 node_modules
 .idea
 scripts/loop_test.sh~
-scripts/*.json
