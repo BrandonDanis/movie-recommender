@@ -134,6 +134,12 @@ h1, h2, h3, h4, h5, h6, p {
   width: 100%;
 }
 
+.cmn-t-underline a
+{
+    text-decoration: none;
+    color: inherit;
+}
+
 /*autocomplete styling*/
 
 .ui-autocomplete {
