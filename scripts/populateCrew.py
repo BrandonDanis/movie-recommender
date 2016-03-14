@@ -127,10 +127,23 @@ director_info_dict = {}
 
 api_key = '476bbe4282fb66cfbd54f6da2d3d28fe'
 
-connection = psycopg2.connect(database='netflix2', host='localhost')
+connection = psycopg2.connect(database='netflix2', user='silver_android', password='pokemonxy3DS',
+                              host='localhost')
 db = connection.cursor()
 
 db.execute('SELECT id,title,moviedb_id FROM movies ORDER BY id')
 rows = db.fetchall()
 for row in rows:
-    get_crew(row[1], row[0], row[2])
+    db.execute('SELECT COUNT(*) FROM movies_casts WHERE movie_id = %s', (row[0],))
+    row_check = db.fetchone()
+    print row_check
+    if row_check[0] == '0L':
+        get_crew(row[1], row[0], row[2])
+    else:
+        db.execute('SELECT COUNT(*) FROM movies_directors WHERE movie_id = %s', (row[0],))
+        row_check = db.fetchone()
+        print row_check
+        if row_check[0] == '0L':
+            get_crew(row[1], row[0], row[2])
+        else:
+            print 'Movie relations already exist'
