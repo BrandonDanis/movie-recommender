@@ -2,6 +2,18 @@ import psycopg2
 import requests
 
 import time
+import sys
+
+args = sys.argv
+database = args[1]
+host = args[2]
+if len(args) > 3:
+    username = args[3]
+    password = args[4]
+    connection = psycopg2.connect(database=database, host=host, user=username, password=password)
+else:
+    connection = psycopg2.connect(database=database, host=host)
+db = connection.cursor()
 
 
 def add_cast_movie_relation(id, cast_id):
@@ -126,9 +138,6 @@ cast_info_dict = {}
 director_info_dict = {}
 
 api_key = '476bbe4282fb66cfbd54f6da2d3d28fe'
-
-connection = psycopg2.connect(database='Netflix2',host='localhost')
-db = connection.cursor()
 
 db.execute('SELECT id,title,moviedb_id FROM movies ORDER BY id')
 rows = db.fetchall()

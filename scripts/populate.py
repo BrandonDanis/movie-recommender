@@ -1,5 +1,17 @@
 import psycopg2
 import json
+import sys
+
+args = sys.argv
+database = args[1]
+host = args[2]
+if len(args) > 3:
+    username = args[3]
+    password = args[4]
+    connection = psycopg2.connect(database=database, host=host, user=username, password=password)
+else:
+    connection = psycopg2.connect(database=database, host=host)
+db = connection.cursor()
 
 genresDict = {
     28: "Action",
@@ -31,9 +43,6 @@ while i < 21:
     f = open(file_name, 'r').read()
     movie_data = json.loads(f)
 
-    connection = psycopg2.connect(database='netflix2', host='localhost')
-    db = connection.cursor()
-
     for movie_json in movie_data:
         try:
             movie = {
@@ -50,8 +59,8 @@ while i < 21:
             db.execute(
                 'INSERT INTO movies (overview, release_date, runtime, poster, rating, moviedb_id, title) VALUES '
                 '(%s, %s, %s, %s, %s, %s, %s) RETURNING *', (
-                movie['overview'], movie['release_date'], movie['runtime'], movie['poster'], movie['rating'],
-                movie['moviedb_id'], movie['title']))
+                    movie['overview'], movie['release_date'], movie['runtime'], movie['poster'], movie['rating'],
+                    movie['moviedb_id'], movie['title']))
             connection.commit()
 
             row = db.fetchone()
@@ -67,7 +76,8 @@ while i < 21:
                     'genre_id': row[0]
                 }
 
-                db.execute('INSERT INTO movies_genres VALUES (%s, %s)', (genre_movie['movie_id'], genre_movie['genre_id']))
+                db.execute('INSERT INTO movies_genres VALUES (%s, %s)',
+                           (genre_movie['movie_id'], genre_movie['genre_id']))
                 connection.commit()
                 print(movie['title'] + ' --> ' + str(genreID))
         except psycopg2.IntegrityError as e:
