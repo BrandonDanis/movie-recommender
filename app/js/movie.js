@@ -56,7 +56,8 @@ processData = function(type,data) {
             setupMovieInfo(data['movie']);
             break;
         case "rating":
-            setRatingStars(data['rating']['rating']);
+            setRatingStars(data['rating']);
+            setRating(data['average'],data['total']);
             break;
         case "director":
             setupDirectorInfo(data);
@@ -153,10 +154,11 @@ $(document).on('click', '.star', function() {
     }
 });
 
-setRating = function(rating) {
+setRating = function(avg,total) {
     var template = '<h1>( ~AVG~ out of ~COUNT~ votes )</h1>';
-    template = template.replace(/~AVG~/g,rating[''])
-
+    template = template.replace(/~AVG~/g,avg);
+    template = template.replace(/~COUNT~/g,total);
+    $(".ratingContainer").append(template);
 }
 
 setRatingStars = function(rating) {
