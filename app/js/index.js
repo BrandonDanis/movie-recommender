@@ -2,6 +2,8 @@ var api = new Api();
 
 setupPage = function() {
 
+    console.log(location.hash);
+
     var url = window.location.href;
 
     var path = window.url('path');
@@ -13,6 +15,18 @@ setupPage = function() {
             loadSpecificGenre(genre);
         }else{
             loadGenres();
+        }
+
+    }else if(path == '/movies'){
+        var hash = location.hash;
+        if(hash == '#A-Z'){
+            loadMoviesFromAZ();
+        }else if(hash == '#Z-A'){
+            loadMoviesFromZA();
+        }else if(hash == '#recent'){
+            loadMoviesByRelease();
+        }else{
+            loadMovies();
         }
     }else {
         loadMovies();
@@ -87,6 +101,8 @@ loadMovies = function () {
 
         if (res['status'] == 200) {
 
+            $('#movieContainer').empty();
+
             for (var i = 0; i < (200 || moviesArray.length); i++) {
                 $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
             }
@@ -98,6 +114,79 @@ loadMovies = function () {
     });
 
 };
+
+loadMoviesFromAZ = function() {
+
+    location.hash = "A-Z"
+
+    api.getAllMovieFromAZ(function(res) {
+
+        var moviesArray = res['movies'];
+
+        if (res['status'] == 200) {
+
+            $('#movieContainer').empty();
+
+            for (var i = 0; i < (200 || moviesArray.length); i++) {
+                $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
+            }
+
+        } else {
+            console.log('Error getting movies');
+        }
+
+    });
+
+};
+
+loadMoviesFromZA = function() {
+
+    location.hash = "Z-A";
+
+    api.getAllMovieFromZA(function(res) {
+
+        var moviesArray = res['movies'];
+
+        if (res['status'] == 200) {
+
+            $('#movieContainer').empty();
+
+            for (var i = 0; i < (200 || moviesArray.length); i++) {
+                $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
+            }
+
+        } else {
+            console.log('Error getting movies');
+        }
+
+    });
+
+};
+
+loadMoviesByRelease = function() {
+
+    location.hash = "Recent";
+
+    api.getAllMovieByRelease(function(res) {
+
+        var moviesArray = res['movies'];
+
+        if (res['status'] == 200) {
+
+            $('#movieContainer').empty();
+
+            for (var i = 0; i < (200 || moviesArray.length); i++) {
+                $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
+            }
+
+        } else {
+            console.log('Error getting movies');
+        }
+
+    });
+
+};
+
 
 generateMovieDiv = function (movieId, movieTitle, posterUrl) {
 

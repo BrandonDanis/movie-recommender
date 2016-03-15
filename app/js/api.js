@@ -11,7 +11,25 @@ function Api()
 	};
 
 	this.getAllMovies = function(callback) {
-		$.get(apiUrl + '/movies', {}, function(res){
+		$.get(apiUrl + '/all-movies', {}, function(res){
+			callback(res);
+		});
+	};
+
+	this.getAllMovieFromAZ = function(callback) {
+		$.get(apiUrl + '/moviesFromA-Z', {}, function(res) {
+			callback(res);
+		});
+	};
+
+	this.getAllMovieFromZA = function(callback) {
+		$.get(apiUrl + '/moviesFromZ-A', {}, function(res) {
+			callback(res);
+		});
+	};
+
+	this.getAllMovieByRelease = function(callback) {
+		$.get(apiUrl + '/moviesByRelease', {}, function(res) {
 			callback(res);
 		});
 	};

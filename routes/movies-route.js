@@ -2,7 +2,7 @@ module.exports = function(app) {
 
     var movies = require('../lib/movies.js');
 
-    app.get('/movies', function(req, res) {
+    app.get('/all-movies', function(req, res) {
         movies.getAllMovies(function(status) {
             if(status['status'] == 200) {
                 console.log("All movies found".green);
@@ -15,6 +15,16 @@ module.exports = function(app) {
 
     app.get('/moviesFromA-Z', function(req,res) {
         movies.moviesFromAZ(function(status) {
+            if(status['status'] == 200) {
+                res.json(status);
+            }else{
+                res.json(status);
+            }
+        });
+    });
+
+    app.get('/moviesFromZ-A', function(req,res) {
+        movies.moviesFromZA(function(status) {
             if(status['status'] == 200) {
                 res.json(status);
             }else{
