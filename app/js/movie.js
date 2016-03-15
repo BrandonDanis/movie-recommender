@@ -155,7 +155,7 @@ $(document).on('click', '.star', function() {
 });
 
 setRating = function(avg,total) {
-    var template = '<h1>( ~AVG~ out of ~COUNT~ votes )</h1>';
+    var template = '<h1>( ~AVG~/5 with ~COUNT~ votes )</h1>';
     template = template.replace(/~AVG~/g,avg);
     template = template.replace(/~COUNT~/g,total);
     $(".ratingContainer").append(template);
