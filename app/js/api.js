@@ -11,7 +11,7 @@ function Api()
 	};
 
 	this.getAllMovies = function(callback) {
-		$.get(apiUrl + '/movies', {}, function(res){
+		$.get(apiUrl + '/all-movies', {}, function(res){
 			callback(res);
 		});
 	};

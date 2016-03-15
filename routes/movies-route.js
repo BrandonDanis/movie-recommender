@@ -2,7 +2,7 @@ module.exports = function(app) {
 
     var movies = require('../lib/movies.js');
 
-    app.get('/movies', function(req, res) {
+    app.get('/all-movies', function(req, res) {
         movies.getAllMovies(function(status) {
             if(status['status'] == 200) {
                 console.log("All movies found".green);
