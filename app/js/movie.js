@@ -56,14 +56,13 @@ processData = function(type,data) {
             setupMovieInfo(data['movie']);
             break;
         case "rating":
-            setRating(data['rating']['rating']);
+            setRatingStars(data['rating']['rating']);
             break;
         case "director":
             setupDirectorInfo(data);
             break;
         case "casts":
             setupCastsInfo(data['casts']);
-            console.log(data);
             break;
         default:
             console.log('Not a case');
@@ -143,11 +142,11 @@ $(document).on('click', '.star', function() {
 
     if (self.movieId != null) {
         api.rate(self.movieId, rating, function (result) {
-            setRating(result['rating']);
+            setRatingStars(result['rating']);
         });
     } else if (self.movieTitle != null) {
         api.rate(self.movieTitle, rating, function (result) {
-            setRating(result['rating']);
+            setRatingStars(result['rating']);
         });
     } else {
         console.log('Bad parameters');
@@ -155,6 +154,13 @@ $(document).on('click', '.star', function() {
 });
 
 setRating = function(rating) {
+    var template = '<h1>( ~AVG~ out of ~COUNT~ votes )</h1>';
+    template = template.replace(/~AVG~/g,rating[''])
+
+}
+
+setRatingStars = function(rating) {
+
     for (var i = 1; i <= 5; i++) {
         var id = '#' + i;
         if (i <= rating) {
@@ -163,4 +169,5 @@ setRating = function(rating) {
             $(id).removeClass('fa-star').addClass('fa-star-o').css('color', '');
         }
     }
+
 }

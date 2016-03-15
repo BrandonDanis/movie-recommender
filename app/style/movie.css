@@ -29,11 +29,6 @@ html body h1 h2 h3 h4 h5 {
     padding: 10px 0;
 }
 
-.ratingContainer
-{
-    padding: 10px 0;
-}
-
 .trailerContainer
 {
     padding: 10px 0;
@@ -71,8 +66,26 @@ html body h1 h2 h3 h4 h5 {
     }
 }
 
+/* RATING CONTAINER */
+
+.ratingContainer
+{
+    padding: 10px 0;
+}
+
+.ratingContainer h1
+{
+    padding: 0 10px;
+    text-transform: uppercase;
+    font-weight: 300;
+    display: inline-block;
+    font-size: 15px;
+    color: rgb(29,29,29);
+}
+
 /* RATING STARS */
 .rating {
+    cursor: pointer;
     unicode-bidi: bidi-override;
     direction: rtl;
     text-align: center;
