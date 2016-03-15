@@ -140,6 +140,40 @@ h1, h2, h3, h4, h5, h6, p {
     color: inherit;
 }
 
+/*  ALL MOVIES PAGE SORTING  */
+
+.sortingContainer
+{
+    display: table;
+    width: 100%;
+    text-align: center;
+}
+
+.buttonContainer
+{
+    display: inline-block;
+}
+
+.buttonContainer a
+{
+    margin: 0 10px;
+}
+
+.buttonContainer a
+{
+    transition: width 0.4s;
+    background-color: rgb(90, 102, 110);
+    border-color: rgb(90, 102, 110);
+}
+
+.buttonContainer a:hover
+{
+    transition: 0.4s;
+    background-color: rgb(52, 138, 195);
+    background-color: rgb(52, 138, 195);
+}
+
+
 /*autocomplete styling*/
 
 .ui-autocomplete {
