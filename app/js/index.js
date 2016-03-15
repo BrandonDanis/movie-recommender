@@ -121,6 +121,28 @@ loadMoviesFromAZ = function() {
 
 };
 
+loadMoviesFromZA = function() {
+
+    api.getAllMovieFromZA(function(res) {
+
+        var moviesArray = res['movies'];
+
+        if (res['status'] == 200) {
+
+            $('#movieContainer').empty();
+
+            for (var i = 0; i < (200 || moviesArray.length); i++) {
+                $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
+            }
+
+        } else {
+            console.log('Error getting movies');
+        }
+
+    });
+
+};
+
 loadMoviesByRelease = function() {
 
     api.getAllMovieByRelease(function(res) {
