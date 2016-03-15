@@ -23,6 +23,16 @@ module.exports = function(app) {
         });
     });
 
+    app.get('/moviesByRelease', function(req,res) {
+        movies.moviesByRelease(function(status) {
+            if(status['status'] == 200) {
+                res.json(status);
+            }else{
+                res.json(status);
+            }
+        });
+    });
+
     app.get('/specific-movie', function(req, res) {
         if(req.query.title != null){
             movies.findSpecificMovie.byTitle(req.query.title, function(status) {
