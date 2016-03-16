@@ -100,4 +100,24 @@ module.exports = function(app) {
 
   });
 
+    app.delete('/rating', function (req, res) {
+        if(req.session.username != null){
+
+            if(req.query.movieId != null){
+                users.removeRating.byId(req.session.username, req.query.movieId, function(status) {
+                    res.json(status);
+                });
+            }else if(req.query.movieTitle != null){
+                users.removeRating.byTitle(req.session.username, req.query.movieTitle, function(status) {
+                    res.json(status);
+                });
+            }else{
+                res.json({status: 400, reason: 'Movie info param isn\'t valid.'});
+            }
+
+        }else{
+            res.json({status: 400, reason: 'Session username isn\'t valid.'});
+        }
+    })
+
 };

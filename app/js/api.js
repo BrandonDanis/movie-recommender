@@ -64,6 +64,28 @@ function Api()
 		});
 	}
 
+	this.removeRatingById = function (movieId, callback) {
+		$.ajax({
+			url: apiUrl + '/rating',
+			type: 'DELETE',
+			data: {movieId: movieId},
+			success: function (res) {
+				callback(res);
+			}
+		})
+	}
+
+	this.removeRatingByTitle = function (movieTitle, callback) {
+		$.ajax({
+			url: apiUrl + '/rating',
+			type: 'DELETE',
+			data: {movieTitle: movieTitle},
+			success: function (res) {
+				callback(res);
+			}
+		})
+	}
+
 	this.getDirectorByMovieId = function(movieId, callback) {
 		$.get(apiUrl + '/director', {movieId: movieId}, function(res) {
 			callback(res);
