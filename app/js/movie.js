@@ -140,17 +140,44 @@ setupDirectorInfo = function(director) {
 
 $(document).on('click', '.star', function() {
     var rating = 5 - ($(this).index());
+    var currentRating = 0;
 
-    if (self.movieId != null) {
-        api.rate(self.movieId, rating, function (result) {
-            setRatingStars(result['rating']);
-        });
-    } else if (self.movieTitle != null) {
-        api.rate(self.movieTitle, rating, function (result) {
-            setRatingStars(result['rating']);
-        });
-    } else {
-        console.log('Bad parameters');
+    for (var i = 1; i <= 5; i++) {
+        var id = '#' + i;
+        if ($(id).hasClass('fa-star-o')) {
+            currentRating = i - 1;
+            break;
+        } else if ($('#5').hasClass('fa-star')) {
+            currentRating = 5;
+            break;
+        }
+    }
+
+    if (currentRating == rating) {
+        if (self.movieId != null) {
+            api.removeRatingById(self.movieId, function (result) {
+                setRatingStars(0);
+            });
+        } else if (self.movieTitle != null) {
+            api.removeRatingByTitle(self.movieTitle, function (result) {
+                setRatingStars(0);
+            });
+        } else {
+            console.log('Bad parameters');
+        }
+    }
+    else {
+        if (self.movieId != null) {
+            api.rate(self.movieId, rating, function (result) {
+                setRatingStars(result['rating']);
+            });
+        } else if (self.movieTitle != null) {
+            api.rate(self.movieTitle, rating, function (result) {
+                setRatingStars(result['rating']);
+            });
+        } else {
+            console.log('Bad parameters');
+        }
     }
 });
 
