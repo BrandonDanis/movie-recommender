@@ -103,12 +103,12 @@ module.exports = function(app) {
     app.delete('/rating', function (req, res) {
         if(req.session.username != null){
 
-            if(req.query.movieId != null){
-                users.removeRating.byId(req.session.username, req.query.movieId, function(status) {
+            if(req.body.movieId != null){
+                users.removeRating.byId(req.session.username, req.body.movieId, function(status) {
                     res.json(status);
                 });
-            }else if(req.query.movieTitle != null){
-                users.removeRating.byTitle(req.session.username, req.query.movieTitle, function(status) {
+            }else if(req.body.movieTitle != null){
+                users.removeRating.byTitle(req.session.username, req.body.movieTitle, function(status) {
                     res.json(status);
                 });
             }else{
