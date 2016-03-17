@@ -198,5 +198,4 @@ setRatingStars = function(rating) {
             $(id).removeClass('fa-star').addClass('fa-star-o').css('color', '');
         }
     }
-
 }
