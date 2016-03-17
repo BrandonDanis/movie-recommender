@@ -18,6 +18,9 @@ setupPage = function() {
         }
 
     }else if(path == '/movies'){
+
+        $(".sortingContainer").css("display","block");
+
         var hash = location.hash;
         if(hash == '#A-Z'){
             loadMoviesFromAZ();
@@ -29,7 +32,7 @@ setupPage = function() {
             loadMovies();
         }
     }else {
-        loadMovies();
+        $('#movieContainer').append('<h1>MAIN PAGE</h1>');
     }
 
 }
