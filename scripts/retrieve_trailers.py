@@ -16,10 +16,14 @@ def get_trailer(moviedb_id):
             results_length = len(trailer_json['results'])
             run = False
         except KeyError:
-            print 'Waiting 5 seconds because went over request limit...'
-            time.sleep(5)
-            run = True
-            print 'Waited 5 seconds'
+            print trailer_json
+            if trailer_json['status_code'] == 25:
+                print 'Waiting 5 seconds because went over request limit...'
+                time.sleep(5)
+                run = True
+                print 'Waited 5 seconds'
+            else:
+                return
 
     if results_length == 1:
         trailer_link = trailer_json['results'][0]
@@ -34,8 +38,19 @@ def get_trailer(moviedb_id):
     if trailer_link == '':
         print 'No videos available for ' + str(moviedb_id)
     else:
-        db.execute('UPDATE movies SET trailer=%s WHERE moviedb_id=%s RETURNING *', (trailer_link['key'], moviedb_id))
-        connection.commit()
+        run = True
+        while run:
+            try:
+                db.execute('UPDATE movies SET trailer=%s WHERE moviedb_id=%s RETURNING *',
+                           (trailer_link['key'], moviedb_id))
+                connection.commit()
+                run = False
+            except psycopg2.DataError:
+                connection.rollback()
+                print 'Updated trailer column to have ' + str(len(trailer_link['key'])) + ' characters'
+                db.execute('ALTER TABLE movies ALTER COLUMN trailer TYPE VARCHAR(%s);', (len(trailer_link['key']),))
+                connection.commit()
+                run = True
 
 
 args = sys.argv
@@ -51,7 +66,10 @@ db = connection.cursor()
 
 api_key = '476bbe4282fb66cfbd54f6da2d3d28fe'
 
-db.execute('SELECT moviedb_id FROM movies ORDER BY id')
+db.execute('SELECT moviedb_id, trailer FROM movies ORDER BY id')
 rows = db.fetchall()
 for row in rows:
-    get_trailer(row[0])
+    if row[1] is None:
+        get_trailer(row[0])
+    else:
+        print 'Trailer already given'
