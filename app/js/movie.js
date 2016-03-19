@@ -229,5 +229,5 @@ showHideVideo = function (state) {
     }
     console.log($('#overlay').css('display'));
     var func = state == 'hide' ? 'pauseVideo' : 'playVideo';
-    iframe.stopVideo();
+    iframe.postMessage('{"event":"command","func":"' + func + '","args":""}','*');
 };
