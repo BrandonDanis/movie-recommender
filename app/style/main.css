@@ -1,0 +1,27 @@
+.wrapper
+{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.wrapper .container
+{
+	padding: 0;
+}
+
+.movieBox
+{
+	margin: 0;
+}
+
+
+#outer_wrapper {
+    overflow: scroll;
+    width:100%;
+}
+#outer_wrapper #inner_wrapper {
+    width:6000px;
+}
+#outer_wrapper #inner_wrapper div.movieBox {
+    float: left;
+}

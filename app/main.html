@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 		<link href='https://fonts.googleapis.com/css?family=Oswald:700,400,300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="./style/index.css">
+		<link rel="stylesheet" href="./style/main.css">
 	</header>
 
 	<body style="padding-top: 0;">
@@ -26,6 +27,17 @@
 
 		<div class="wrapper">
 
+			<div class="container" id="movieContainer" style="margin:0;width:100%;text-align:center;">
+
+				<h1>Popular Movies</h1>
+				<div id="outer_wrapper">
+					<div class="popularMovies" id="inner_wrapper">
+
+					</div>
+				</div>
+
+			</div>
+
 		</div>
 
 	</body>
@@ -40,6 +52,7 @@
 	<script type = 'text/javascript'>
 		$(document).ready(function() {
 			$(".headerPanel").load("large-nav.html");
+			setupPage();
 
 			$(".fa-stack.fa-lg").on("click", function() {
 
