@@ -31,7 +31,7 @@ app.get('/', function(req, res) {
 	if(req.session && req.session.ssid != null && req.session.username != null) {
 		session.checkSession(req.session.username, req.session.ssid, function(status) {
 			if(status['status'] == 200){
-				res.sendFile(path.join(__dirname + '/app/index.html'));
+				res.sendFile(path.join(__dirname + '/app/main.html'));
 			}else{
 				res.sendFile(path.join(__dirname + '/app/login.html'));
 			}
