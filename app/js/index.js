@@ -26,7 +26,7 @@ setupPage = function() {
             loadMoviesFromAZ();
         }else if(hash == '#Z-A'){
             loadMoviesFromZA();
-        }else if(hash == '#recent'){
+        }else if(hash == '#Recent'){
             loadMoviesByRelease();
         }else{
             loadMovies();
