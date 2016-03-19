@@ -109,3 +109,30 @@ html body h1 h2 h3 h4 h5 {
     left: 0;
     color: gold;
 }
+
+.trailerVideo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -200px;
+}
+
+#overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.95);
+}
+
+.hide {
+    display: none;
+}
+
+#close {
+    float: right;
+}

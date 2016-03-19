@@ -38,6 +38,9 @@ loadMovie = function (idTitle) {
         api.getCastsById(self.movieId, function(res) {
             processData("casts",res);
         });
+        api.getTrailerById(self.movieId, function (res) {
+            processData("trailer", res)
+        })
     }else{
         //add failsafe for no parameters provided
     }
@@ -64,6 +67,9 @@ processData = function(type,data) {
             break;
         case "casts":
             setupCastsInfo(data['casts']);
+            break;
+        case "trailer":
+            setTrailerURL(data['trailer']['trailer']);
             break;
         default:
             console.log('Not a case');
@@ -199,3 +205,29 @@ setRatingStars = function(rating) {
         }
     }
 }
+
+window.addEventListener('keydown', function (e) {
+    if (e.keyCode == 27) {
+        showHideVideo('hide');
+    }
+});
+
+setTrailerURL = function(key) {
+    var src = 'http://www.youtube.com/embed/' + key + '?enablejsapi=1';
+    $('.trailerVideo').prop('src', src);
+};
+
+showHideVideo = function (state) {
+    var div = document.getElementById("overlay");
+    var iframe = div.getElementsByTagName("iframe")[0].contentWindow;
+    console.log($('#overlay').css('display'));
+    var hide = state == 'hide';
+    if (hide) {
+        $('#overlay').addClass('hide');
+    } else {
+        $('#overlay').removeClass('hide');
+    }
+    console.log($('#overlay').css('display'));
+    var func = state == 'hide' ? 'pauseVideo' : 'playVideo';
+    iframe.stopVideo();
+};

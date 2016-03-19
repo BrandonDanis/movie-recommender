@@ -115,5 +115,16 @@ function Api()
 			callback(res);
 		});
 	}
+	
+	this.getTrailerById = function (id, callback) {
+		$.get(apiUrl + '/trailer', {id: id}, function (res) {
+			callback(res);
+		});
+	};
 
+	this.getTrailerByTitle = function (title, callback) {
+		$.get(apiUrl + '/trailer', {title: title}, function (res) {
+			callback(res);
+		});
+	};
 }
