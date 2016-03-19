@@ -13,36 +13,14 @@
 	</header>
 
 	<body style="padding-top: 0;">
+		
 		<span class="fa-stack fa-lg" style="position:fixed; top:5;left:5;">
 		  <i class="fa fa-circle fa-stack-2x"></i>
 		  <i class="fa fa-lightbulb-o fa-stack-1x fa-inverse"></i>
 		</span>
+
 		<section class="headerPanel">
-			<div class="wrapper-headerPanel">
-				<div class="" style="display:table-cell;vertical-align:middle;">
-					<h1>Netflix 2.0</h1>
-					<p>Don't know what to watch?</p>
 
-					<div class="searchContainer">
-						<form autocomplete="off">
-		    				<div class="input-group" style="display: inline-block;width: 100%;max-width: 500px;">
-		        				<input type="text" class="form-control search-form" aria-autocomplete="both"
-                                       id="search-box" placeholder="Search">
-							</div>
-						</form>
-					</div>
-
-					<div class="nav-container">
-						<div class="row">
-							<div class="col-md-3 nav-items"><h1 class="cmn-t-underline"><a href="/">HOME</a></h1></div>
-							<div class="col-md-3 nav-items"><h1 class="cmn-t-underline"><a href="/genres">ALL GENRES</a></h1></div>
-							<div class="col-md-3 nav-items"><h1 class="cmn-t-underline"><a href="/movies">ALL MOVIES</a></h1></div>
-							<div class="col-md-3 nav-items"><h1 class="cmn-t-underline"><a href="/about">ABOUT</a></h1></div>
-						</div>
-					</div>
-
-				</div>
-			</div>
 		</section>
 
 
@@ -89,6 +67,7 @@
 	<script src="./js/sweetalert.min.js"></script>
 	<script type = 'text/javascript'>
 		$(document).ready(function() {
+			$(".headerPanel").load("large-nav.html");
 			setupPage();
 
 			$(".fa-stack.fa-lg").on("click", function() {

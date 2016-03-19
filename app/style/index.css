@@ -2,49 +2,6 @@ h1, h2, h3, h4, h5, h6, p {
     font-family: 'Oswald', sans-serif;
 }
 
-.headerPanel
-{
-	width: 100%;
-	height: 420px;
-	background-image: url('../img/interstellar.jpg');
-	background-position: center;
-	background-size: cover;
-	text-align: center;
-}
-
-.wrapper-headerPanel
-{
-	width: 100%;
-	height: 100%;
-	display: table;
-	background-color: rgba(0, 0, 0, 0.3);
-}
-
-.headerPanel h1
-{
-	font-weight: 700;
-	font-size: 50px;
-	color: #fff;
-	margin: 0;
-	letter-spacing: 1px;
-}
-
-.headerPanel p
-{
-	font-weight: 300;
-	font-size: 20px;
-	color: #dedcdc;
-	margin: 0;
-	letter-spacing: 1px;
-}
-
-.searchContainer
-{
-	width: auto;
-	padding: 25px 0;
-	margin: auto;
-}
-
 .wrapper {
     padding: 50px;
     vertical-align: middle;
@@ -68,76 +25,6 @@ h1, h2, h3, h4, h5, h6, p {
 
 .movieInfo {
     text-align: center;
-}
-
-#search-box {
-    height: 50px;
-    width: 100%;
-    font-size: 200%;
-
-}
-
-#search-icon {
-    position: relative;
-    top: 20px;
-    left: 15px;
-}
-
-#autocomplete-icon {
-    display: inline-block;
-    max-width: 50px;
-    max-height: 50px;
-    width: auto;
-    height: auto;
-}
-
-.nav-container
-{
-    max-width: 50%;
-    margin: 0 auto;
-}
-
-.nav-items
-{
-
-}
-
-.nav-items h1
-{
-    font-size: 20px;
-    color: #fff;
-    cursor: pointer;
-    padding-bottom: 1px;
-}
-
-.cmn-t-underline
-{
-  position: relative;
-  color: #ff3296;
-}
-
-.cmn-t-underline:after
-{
-  display: block;
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 0;
-  height: 4px;
-  background-color: white;
-  content: "";
-  transition: width 0.2s;
-}
-
-.cmn-t-underline:hover:after
-{
-  width: 100%;
-}
-
-.cmn-t-underline a
-{
-    text-decoration: none;
-    color: inherit;
 }
 
 /*  ALL MOVIES PAGE SORTING  */
@@ -171,56 +58,6 @@ h1, h2, h3, h4, h5, h6, p {
     transition: 0.4s;
     background-color: rgb(52, 138, 195);
     background-color: rgb(52, 138, 195);
-}
-
-
-/*autocomplete styling*/
-
-.ui-autocomplete {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    float: left;
-    display: none;
-    min-width: 160px;
-    _width: 160px;
-    padding: 4px 0;
-    margin: 2px 0 0 0;
-    list-style: none;
-    background-color: #ffffff;
-    border-color: #ccc;
-    border-color: rgba(0, 0, 0, 0.2);
-    border-style: solid;
-    border-width: 1px;
-    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    -webkit-background-clip: padding-box;
-    -moz-background-clip: padding;
-    background-clip: padding-box;
-    *border-right-width: 2px;
-    *border-bottom-width: 2px;
-}
-
-.ui-menu-item > a.ui-corner-all {
-    display: block;
-    padding: 3px 15px;
-    clear: both;
-    font-weight: normal;
-    line-height: 18px;
-    color: #555555;
-    white-space: nowrap;
-}
-
-.ui-widget-content .ui-state-focus {
-    color: #ffffff;
-    text-decoration: none;
-    background-color: #0088cc;
-    border-radius: 0px;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    background-image: none;
 }
 
 .fa-stack:hover
