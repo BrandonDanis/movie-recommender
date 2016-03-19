@@ -10,8 +10,16 @@ def get_trailer(moviedb_id):
     run = True
     trailer_link = ''
     while run:
-        trailer_json = requests.get(
-            'https://api.themoviedb.org/3/movie/' + str(moviedb_id) + '/videos?api_key=' + api_key).json()
+        try:
+            trailer_json = requests.get(
+                'https://api.themoviedb.org/3/movie/' + str(moviedb_id) + '/videos?api_key=' + api_key).json()
+        except ValueError as e:
+            if e.message == 'No JSON object could be decoded':
+                print 'A 502 error may have occurred...waiting 5 seconds to see if it will clear up'
+                time.sleep(5)
+                print 'Waited 5 seconds'
+                run = True
+                continue
         try:
             results_length = len(trailer_json['results'])
             run = False
