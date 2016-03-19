@@ -138,4 +138,27 @@ module.exports = function(app) {
         });
     });
 
+    app.get('/trailer', function (req, res) {
+        if(req.query.title != null){
+            movies.getTrailer.byTitle(req.query.title, function(status) {
+                if(status['status'] == 200) {
+                    console.log("Trailer found".green);
+                    res.json(status);
+                }else{
+                    res.json(status);
+                }
+            });
+        }else if(req.query.id != null){
+            movies.getTrailer.byId(req.query.id, function(status) {
+                if(status['status'] == 200) {
+                    console.log("Trailer found".green);
+                    res.json(status);
+                }else{
+                    res.json(status);
+                }
+            });
+        }else{
+            res.json({status: 404, reason: 'Improper parameters'});
+        }
+    });
 };
