@@ -24,3 +24,13 @@ var initLogin = function(){
 
 	});
 }
+
+var displayRegister = function(){
+	$(".login-content").css("display","none");
+	$(".register-content").css("display","block");
+}
+
+var displayLogin = function(){
+	$(".register-content").css("display","none");
+	$(".login-content").css("display","block");
+}
