@@ -4,10 +4,10 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<title>Movie Recommender - Login</title>
 		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-		<link rel="stylesheet" href="/style/login.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="/style/sweetalert.css">
+		<link rel="stylesheet" href="/style/login.css">
 	</header>
 
 	<body class="background" style="padding-top: 0px;">
@@ -39,6 +39,40 @@
 
 	                        	<button type="submit" id="btn-login" class="btn btn-success">Login</button>
                             </form>
+
+							<p>Don't have an account? <a onclick="displayRegister()">Sign up!</a></p>
+
+						</div>
+
+						<div class="register-content" style="display: none;">
+
+							<form id="registerForm" class="form-horizontal" role="form">
+
+								<div style="margin-bottom: 25px" class="input-group">
+	                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+	                                <input id="register-username" type="text" class="form-control" name="username" value="" placeholder="username" required>
+	                            </div>
+
+	                            <div style="margin-bottom: 25px" class="input-group">
+	                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	                                <input id="register-password" type="password" class="form-control" name="password" placeholder="password" required>
+	                            </div>
+
+								<div style="margin-bottom: 25px" class="input-group">
+	                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+	                                <input id="register-confirm-password" type="password" class="form-control" name="password" placeholder="confirm password" required>
+	                            </div>
+
+								<div style="margin-bottom: 25px" class="input-group">
+	                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+	                                <input id="register-email" type="email" class="form-control" name="email" placeholder="email" required>
+	                            </div>
+
+	                        	<button type="submit" id="btn-login" class="btn btn-success">Register</button>
+
+                            </form>
+
+							<p>Already have an account? <a onclick="displayLogin()">Login here!</a></p>
 
 						</div>
 
