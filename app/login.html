@@ -22,7 +22,9 @@
 							<h1>Movie Recommender</h1>
 						</div>
 
-						<div class="alert alert-danger" style="display:none;" role="alert"><strong>oops!</strong> Incorrect username/password</div>
+						<div class="flagBox">
+							<div class="alert alert-danger" style="display:none;" role="alert"><strong>oops!</strong> Incorrect username/password</div>
+						</div>
 
 						<div class="login-content">
 
@@ -94,6 +96,11 @@
 	$('#loginForm').submit(function(e) {
 		e.preventDefault();
 		initLogin();
+	});
+
+	$('#registerForm').submit(function(e) {
+		e.preventDefault();
+		initSignup();
 	});
 
 	</script>

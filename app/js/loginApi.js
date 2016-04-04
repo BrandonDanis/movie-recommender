@@ -10,6 +10,14 @@ function LoginApi() {
 		$.post(apiUrl + '/login', {username: user, password: pssd}, function(res) {
 			callback(res);
 		});
-	}
+	};
+
+	this.register = function(user, pssd, confirmPssd, email, callback) {
+		$.post(apiUrl + '/users', {username: user, password: pssd, confirmPassword: confirmPssd, email: email}, function(res) {
+			callback(res);
+		});
+	};
+
+
 
 }
