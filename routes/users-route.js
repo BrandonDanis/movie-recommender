@@ -8,8 +8,8 @@ module.exports = function(app) {
     //username, password
     app.post('/users', function(req, res) {
         console.log('Attempting to create user'.yellow);
-        if(req.body.username != null && req.body.password != null){
-            users.add(req.body.username, req.body.password, function(status) {
+        if(req.body.username != null && req.body.password != null && req.body.confirmPassword != null && req.body.email != null){
+            users.add(req.body.username, req.body.password, req.body.confirmPassword, req.body.email, function(status) {
                 res.json(status);
             });
         }else{
