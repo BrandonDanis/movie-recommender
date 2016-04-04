@@ -185,8 +185,8 @@ findMovie = function(array, genre){
 
 generateGenres = function(genreName, imageUrl) {
 
-    var imageTemplate = imageUrl == 'fail' ? '<iframe width="185" height="278" class="alternate-genre-poster"></iframe>' : '<img src="https://image.tmdb.org/t/p/w185~IMGURL~" width="185" height="278"/>';
-    var divTemplate = '<div class="movieBox"><a href="./genres?name=~GENRENAME~"><div class="imageContainer">~IMGTEMPLATE~</div><div class="movieInfo"><h4>~GENRENAME~</h4></div></a></div>';
+    var imageTemplate = '<img src="https://image.tmdb.org/t/p/w185~IMGURL~" width="185" height="278"/>';
+    var divTemplate = imageUrl == 'fail' ? '':'<div class="movieBox"><a href="./genres?name=~GENRENAME~"><div class="imageContainer">~IMGTEMPLATE~</div><div class="movieInfo"><h4>~GENRENAME~</h4></div></a></div>';
 
     divTemplate = divTemplate.replace(/~IMGTEMPLATE~/g, imageTemplate);
     divTemplate = divTemplate.replace(/~IMGURL~/g, imageUrl);
