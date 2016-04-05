@@ -1,7 +1,7 @@
 var api = new LoginApi();
 
 var initLogin = function(){
-	var user = $('#').val();
+	var user = $('#login-username').val();
 	var pssd = $('#login-password').val();
 
 	api.login(user, pssd, function(status) {
