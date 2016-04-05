@@ -6,6 +6,7 @@ module.exports = function(app) {
 	var session = require('../lib/session.js');
 
 	app.post('/login', function(req, res) {
+		console.log(req.body);
 		if(req.body.username != null && req.body.password != null) {
 			session.login(req.body.username, req.body.password, function(status) {
 
@@ -25,7 +26,7 @@ module.exports = function(app) {
 	});
 
 	app.get('/session', function(req, res) {
-		if(req.session && req.session.ssid != null & req.session.username != null) {
+		if(req.session && req.session.ssid != null && req.session.username != null) {
 			session.checkSession(req.session.username, req.session.ssid, function(status) {
 				res.json(status);
 			});
