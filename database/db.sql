@@ -103,10 +103,12 @@ INSERT INTO genres (name) VALUES
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id          SERIAL,
-  username    VARCHAR(25)  NOT NULL UNIQUE,
+  username    VARCHAR(25)  NOT NULL,
   password    VARCHAR(100) NOT NULL,
   ssid        VARCHAR(20),
   datecreated TIMESTAMP    NOT NULL DEFAULT (NOW()),
+  email       VARCHAR(254) NOT NULL,
+  UNIQUE (username, email),
   PRIMARY KEY (id)
 );
 
