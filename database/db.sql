@@ -108,6 +108,7 @@ CREATE TABLE users (
   ssid        VARCHAR(20),
   datecreated TIMESTAMP    NOT NULL DEFAULT (NOW()),
   email       VARCHAR(254) NOT NULL,
+  status      VARCHAR(8) NOT NULL DEFAULT 'pending',
   UNIQUE (username, email),
   PRIMARY KEY (id)
 );
