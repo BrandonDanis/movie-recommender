@@ -137,3 +137,8 @@ html body h1 h2 h3 h4 h5 {
     float: right;
     cursor: pointer;
 }
+
+#close:hover {
+    -webkit-filter: drop-shadow( 0 0 0 #fff );
+    filter: drop-shadow( 0 0 0 #fff);
+}
