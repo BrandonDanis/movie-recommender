@@ -120,4 +120,24 @@ module.exports = function(app) {
         }
     })
 
+    app.post('/setup', function (req, res) {
+        var movieIDs = req.body.movieIDs;
+        var massRatings = req.body.massRatings;
+        var favGenres = req.body.favGenres;
+        var firstName = req.body.firstName;
+        var lastName = req.body.lastName;
+        if (firstName != null && lastName != null && favGenres != null && movieIDs != null &&
+            massRatings != null) {
+            favGenres = favGenres instanceof Array ? favGenres : favGenres.split(', ');
+            movieIDs = movieIDs instanceof Array ? movieIDs : movieIDs.split(', ');
+            massRatings = massRatings instanceof Array ? massRatings : massRatings.split(', ');
+            users.setup(firstName, lastName, favGenres, req.session.username, movieIDs, massRatings,
+                function (result) {
+                    res.json(result);
+                });
+        } else {
+            res.status(400).json({status:400, error:'Improper body parameters'});
+        }
+    });
+
 };
