@@ -78,6 +78,12 @@ var question3Submit = function(){
 
 	console.log(genreIds);
 
+	if(genreIds.length < 3){
+		//not enough genres
+	}else{
+		info['favGenres'] = genreIds
+ 	}
+
 }
 
 var revertToQuestion = function(from, to) {
