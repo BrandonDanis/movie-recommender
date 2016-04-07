@@ -5,7 +5,6 @@ CREATE TABLE movies (
   release_date VARCHAR(255)   NOT NULL,
   runtime      INTEGER        NOT NULL,
   poster       VARCHAR(255)   NOT NULL,
-  rating       INTEGER,
   trailer      VARCHAR(50),
   moviedb_id   INTEGER UNIQUE NOT NULL,
   title        TEXT           NOT NULL,
