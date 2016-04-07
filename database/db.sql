@@ -5,7 +5,6 @@ CREATE TABLE movies (
   release_date VARCHAR(255)   NOT NULL,
   runtime      INTEGER        NOT NULL,
   poster       VARCHAR(255)   NOT NULL,
-  rating       INTEGER,
   trailer      VARCHAR(50),
   moviedb_id   INTEGER UNIQUE NOT NULL,
   title        TEXT           NOT NULL,
@@ -103,11 +102,13 @@ INSERT INTO genres (name) VALUES
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id          SERIAL,
-  username    VARCHAR(25)  NOT NULL,
+  firstname   VARCHAR(35),
+  lastname    VARCHAR(35),
+  username    VARCHAR(25)  NOT NULL UNIQUE,
   password    VARCHAR(100) NOT NULL,
   ssid        VARCHAR(20),
   datecreated TIMESTAMP    NOT NULL DEFAULT (NOW()),
-  email       VARCHAR(254) NOT NULL,
+  email       VARCHAR(254) NOT NULL UNIQUE,
   status      VARCHAR(8) NOT NULL DEFAULT 'pending',
   UNIQUE (username, email),
   PRIMARY KEY (id)
@@ -121,4 +122,12 @@ CREATE TABLE ratings (
   FOREIGN KEY (username) REFERENCES users (username),
   FOREIGN KEY (movie_id) REFERENCES movies (id),
   UNIQUE (username, movie_id)
+);
+
+DROP TABLE IF EXISTS favourite_genres;
+CREATE TABLE favourite_genres (
+  genre_id INTEGER     NOT NULL,
+  username VARCHAR(25) NOT NULL,
+  FOREIGN KEY (username) REFERENCES users (username),
+  FOREIGN KEY (genre_id) REFERENCES genres (id)
 );
