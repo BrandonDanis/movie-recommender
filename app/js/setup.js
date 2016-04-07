@@ -1,10 +1,27 @@
 
 
+var api = new Api();
+
 var info = {
 	name: "",
 	lastname: "",
 	favGenres: {},
 	favMovies: {}
+}
+
+var initPage = function(){
+	api.getAllGenres(function(res) {
+		if(res['status'] == 200){
+
+			for(i=0; i<res['genres'].length; i++){
+				var temp = '<p><input type="checkbox" id="~ID~" /><label for="~ID~">~GENRE~</label></p>';
+				temp = temp.replace(/~ID~/g,res['genres'][i]['id'])
+				temp = temp.replace(/~GENRE~/g,res['genres'][i]['name'])
+				$(".genresForm").append(temp);
+			}
+
+		}
+	});
 }
 
 var question1Submit = function() {
@@ -38,6 +55,17 @@ var question2Submit = function(){
 	}
 
 }
+
+var setupStep3 = function(){
+
+	$("#question2Div").fadeOut("1s",function(){
+
+		$("#question3Div").css("display","block")
+
+	});
+
+}
+
 
 var revertToQuestion = function(from, to) {
 
