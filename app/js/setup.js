@@ -14,7 +14,7 @@ var initPage = function(){
 		if(res['status'] == 200){
 
 			for(i=0; i<res['genres'].length; i++){
-				var temp = '<p><input type="checkbox" id="~ID~" /><label for="~ID~">~GENRE~</label></p>';
+				var temp = '<p><input type="checkbox" id="~ID~"/><label for="~ID~">~GENRE~</label></p>';
 				temp = temp.replace(/~ID~/g,res['genres'][i]['id'])
 				temp = temp.replace(/~GENRE~/g,res['genres'][i]['name'])
 				$(".genresForm").append(temp);
@@ -66,6 +66,19 @@ var setupStep3 = function(){
 
 }
 
+var question3Submit = function(){
+
+	var genreIds = []
+
+	$('input', $('#question3Div')).each(function () {
+    	if($(this).is(':checked')){
+			genreIds.push(parseInt($(this).attr('id')))
+		}
+	});
+
+	console.log(genreIds);
+
+}
 
 var revertToQuestion = function(from, to) {
 
