@@ -31,7 +31,11 @@ app.get('/', function(req, res) {
 	if(req.session && req.session.ssid != null && req.session.username != null) {
 		session.checkSession(req.session.username, req.session.ssid, function(status) {
 			if(status['status'] == 200){
-				res.sendFile(path.join(__dirname + '/app/main.html'));
+				if(status['accountStatus'] == 'pending'){
+					res.sendFile(path.join(__dirname + '/app/setup.html'));
+				}else{
+					res.sendFile(path.join(__dirname + '/app/main.html'));
+				}
 			}else{
 				res.sendFile(path.join(__dirname + '/app/login.html'));
 			}
@@ -45,7 +49,11 @@ app.get('/movie', function(req, res) {
 	if(req.session && req.session.ssid != null && req.session.username != null) {
 		session.checkSession(req.session.username, req.session.ssid, function(status) {
 			if(status['status'] == 200){
-				res.sendFile(path.join(__dirname + '/app/movie.html'));
+				if(status['accountStatus'] == 'pending'){
+					res.sendFile(path.join(__dirname + '/app/setup.html'));
+				}else{
+					res.sendFile(path.join(__dirname + '/app/movie.html'));
+				}
 			}else{
 				res.sendFile(path.join(__dirname + '/app/login.html'));
 			}
@@ -59,7 +67,11 @@ app.get('/genres', function(req, res) {
 	if(req.session && req.session.ssid != null && req.session.username != null) {
 		session.checkSession(req.session.username, req.session.ssid, function(status) {
 			if(status['status'] == 200){
-				res.sendFile(path.join(__dirname + '/app/index.html'));
+				if(status['accountStatus'] == 'pending'){
+					res.sendFile(path.join(__dirname + '/app/setup.html'));
+				}else{
+					res.sendFile(path.join(__dirname + '/app/index.html'));
+				}
 			}else{
 				res.sendFile(path.join(__dirname + '/app/login.html'));
 			}
@@ -73,7 +85,11 @@ app.get('/movies', function(req, res) {
 	if(req.session && req.session.ssid != null && req.session.username != null) {
 		session.checkSession(req.session.username, req.session.ssid, function(status) {
 			if(status['status'] == 200){
-				res.sendFile(path.join(__dirname + '/app/index.html'));
+				if(status['accountStatus'] == 'pending'){
+					res.sendFile(path.join(__dirname + '/app/setup.html'));
+				}else{
+					res.sendFile(path.join(__dirname + '/app/index.html'));
+				}
 			}else{
 				res.sendFile(path.join(__dirname + '/app/login.html'));
 			}
