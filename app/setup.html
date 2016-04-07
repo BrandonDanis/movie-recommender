@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.css">
+		 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="/style/materialize.css">
 		<link rel="stylesheet" type="text/css" href="/style/sweetalert.css">
 		<link rel="stylesheet" href="/style/setup.css">
@@ -17,40 +18,46 @@
 		<section class="header-section">
 			<div class="wrapper">
 
+				<div class="setup-container">
+					<div class="title wow fadeInDown">
+						<h1>Welcome!</h1>
+						<p>We want to get to know you better.</p>
+					</div>
 
-				<div class="title wow bounceInDown">
-					<h1>Welcome!</h1>
-					<p>We want to get to know you better.</p>
-				</div>
+					<div id="question1Div" class="row wow fadeInUp" data-wow-delay="1s" style="display:block;">
+				    	<form class="col s12">
+				        	<div class="row">
+				          		<div class="input-field col s12">
+				            		<input id="question1Input" type="text" length="25">
+				            		<label for="question1Input">What is your name?</label>
+				          		</div>
+				        	</div>
+				    	</form>
+						<div class="row">
+							<div class="col s12">
+								<a class="waves-effect waves-light btn" onclick="question1Submit()"><i class="material-icons left">done</i>Next</a>
+							</div>
+						</div>
+				    </div>
 
-				<div class="row">
-
-					<form class="col s12">
+					<div id="question2Div" class="row wow bounceInUp" style="display:none;">
+				    	<form class="col s12">
+				        	<div class="row">
+				          		<div class="input-field col s12">
+				            		<input id="question2Input" type="text" length="25">
+				            		<label for="question2Input">What is your last name?</label>
+				          		</div>
+				        	</div>
+				    	</form>
 						<div class="row">
-							<div class="input-field col s12">
-								<input id="first_name" type="text" class="validate">
-								<label for="first_name">First Name</label>
+							<div class="col s6">
+								<a class="waves-effect waves-light btn" onclick="revertToQuestion(2,1)"><i class="material-icons left">replay</i>Back</a>
+							</div>
+							<div class="col s6">
+								<a class="waves-effect waves-light btn" onclick="question2Submit()"><i class="material-icons left">done</i>Next</a>
 							</div>
 						</div>
-						<div class="row">
-							<div class="input-field col s12">
-								<input id="last_name" type="text" class="validate">
-								<label for="last_name">Last Name</label>
-							</div>
-						</div>
-						<div class="row">
-							<div class="input-field col s12">
-								<input id="password" type="password" class="validate">
-								<label for="password">Password</label>
-							</div>
-						</div>
-						<div class="row wow fadeIn" style="display:none;">
-							<div class="input-field col s12">
-								<input id="email" type="email" class="validate">
-								<label for="email" data-error="Incorect Email">Email</label>
-							</div>
-						</div>
-					</form>
+				    </div>
 
 				</div>
 
