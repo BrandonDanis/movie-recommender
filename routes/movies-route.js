@@ -164,10 +164,12 @@ module.exports = function (app) {
 
     app.get('/popularMultiGenre', function (req, res) {
         var genres = req.query.genres;
-        if (genres != null && genres instanceof Array && genres.length > 1) {
-            movies.getPopularMultiGenre(genres, function (result) {
+        if (genres != null && genres instanceof Array && genres.length > 2) {
+            movies.getPopularMultiGenre.getInitialList(genres, function (result) {
                 res.json(result);
             });
+        } else if (genres instanceof Array && genres.length < 3) {
+            res.status(400).json({status: 400, error: 'You must send a minimum of 3 genres'});
         } else {
             res.status(400).json({status: 400, error: 'Improper parameters'});
         }

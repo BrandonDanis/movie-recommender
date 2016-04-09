@@ -127,4 +127,10 @@ function Api()
 			callback(res);
 		});
 	};
+
+	this.getPopularMultiGenre = function (genres, callback) {
+		$.get(apiUrl + '/popularMultiGenre', {genres: genres}, function (res) {
+			callback(res);
+		})
+	}
 }
