@@ -81,7 +81,10 @@ var question3Submit = function(){
 	if(genreIds.length < 3){
 		//not enough genres
 	}else{
-		info['favGenres'] = genreIds
+		info['favGenres'] = genreIds;
+		api.getPopularMultiGenre(genreIds, function (result) {
+			console.log(result);
+		});
  	}
 
 }
