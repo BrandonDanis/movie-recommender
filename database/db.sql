@@ -111,7 +111,7 @@ CREATE TABLE users (
   ssid        VARCHAR(20),
   datecreated TIMESTAMP    NOT NULL DEFAULT (NOW()),
   email       VARCHAR(254) NOT NULL UNIQUE,
-  status      VARCHAR(8) NOT NULL DEFAULT 'pending',
+  status      VARCHAR(8)   NOT NULL DEFAULT 'pending',
   UNIQUE (username, email),
   PRIMARY KEY (id)
 );
@@ -120,7 +120,7 @@ DROP TABLE IF EXISTS ratings;
 CREATE TABLE ratings (
   username VARCHAR(25) NOT NULL,
   movie_id INTEGER     NOT NULL,
-  rating   INTEGER     NOT NULL,
+  rating   INTEGER     NOT NULL CHECK (rating >= 1 AND rating <= 10),
   FOREIGN KEY (username) REFERENCES users (username),
   FOREIGN KEY (movie_id) REFERENCES movies (id),
   UNIQUE (username, movie_id)
