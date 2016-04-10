@@ -32,6 +32,7 @@ CREATE TABLE casts (
   name       VARCHAR(255)   NOT NULL,
   imageurl   VARCHAR(255),
   moviedb_id INTEGER UNIQUE NOT NULL,
+  bio        TEXT,
   PRIMARY KEY (id)
 );
 
@@ -51,6 +52,7 @@ CREATE TABLE directors (
   name       VARCHAR(255)   NOT NULL,
   imageurl   VARCHAR(255),
   moviedb_id INTEGER UNIQUE NOT NULL,
+  bio        TEXT,
   PRIMARY KEY (id)
 );
 
