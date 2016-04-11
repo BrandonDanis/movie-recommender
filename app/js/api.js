@@ -180,7 +180,7 @@ function Api()
 		$.get(apiUrl + '/popularMultiGenre', {genres: genres}, function (res) {
 			callback(res);
 		});
-	}
+	};
 
 	this.setup = function(name,lastname,genres,movies,callback) {
 		$.post(apiUrl + '/setup', {firstName: name, lastName: lastname, favGenres: genres, movieIDs: movies}, function(res) {

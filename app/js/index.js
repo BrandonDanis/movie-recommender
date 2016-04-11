@@ -32,6 +32,8 @@ setupPage = function() {
             loadMoviesFromZA();
         }else if(hash == '#Recent'){
             loadMoviesByRelease();
+        }else if(hash == '#popular'){
+            loadMoviesByPopularity();
         }else{
             loadMovies();
         }
