@@ -186,5 +186,11 @@ function Api()
 		$.post(apiUrl + '/setup', {firstName: name, lastName: lastname, favGenres: genres, movieIDs: movies}, function(res) {
 			callback(res);
 		});
-	}
+	},
+
+	this.getRecommendedMovies = function(callback) {
+		$.get(apiUrl + '/popularMultiGenres/after', {}, function(res){
+			callback(res);
+		});
+	};
 }
