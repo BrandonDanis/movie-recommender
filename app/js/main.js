@@ -4,6 +4,8 @@ setupPage = function() {
 
 	loadPopularPosts();
 
+	loadRecommendedMovies();
+
 	loadUserInfo();
 
 }

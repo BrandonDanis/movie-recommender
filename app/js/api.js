@@ -189,7 +189,7 @@ function Api()
 	},
 
 	this.getRecommendedMovies = function(callback) {
-		$.get(apiUrl + '/popularMultiGenres/after', {}, function(res){
+		$.get(apiUrl + '/popularMultiGenre/after', {limit: 20}, function(res){
 			callback(res);
 		});
 	};
