@@ -11,15 +11,13 @@ setupPage = function() {
 loadUserInfo = function() {
 
 	var infoTitle = '<h1>Welcome, ~USERNAME~</h1>';
-	var infoName = '<div class="info"><h1>Full name: </h1><h3>~FIRST~</h3><h3>~LAST~</h3></div>';
+	var infoName = '<div class="info"><h1>Full name: </h1><h3>~FIRST~, </h3><h3>~LAST~</h3></div>';
 	var infoEmail = '<div class="info"><h1>Email: </h1><h3>~EMAIL~</h3></div>';
 	var infoDate = '<div class="info"><h1>Member since: </h1><h3>~DATE~</h3></div>';
 
 	api.getUserInfo(function(res) {
 
 		var info = res['userInfo']
-
-		console.log(info);
 
 		if(info['username'] != null){
 			infoTitle = infoTitle.replace(/~USERNAME~/g,info['username']);
