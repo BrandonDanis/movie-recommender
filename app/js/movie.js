@@ -212,7 +212,8 @@ setupCast = function (cast) {
     $('.titleContainer').append(actorNameSTR);
 
     //Cast Image
-    var imgSTR = '<img src="https://image.tmdb.org/t/p/w185/~IMGURL~" width="185" height="278">';
+    var imgSTR = cast['imageurl'] == null ? '<iframe width="185" height="278" class="alternate-genre-poster"></iframe>'
+        : '<img src="https://image.tmdb.org/t/p/w185/~IMGURL~" width="185" height="278">';
     imgSTR = imgSTR.replace('~IMGURL~', cast['imageurl']);
     $('.imageContainer').append(imgSTR);
 

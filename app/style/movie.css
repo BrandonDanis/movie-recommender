@@ -150,3 +150,7 @@ html body h1 h2 h3 h4 h5 {
     height: 347px;
     vertical-align: middle;
 }
+
+.alternate-genre-poster {
+    background: #777777 url("../img/person.svg") no-repeat center center;
+}
