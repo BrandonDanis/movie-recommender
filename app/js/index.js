@@ -60,6 +60,8 @@ loadMovies = function () {
                 $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
             }
 
+            self.loaded = self.loaded + self.increment;
+
         } else {
             console.log('Error getting movies');
         }
@@ -84,6 +86,8 @@ loadMoviesFromAZ = function() {
             for (var i = 0; i < self.loaded+self.increment; i++) {
                 $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
             }
+
+            self.loaded = self.loaded + self.increment;
 
         } else {
             console.log('Error getting movies');
@@ -110,6 +114,8 @@ loadMoviesFromZA = function() {
                 $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
             }
 
+            self.loaded = self.loaded + self.increment;
+
         } else {
             console.log('Error getting movies');
         }
@@ -134,6 +140,8 @@ loadMoviesByRelease = function() {
             for (var i = 0; i < self.loaded+self.increment; i++) {
                 $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
             }
+
+            self.loaded = self.loaded + self.increment;
 
         } else {
             console.log('Error getting movies');
@@ -222,6 +230,8 @@ loadSpecificGenre = function(genreName) {
                 $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
             }
 
+            self.loaded = self.loaded + self.increment;
+
         } else {
             console.log('Error getting movies');
         }
@@ -230,8 +240,30 @@ loadSpecificGenre = function(genreName) {
 
 }
 
+self.loadingMovies = false;
+
+$(window).scroll(function() {
+
+    var height = $(window).scrollTop() + $(window).height();
+    var docHeight = $(document).height();
+
+    if((height > docHeight) && (self.loadingMovies == false)) {
+        loadMoreMovies()
+    }
+
+});
+
 loadMoreMovies = function(){
 
+    console.log("Loading movies from " + self.loaded + " to " + (self.loaded+self.increment));
 
+    self.loadingMovies = true;
+
+    for (var i = self.loaded; i < self.loaded+self.increment; i++) {
+        $('#movieContainer').append(generateMovieDiv(self.movieArray[i]['id'], self.movieArray[i]['title'], self.movieArray[i]['poster']));
+    }
+
+    self.loaded = self.loaded + self.increment;
+    self.loadingMovies = false;
 
 }
