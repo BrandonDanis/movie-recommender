@@ -1,5 +1,9 @@
 var api = new Api();
 
+self.movieArray;
+self.loaded = 0;
+self.increment = 100;
+
 setupPage = function() {
 
     console.log(location.hash);
@@ -46,12 +50,13 @@ loadMovies = function () {
     api.getAllMovies(function (res) {
 
         var moviesArray = res['movies'];
+        self.movieArray = res['movies'];
 
         if (res['status'] == 200) {
 
             $('#movieContainer').empty();
 
-            for (var i = 0; i < (200 || moviesArray.length); i++) {
+            for (var i = self.loaded; i < self.loaded+self.increment; i++) {
                 $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
             }
 
@@ -70,12 +75,13 @@ loadMoviesFromAZ = function() {
     api.getAllMovieFromAZ(function(res) {
 
         var moviesArray = res['movies'];
+        self.movieArray = res['movies'];
 
         if (res['status'] == 200) {
 
             $('#movieContainer').empty();
 
-            for (var i = 0; i < (200 || moviesArray.length); i++) {
+            for (var i = 0; i < self.loaded+self.increment; i++) {
                 $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
             }
 
@@ -94,12 +100,13 @@ loadMoviesFromZA = function() {
     api.getAllMovieFromZA(function(res) {
 
         var moviesArray = res['movies'];
+        self.movieArray = res['movies'];
 
         if (res['status'] == 200) {
 
             $('#movieContainer').empty();
 
-            for (var i = 0; i < (200 || moviesArray.length); i++) {
+            for (var i = 0; i < self.loaded+self.increment; i++) {
                 $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
             }
 
@@ -118,12 +125,13 @@ loadMoviesByRelease = function() {
     api.getAllMovieByRelease(function(res) {
 
         var moviesArray = res['movies'];
+        self.movieArray = res['movies'];
 
         if (res['status'] == 200) {
 
             $('#movieContainer').empty();
 
-            for (var i = 0; i < (200 || moviesArray.length); i++) {
+            for (var i = 0; i < self.loaded+self.increment; i++) {
                 $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
             }
 
@@ -206,10 +214,11 @@ loadSpecificGenre = function(genreName) {
         console.log(res);
 
         var moviesArray = res['movies'];
+        self.movieArray = res['movies'];
 
         if (res['status'] == 200) {
 
-            for (var i = 0; i < (200 || moviesArray.length); i++) {
+            for (var i = 0; i < self.loaded+self.increment; i++) {
                 $('#movieContainer').append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
             }
 
@@ -218,5 +227,11 @@ loadSpecificGenre = function(genreName) {
         }
 
     });
+
+}
+
+loadMoreMovies = function(){
+
+
 
 }
