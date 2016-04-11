@@ -121,6 +121,15 @@ module.exports = function(app) {
     });
 
     app.post('/setup', function (req, res) {
+
+        for (var key in req.body) {
+            if (req.body.hasOwnProperty(key)) {
+                var changedKey = key.replace("[]", "");
+                req.body[changedKey] = req.body[key];
+                delete req.body[key];
+            }
+        }
+
         var movieIDs = req.body.movieIDs;
         var favGenres = req.body.favGenres;
         var firstName = req.body.firstName;
