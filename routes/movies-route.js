@@ -35,12 +35,14 @@ module.exports = function (app) {
 
     app.get('/moviesByRelease', function (req, res) {
         movies.moviesByRelease(function (status) {
-            if (status['status'] == 200) {
-                res.json(status);
-            } else {
-                res.json(status);
-            }
+            res.json(status);
         });
+    });
+    
+    app.get('/moviesByPopularity', function (req, res) {
+         movies.moviesByPopularity(function (result) {
+             res.json(result);
+         })
     });
 
     app.get('/specific-movie', function (req, res) {
