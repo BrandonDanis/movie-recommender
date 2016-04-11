@@ -95,7 +95,6 @@ var setupStep4 = function() {
 		$("#question4Div").css("display","block")
 
 		api.getPopularMultiGenre(self.favGenres, function (result) {
-			console.log(result['movies']);
 
 			var moviesArray = result['movies'];
 
@@ -127,17 +126,23 @@ var finish = function() {
 
 	$('input', $('#question4Div')).each(function () {
     	if($(this).is(':checked')){
-			self.favMovies.push(parseInt($(this).attr('id')))
+			favMovies.push(parseInt($(this).attr('id')))
 		}
 	});
 
-	if(self.favMovies.length < 1){
+	if(favMovies.length < 1){
 		//not enough genres
 		console.log("Please select more atleast 1 movie.");
 	}else{
 		info['favMovies'] = favMovies;
 
-		
+		api.setup(info['name'], info['lastname'], info['favGenres'], info['favMovies'], function(res) {
+			if(res['status'] == 200){
+				location.reload();
+			}else{
+				console.log("oops");
+			}
+		});
 
  	}
 

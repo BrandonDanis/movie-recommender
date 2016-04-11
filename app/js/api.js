@@ -39,7 +39,7 @@ function Api()
 			callback(res);
 		});
 	};
-	
+
 	this.getAllMoviesByPopularity = function (callback) {
 		$.get(apiUrl + '/moviesByPopularity', {}, function (res) {
 			callback(res);
@@ -179,6 +179,12 @@ function Api()
 	this.getPopularMultiGenre = function (genres, callback) {
 		$.get(apiUrl + '/popularMultiGenre', {genres: genres}, function (res) {
 			callback(res);
-		})
+		});
+	}
+
+	this.setup = function(name,lastname,genres,movies,callback) {
+		$.post(apiUrl + '/setup', {firstName: name, lastname: lastname, favGenres: genres, movieIDs: movies}, function(res) {
+			callback(res);
+		});
 	}
 }
