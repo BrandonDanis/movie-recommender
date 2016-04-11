@@ -218,7 +218,7 @@ setupCast = function (cast) {
     $('.imageContainer').append(imgSTR);
 
     //Cast biography
-    if (cast['bio'] != null) {
+    if (cast['bio'] != null && cast['bio'] != '') {
         var biographyStr = '<h1>~TITLE~: </h1><p>~TEXT~</p>';
         biographyStr = biographyStr.replace('~TITLE~', 'Biography');
         biographyStr = biographyStr.replace('~TEXT~', cast['bio']);
@@ -263,7 +263,7 @@ setupDirector = function (director) {
     $('.imageContainer').append(imgSTR);
 
     //Director biography
-    if (director['bio'] != null) {
+    if (director['bio'] != null && director['bio'] != '') {
         var biographyStr = '<h1>~TITLE~: </h1><p>~TEXT~</p>';
         biographyStr = biographyStr.replace('~TITLE~', 'Biography');
         biographyStr = biographyStr.replace('~TEXT~', director['bio']);
