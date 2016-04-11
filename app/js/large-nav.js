@@ -11,8 +11,6 @@ $('#search-box').autocomplete({
                 for (var key in objects) {
                     if (objects.hasOwnProperty(key)) {
                         var object = objects[key];
-                        // console.log(objects[key]);
-                        // console.log(object['title']);
                         var listObject = {
                             id: object['id'],
                             title: object['title'],
@@ -23,7 +21,6 @@ $('#search-box').autocomplete({
                         list.push(listObject);
                     }
                 }
-                // console.log(list);
                 res(list);
             }
         });
