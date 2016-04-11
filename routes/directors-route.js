@@ -48,5 +48,15 @@ module.exports = function(app) {
         }else {
             res.json({status: 400, reason: 'Improper parameters'});
         }
-    })
+    });
+
+    app.get('/director/movies', function (req, res) {
+        if (req.query['uniqueID'] != null) {
+            directors.getMoviesDirected(req.query['uniqueID'], function (result) {
+                res.json(result);
+            });
+        } else {
+            res.status(400).json({status:400, error: 'Improper parameters'});
+        }
+    });
 };
