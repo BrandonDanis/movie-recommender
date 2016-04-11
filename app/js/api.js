@@ -39,6 +39,12 @@ function Api()
 			callback(res);
 		});
 	};
+	
+	this.getAllMoviesByPopularity = function (callback) {
+		$.get(apiUrl + '/moviesByPopularity', {}, function (res) {
+			callback(res);
+		});
+	};
 
 	this.getSpecificMovieById = function (idTitle, callback) {
 		$.get(apiUrl + '/specific-movie', {id: idTitle}, function(res) {
