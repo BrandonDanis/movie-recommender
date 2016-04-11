@@ -55,8 +55,7 @@ def begin(table):
     db.execute('SELECT moviedb_id, bio, imageurl FROM ' + table + ' ORDER BY id')
     rows = db.fetchall()
     for row in rows:
-        print row[1]
-        print row[2]
+        print row
         if row[1] is None or row[2] is None:
             get_person(row[0], row[2] is None, table)
         else:

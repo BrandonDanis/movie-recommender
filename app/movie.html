@@ -32,7 +32,7 @@
 
                     <div class="col-md-9">
 
-                        <div class="movieTitleContainer">
+                        <div class="titleContainer">
                             <!-- TITLE APPENDED HERE-->
                         </div>
 
@@ -46,11 +46,7 @@
 
                         <div class="ratingContainer">
                             <span class="rating">
-                                <span class="star"><i class="fa fa-star-o" id="5"></i></span>
-                                <span class="star"><i class="fa fa-star-o" id="4"></i></span>
-                                <span class="star"><i class="fa fa-star-o" id="3"></i></span>
-                                <span class="star"><i class="fa fa-star-o" id="2"></i></span>
-                                <span class="star"><i class="fa fa-star-o" id="1"></i></span>
+                                <!--STARS APPENDED HERE-->
                             </span>
 
                         </div>
@@ -59,16 +55,27 @@
 
                 </div>
 
-                <div class="row">
-                    <div class="col-md-12 overviewContainer">
-                        <h1>Overview: </h1>
+                <div class="row" id="details">
+                    <div class="col-md-12 detailsContainer">
                         <!-- OVERVIEW APPENDED HERE-->
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row" id="casts">
                     <div class="col-md-12 castsContainer">
                         <!-- CASTS APPENDED HERE-->
+                    </div>
+                </div>
+
+                <div class="row" id="directed">
+                    <div class="col-md-12 directedContainer">
+                        <!-- MOVIES DIRECTED APPENDED HERE-->
+                    </div>
+                </div>
+
+                <div class="row" id="played">
+                    <div class="col-md-12 playedContainer">
+                        <!-- MOVIES ACTED IN APPENDED HERE-->
                     </div>
                 </div>
 
@@ -90,7 +97,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $(".headerPanel").load("nav.html");
-            loadMovie();
+            checkPath();
         });
     </script>
 

@@ -61,23 +61,23 @@ def get_trailer(moviedb_id):
                 run = True
 
 
-args = sys.argv
-database = args[1]
-host = args[2]
-if len(args) > 3:
-    username = args[3]
-    password = args[4]
-    connection = psycopg2.connect(database=database, host=host, user=username, password=password)
-else:
-    connection = psycopg2.connect(database=database, host=host)
-db = connection.cursor()
-
-api_key = '476bbe4282fb66cfbd54f6da2d3d28fe'
-
-db.execute('SELECT moviedb_id, trailer FROM movies ORDER BY id')
-rows = db.fetchall()
-for row in rows:
-    if row[1] is None:
-        get_trailer(row[0])
+    args = sys.argv
+    database = args[1]
+    host = args[2]
+    if len(args) > 3:
+        username = args[3]
+        password = args[4]
+        connection = psycopg2.connect(database=database, host=host, user=username, password=password)
     else:
-        print 'Trailer already given'
+        connection = psycopg2.connect(database=database, host=host)
+    db = connection.cursor()
+
+    api_key = '476bbe4282fb66cfbd54f6da2d3d28fe'
+
+    db.execute('SELECT moviedb_id, trailer FROM movies ORDER BY id')
+    rows = db.fetchall()
+    for row in rows:
+        if row[1] is None:
+            get_trailer(row[0])
+        else:
+            print 'Trailer already given'

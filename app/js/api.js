@@ -85,6 +85,18 @@ function Api()
 			}
 		})
 	}
+	
+	this.getDirectorById = function (id, callback) {
+		$.get(apiUrl + '/director', {id: id}, function (res) {
+			callback(res);
+		});
+	};
+
+	this.getDirectorByName = function (name, callback) {
+		$.get(apiUrl + '/director', {name: name}, function (res) {
+			callback(res);
+		});
+	};
 
 	this.getDirectorByMovieId = function(movieId, callback) {
 		$.get(apiUrl + '/director', {movieId: movieId}, function(res) {
@@ -92,11 +104,35 @@ function Api()
 		});
 	}
 
+	this.getMoviesDirected = function (movieDB_Id, callback) {
+		$.get(apiUrl + '/director/movies', {uniqueID: movieDB_Id}, function (res) {
+			callback(res);
+		});
+	};
+
 	this.getCastsById = function(movieId, callback) {
 		$.get(apiUrl + '/casts', {movieId: movieId}, function(res) {
 			callback(res);
 		});
 	}
+	
+	this.getActorById = function (id, callback) {
+		$.get(apiUrl + '/cast', {id: id}, function (res) {
+			callback(res);
+		});	
+	};
+	
+	this.getActorByName = function (name, callback) {
+		$.get(apiUrl + '/cast', {name: name}, function (res) {
+			callback(res);
+		});	
+	};
+	
+	this.getMoviesPlayed = function (movieDB_Id, callback) {
+		$.get(apiUrl + '/cast/movies', {uniqueID: movieDB_Id}, function (res) {
+			callback(res);
+		});	
+	};
 
 	this.getAllGenres = function(callback) {
 		$.get(apiUrl + '/all-genres', {}, function(res) {
