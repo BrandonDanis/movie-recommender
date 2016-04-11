@@ -167,7 +167,7 @@ module.exports = function (app) {
     app.get('/popularMultiGenre', function (req, res) {
         var genres = req.query.genres;
         if (genres != null && genres instanceof Array && genres.length > 2) {
-            movies.getPopularMultiGenre.getInitialList(genres, function (result) {
+            movies.getPopularMultiGenre.getInitialList(genres, 10, function (result) {
                 res.json(result);
             });
         } else if (genres instanceof Array && genres.length < 3) {
@@ -175,5 +175,16 @@ module.exports = function (app) {
         } else {
             res.status(400).json({status: 400, error: 'Improper parameters'});
         }
-    })
+    });
+
+    app.get('/popularMultiGenre/after', function (req, res) {
+        var limit = req.query.limit;
+        if (limit != null) {
+            movies.getPopularMultiGenre.afterSetup(req.query.username, limit, function (result) {
+               res.json(result);
+            });
+        } else {
+            res.status(400).json({status:400, error:'Improper parameters'});
+        }
+    });
 };
