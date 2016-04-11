@@ -142,3 +142,11 @@ html body h1 h2 h3 h4 h5 {
     -webkit-filter: drop-shadow( 0 0 0 #fff );
     filter: drop-shadow( 0 0 0 #fff);
 }
+
+.movieBox {
+    margin: 20px 10px;
+    width: 185px;
+    display: inline-block;
+    height: 347px;
+    vertical-align: middle;
+}
