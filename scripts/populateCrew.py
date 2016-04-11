@@ -67,10 +67,14 @@ def get_crew(movie_title, movie_id, moviedb_id):
             crew_json = credits_json['crew']
             run = False
         except KeyError:
-            print 'Waiting 1 second because went over request limit...'
-            time.sleep(1)
-            run = True
-            print 'Waited 1 second'
+            print credits_json
+            if credits_json['status_code'] == 25:
+                print 'Waiting 5 seconds because went over request limit...'
+                time.sleep(5)
+                run = True
+                print 'Waited 5 seconds'
+            else:
+                return
 
     for cast in cast_json:
         try:
