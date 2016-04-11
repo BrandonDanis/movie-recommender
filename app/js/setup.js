@@ -7,8 +7,8 @@ self.favGenres = [];
 var info = {
 	name: "",
 	lastname: "",
-	favGenres: {},
-	favMovies: {}
+	favGenres: [],
+	favMovies: []
 }
 
 var initPage = function(){
@@ -103,9 +103,12 @@ var setupStep4 = function() {
 
 	            $(".popularMovies").empty();
 
-	            for (var i = 0; i < moviesArray.length; i++) {
-	                $(".popularMovies").append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
-	            }
+				for(i=0; i<moviesArray.length; i++){
+					var temp = '<p><input type="checkbox" id="~ID~"/><label for="~ID~">~MOVIE~</label></p>';
+					temp = temp.replace(/~ID~/g,moviesArray[i]['id'])
+					temp = temp.replace(/~MOVIE~/g,moviesArray[i]['title'])
+					$(".popularMovies").append(temp);
+				}
 
 	        } else {
 	            console.log('Error getting movies');
@@ -118,17 +121,27 @@ var setupStep4 = function() {
 
 }
 
-generateMovieDiv = function (movieId, movieTitle, posterUrl) {
+var finish = function() {
 
-    var divTemplate = '<div class="movieBox"><a><div id="~MOVIEID~" class="imageContainer"><img src="https://image.tmdb.org/t/p/w185~IMGURL~" width="185" height="278"/></div><div class="movieInfo"><h4>~MOVIETITLE~</h4></div></a></div>';
+	var favMovies = []
 
-    divTemplate = divTemplate.replace(/~IMGURL~/g, posterUrl);
-    divTemplate = divTemplate.replace(/~MOVIETITLE~/g, movieTitle);
-    divTemplate = divTemplate.replace(/~MOVIEID~/g, movieId);
+	$('input', $('#question4Div')).each(function () {
+    	if($(this).is(':checked')){
+			self.favMovies.push(parseInt($(this).attr('id')))
+		}
+	});
 
-    return divTemplate;
+	if(self.favMovies.length < 1){
+		//not enough genres
+		console.log("Please select more atleast 1 movie.");
+	}else{
+		info['favMovies'] = favMovies;
 
-};
+		
+
+ 	}
+
+}
 
 var revertToQuestion = function(from, to) {
 

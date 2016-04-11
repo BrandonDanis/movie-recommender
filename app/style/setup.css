@@ -104,6 +104,11 @@ form p
     margin: 0 auto;
 }
 
+.selected h4
+{
+    font-weight: 700;
+}
+
 .movieInfo h4
 {
     color: black;
