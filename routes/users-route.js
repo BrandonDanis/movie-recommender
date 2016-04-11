@@ -100,7 +100,7 @@ module.exports = function(app) {
 
   });
 
-    app.delete('/rating', function (req, res) {
+  app.delete('/rating', function (req, res) {
         if(req.session.username != null){
 
             if(req.body.movieId != null){
@@ -118,7 +118,7 @@ module.exports = function(app) {
         }else{
             res.json({status: 400, reason: 'Session username isn\'t valid.'});
         }
-    })
+    });
 
     app.post('/setup', function (req, res) {
         var movieIDs = req.body.movieIDs;
@@ -138,6 +138,18 @@ module.exports = function(app) {
         } else {
             res.status(400).json({status:400, error:'Improper body parameters'});
         }
+    });
+
+    app.get('/getUserInfo', function (req, res) {
+
+        if(req.session.username != null) {
+            users.getUserInfo(req.session.username, function(status) {
+                res.json(status);
+            });
+        }else{
+            res.json({status: 400, reason: 'Session username isn\'t valid.'});
+        }
+
     });
 
 };

@@ -76,6 +76,7 @@ loadPerson = function () {
     if (type == 'director') {
         if (self.personId != null) {
             api.getDirectorById(self.personId, function (res) {
+                console.log(res);
                 processData('director-all', res);
             });
         } else if (self.personName != null) {
