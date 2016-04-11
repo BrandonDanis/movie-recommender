@@ -2,6 +2,8 @@
 
 var api = new Api();
 
+self.favGenres = [];
+
 var info = {
 	name: "",
 	lastname: "",
@@ -68,26 +70,65 @@ var setupStep3 = function(){
 
 var question3Submit = function(){
 
-	var genreIds = []
+	self.favGenres = [];
 
 	$('input', $('#question3Div')).each(function () {
     	if($(this).is(':checked')){
-			genreIds.push(parseInt($(this).attr('id')))
+			self.favGenres.push(parseInt($(this).attr('id')))
 		}
 	});
 
-	console.log(genreIds);
-
-	if(genreIds.length < 3){
+	if(self.favGenres.length < 3){
 		//not enough genres
+		console.log("Please select more than 3 genres.");
 	}else{
-		info['favGenres'] = genreIds;
-		api.getPopularMultiGenre(genreIds, function (result) {
-			console.log(result);
-		});
+		setupStep4();
+		info['favGenres'] = self.favGenres;
  	}
 
 }
+
+var setupStep4 = function() {
+
+	$("#question3Div").fadeOut("1s",function(){
+
+		$("#question4Div").css("display","block")
+
+		api.getPopularMultiGenre(self.favGenres, function (result) {
+			console.log(result['movies']);
+
+			var moviesArray = result['movies'];
+
+			if (result['status'] == 200) {
+
+	            $(".popularMovies").empty();
+
+	            for (var i = 0; i < moviesArray.length; i++) {
+	                $(".popularMovies").append(generateMovieDiv(moviesArray[i]['id'], moviesArray[i]['title'], moviesArray[i]['poster']));
+	            }
+
+	        } else {
+	            console.log('Error getting movies');
+	        }
+
+
+		});
+
+	});
+
+}
+
+generateMovieDiv = function (movieId, movieTitle, posterUrl) {
+
+    var divTemplate = '<div class="movieBox"><a><div id="~MOVIEID~" class="imageContainer"><img src="https://image.tmdb.org/t/p/w185~IMGURL~" width="185" height="278"/></div><div class="movieInfo"><h4>~MOVIETITLE~</h4></div></a></div>';
+
+    divTemplate = divTemplate.replace(/~IMGURL~/g, posterUrl);
+    divTemplate = divTemplate.replace(/~MOVIETITLE~/g, movieTitle);
+    divTemplate = divTemplate.replace(/~MOVIEID~/g, movieId);
+
+    return divTemplate;
+
+};
 
 var revertToQuestion = function(from, to) {
 

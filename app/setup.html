@@ -22,7 +22,7 @@
 
 	<body style="padding-top: 0px;">
 
-		<section class="header-section">
+		<section class="header-section" style="">
 			<div class="wrapper">
 
 				<div class="setup-container">
@@ -77,6 +77,25 @@
 							</div>
 							<div class="col s6">
 								<a class="waves-effect waves-light btn" onclick="question3Submit()"><i class="material-icons left">done</i>Next</a>
+							</div>
+						</div>
+				    </div>
+
+					<div id="question4Div" class="row wow bounceInUp" style="display:none;">
+						<label for="question3Input">Which of these have you seen and enjoyed?</label>
+
+						<div id="outer_wrapper">
+							<div class="popularMovies" id="inner_wrapper">
+
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col s6">
+								<a class="waves-effect waves-light btn" onclick="revertToQuestion(4,3)"><i class="material-icons left">replay</i>Back</a>
+							</div>
+							<div class="col s6">
+								<a class="waves-effect waves-light btn" onclick="question4Submit()"><i class="material-icons left">done</i>Finish</a>
 							</div>
 						</div>
 				    </div>

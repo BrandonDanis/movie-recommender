@@ -26,8 +26,8 @@ body
 	text-align: center;
 }
 
-.setup-container
-{
+.setup-container{
+    width: 100%;
 	max-width: 400px;
 	margin: 0 auto;
 }
@@ -74,3 +74,69 @@ form p
 {
 	padding-left: 25px;
 }
+
+
+.movieBox
+{
+	margin: 0;
+}
+
+.info {
+	padding: 3px 0;
+}
+
+.info h1{
+	font-size: 18px;
+	margin: 0;
+	display: inline-block;
+}
+
+.info h3{
+	font-size: 18px;
+	font-weight: 300;
+	margin: 0;
+	display: inline-block;
+}
+
+.imageContainer
+{
+    width: 185px; /*same as picture*/
+    margin: 0 auto;
+}
+
+.movieInfo h4
+{
+    color: black;
+    font-size: 16px;
+    margin-top: 0;
+    text-decoration: none;
+}
+
+.movieInfo h4:hover
+{
+    color: black;
+    text-decoration: underline;
+}
+
+.movieInfo a
+{
+    color: black;
+    text-decoration: none;
+}
+
+.movieInfo a:hover
+{
+    color: black;
+    text-decoration: underline;
+}
+
+/*#outer_wrapper {
+    overflow: scroll;
+    width:100%;
+}
+#outer_wrapper #inner_wrapper {
+    width:6000px;
+}
+#outer_wrapper #inner_wrapper div.movieBox {
+    float: left;
+}*/
