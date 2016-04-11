@@ -180,7 +180,7 @@ module.exports = function (app) {
     app.get('/popularMultiGenre/after', function (req, res) {
         var limit = req.query.limit;
         if (limit != null) {
-            movies.getPopularMultiGenre.afterSetup(req.query.username, limit, function (result) {
+            movies.getPopularMultiGenre.afterSetup(req.session.username, limit, function (result) {
                res.json(result);
             });
         } else {
