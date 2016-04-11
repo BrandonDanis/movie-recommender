@@ -1,5 +1,5 @@
-import psycopg2
 import json
+import psycopg2
 import sys
 
 args = sys.argv
@@ -57,10 +57,10 @@ while i < 21:
             }
 
             db.execute(
-                'INSERT INTO movies (overview, release_date, runtime, poster, rating, moviedb_id, title) VALUES '
-                '(%s, %s, %s, %s, %s, %s, %s) RETURNING *', (
-                    movie['overview'], movie['release_date'], movie['runtime'], movie['poster'], movie['rating'],
-                    movie['moviedb_id'], movie['title']))
+                'INSERT INTO movies (overview, release_date, runtime, poster, moviedb_id, title) VALUES '
+                '(%s, %s, %s, %s, %s, %s) RETURNING *', (
+                    movie['overview'], movie['release_date'], movie['runtime'], movie['poster'], movie['moviedb_id'],
+                    movie['title']))
             connection.commit()
 
             row = db.fetchone()
