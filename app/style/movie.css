@@ -53,6 +53,22 @@ html body h1 h2 h3 h4 h5 {
     color: #000;
 }
 
+.movieInfo h4
+{
+    font-weight: 300;
+    margin: 5px 0;
+    color: #000;
+}
+
+.movieBox:hover
+{
+    text-decoration: underline;
+}
+
+.movieInfo {
+    text-align: center;
+}
+
 /* BOOTSTRAP OVERRIDE */
 @media (min-width: 1000px) {
     .col-md-9 {
