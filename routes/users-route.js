@@ -126,9 +126,12 @@ module.exports = function(app) {
             if (req.body.hasOwnProperty(key)) {
                 var changedKey = key.replace("[]", "");
                 req.body[changedKey] = req.body[key];
-                delete req.body[key];
+                if (key.indexOf('[]') > -1)
+                    delete req.body[key];
             }
         }
+
+        console.log(req.body);
 
         var movieIDs = req.body.movieIDs;
         var favGenres = req.body.favGenres;

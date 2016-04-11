@@ -183,7 +183,7 @@ function Api()
 	}
 
 	this.setup = function(name,lastname,genres,movies,callback) {
-		$.post(apiUrl + '/setup', {firstName: name, lastname: lastname, favGenres: genres, movieIDs: movies}, function(res) {
+		$.post(apiUrl + '/setup', {firstName: name, lastName: lastname, favGenres: genres, movieIDs: movies}, function(res) {
 			callback(res);
 		});
 	}
