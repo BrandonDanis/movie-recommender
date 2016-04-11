@@ -16,7 +16,7 @@ setupPage = function() {
 
     if(path == '/genres'){
         if(genre){
-            loadSpecificGenre(genre);
+            loadSpecificGenre(genre.replace('%20', ' '));
         }else{
             loadGenres();
         }
