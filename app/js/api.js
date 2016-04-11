@@ -4,6 +4,12 @@ function Api()
 
 	var apiUrl = 'http://localhost:8080';
 
+	this.getUserInfo = function(callback) {
+		$.get(apiUrl + '/getUserInfo', {}, function(res){
+			callback(res);
+		});
+	};
+
 	this.logout = function() {
 		$.get(apiUrl + '/logout', {}, function(res){
 			location.reload();
@@ -85,7 +91,7 @@ function Api()
 			}
 		})
 	}
-	
+
 	this.getDirectorById = function (id, callback) {
 		$.get(apiUrl + '/director', {id: id}, function (res) {
 			callback(res);
@@ -115,23 +121,23 @@ function Api()
 			callback(res);
 		});
 	}
-	
+
 	this.getActorById = function (id, callback) {
 		$.get(apiUrl + '/cast', {id: id}, function (res) {
 			callback(res);
-		});	
+		});
 	};
-	
+
 	this.getActorByName = function (name, callback) {
 		$.get(apiUrl + '/cast', {name: name}, function (res) {
 			callback(res);
-		});	
+		});
 	};
-	
+
 	this.getMoviesPlayed = function (movieDB_Id, callback) {
 		$.get(apiUrl + '/cast/movies', {uniqueID: movieDB_Id}, function (res) {
 			callback(res);
-		});	
+		});
 	};
 
 	this.getAllGenres = function(callback) {
@@ -151,7 +157,7 @@ function Api()
 			callback(res);
 		});
 	}
-	
+
 	this.getTrailerById = function (id, callback) {
 		$.get(apiUrl + '/trailer', {id: id}, function (res) {
 			callback(res);

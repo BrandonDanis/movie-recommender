@@ -4,6 +4,18 @@ setupPage = function() {
 
 	loadPopularPosts();
 
+	loadUserInfo();
+
+}
+
+loadUserInfo = function() {
+
+	api.getUserInfo(function(res) {
+
+		console.log(res);
+
+	});
+
 }
 
 loadPopularPosts = function() {
