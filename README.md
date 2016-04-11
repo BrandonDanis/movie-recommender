@@ -27,3 +27,16 @@ GET /users //returns a specific user
 DELETE /users //deletes the specified user
 ```
 
+<strong>Features:</strong>
+
+- Cookie based session authentication
+- Password encryption
+- Fully dynamic front-end design
+
+<strong>How to run:</strong>
+
+1. Install all node dependencies
+2. Create the database schema using database/db.sql
+3. Populate the database with the python scripts in /scripts
+4. Run the app by running 'node index.js'
+
