@@ -44,4 +44,5 @@ python populateCrew.py DATABASE_NAME localhost DB_USER DB_PASS
 python retrieve_trailers.py DATABASE_NAME localhost DB_USER DB_PASS
 ```
 * Run the app by running 'node index.js'
+(note: You might need to update the db url on all the /lib scripts to be able to connect to your database)
 
