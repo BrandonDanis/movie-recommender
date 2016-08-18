@@ -36,7 +36,12 @@ DELETE /users //deletes the specified user
 <strong>How to run:</strong>
 
 1. Install all node dependencies
-2. Create the database schema using database/db.sql
+2. Create the database schema using database/db.sql (setting up postgres https://www.digitalocean.com/community/tutorials/how-to-create-remove-manage-tables-in-postgresql-on-a-cloud-server)
 3. Populate the database with the python scripts in /scripts
+```python
+python populate.py DATABASE_NAME localhost DB_USER DB_PASS
+python populateCrew.py DATABASE_NAME localhost DB_USER DB_PASS
+python retrieve_trailers.py DATABASE_NAME localhost DB_USER DB_PASS
+```
 4. Run the app by running 'node index.js'
 
