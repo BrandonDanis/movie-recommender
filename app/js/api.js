@@ -2,7 +2,7 @@
 function Api()
 {
 
-	var apiUrl = process.env.API_URL || 'http://localhost:8080';
+	var apiUrl = 'http://localhost:80';
 
 	this.getUserInfo = function(callback) {
 		$.get(apiUrl + '/getUserInfo', {}, function(res){
