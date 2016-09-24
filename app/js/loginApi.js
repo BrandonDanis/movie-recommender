@@ -1,7 +1,7 @@
 
 function LoginApi() {
 
-	var apiUrl = 'http://localhost:80';
+	var apiUrl = 'http://localhost:8080';
 
 	this.login = function(user, pssd, callback)
 	{
