@@ -92,17 +92,17 @@ var setupStep4 = function() {
 
 	$("#question3Div").fadeOut("1s",function(){
 
-		$("#question4Div").css("display","block")
+		$("#question4Div").css("display","block");
 
 		api.getPopularMultiGenre(self.favGenres, function (result) {
 
 			var moviesArray = result['movies'];
 
-			if (result['status'] == 200) {
+			if (result['status'] == 200 || (result['status'] == 404 && result['movies'].length > 0)) {
 
 	            $(".popularMovies").empty();
 
-				for(i=0; i<moviesArray.length; i++){
+				for(var i = 0; i < moviesArray.length; i++){
 					var temp = '<p><input type="checkbox" id="~ID~"/><label for="~ID~">~MOVIE~</label></p>';
 					temp = temp.replace(/~ID~/g,moviesArray[i]['id'])
 					temp = temp.replace(/~MOVIE~/g,moviesArray[i]['title'])
