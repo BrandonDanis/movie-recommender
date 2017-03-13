@@ -30,7 +30,7 @@ DELETE /users //deletes the specified user
 <strong>Features:</strong>
 
 - Cookie based session authentication
-- Password encryption
+- Password hashing
 - Fully dynamic front-end design
 
 <strong>How to run:</strong>
