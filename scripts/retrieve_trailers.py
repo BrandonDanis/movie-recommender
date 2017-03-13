@@ -6,7 +6,7 @@ import time
 
 
 def get_trailer(moviedb_id):
-    print moviedb_id
+    print(moviedb_id)
     run = True
     trailer_link = ''
     while run:
@@ -15,21 +15,21 @@ def get_trailer(moviedb_id):
                 'https://api.themoviedb.org/3/movie/' + str(moviedb_id) + '/videos?api_key=' + api_key).json()
         except ValueError as e:
             if e.message == 'No JSON object could be decoded':
-                print 'A 502 error may have occurred...waiting 5 seconds to see if it will clear up'
+                print('A 502 error may have occurred...waiting 5 seconds to see if it will clear up')
                 time.sleep(5)
-                print 'Waited 5 seconds'
+                print('Waited 5 seconds')
                 run = True
                 continue
         try:
             results_length = len(trailer_json['results'])
             run = False
         except KeyError:
-            print trailer_json
+            print(trailer_json)
             if trailer_json['status_code'] == 25:
-                print 'Waiting 5 seconds because went over request limit...'
+                print('Waiting 5 seconds because went over request limit...')
                 time.sleep(5)
                 run = True
-                print 'Waited 5 seconds'
+                print('Waited 5 seconds')
             else:
                 return
 
@@ -41,10 +41,10 @@ def get_trailer(moviedb_id):
                 trailer_link = trailer
                 break
 
-    print trailer_link
+    print(trailer_link)
 
     if trailer_link == '':
-        print 'No videos available for ' + str(moviedb_id)
+        print('No videos available for ' + str(moviedb_id))
     else:
         run = True
         while run:
@@ -55,7 +55,7 @@ def get_trailer(moviedb_id):
                 run = False
             except psycopg2.DataError:
                 connection.rollback()
-                print 'Updated trailer column to have ' + str(len(trailer_link['key'])) + ' characters'
+                print('Updated trailer column to have ' + str(len(trailer_link['key'])) + ' characters')
                 db.execute('ALTER TABLE movies ALTER COLUMN trailer TYPE VARCHAR(%s);', (len(trailer_link['key']),))
                 connection.commit()
                 run = True
@@ -80,4 +80,4 @@ for row in rows:
     if row[1] is None:
         get_trailer(row[0])
     else:
-        print 'Trailer already given'
+        print('Trailer already given')

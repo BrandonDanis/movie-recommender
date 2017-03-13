@@ -31,14 +31,14 @@ def add_cast_movie_relation(id, cast_id):
         connection.commit()
 
         row = db.fetchone()
-        print str(row[0]) + ' | ' + row[2] + ' played by ' + str(row[1]) + ' relationship created'
+        print(str(row[0]) + ' | ' + row[2] + ' played by ' + str(row[1]) + ' relationship created')
     except psycopg2.DataError:
-        print 'Caused by: '
-        print cast_movie
+        print('Caused by: ')
+        print(cast_movie)
     except psycopg2.IntegrityError:
         connection.rollback()
-        print 'Relationship ' + str(cast_movie['movie_id']) + ' | ' + str(cast_movie['cast_id']) + ' | ' + cast_movie[
-            'character'] + ' already exists'
+        print('Relationship ' + str(cast_movie['movie_id']) + ' | ' + str(cast_movie['cast_id']) + ' | ' + cast_movie[
+            'character'] + ' already exists')
 
 
 def add_director_movie_relation(movie_id, director_id):
@@ -48,16 +48,16 @@ def add_director_movie_relation(movie_id, director_id):
         connection.commit()
 
         row = db.fetchone()
-        print director_info_dict[director_id]['movie'] + ' | ' + str(row[0]) + ' Directed by ' + str(
-            row[1]) + ' relationship created'
+        print(director_info_dict[director_id]['movie'] + ' | ' + str(row[0]) + ' Directed by ' + str(
+            row[1]) + ' relationship created')
     except psycopg2.IntegrityError:
         connection.rollback()
-        print 'Relationship ' + director_info_dict[director_id]['movie'] + ' | ' + str(
-            movie_id) + ' Directed by ' + str(director_id) + ' already exists'
+        print('Relationship ' + director_info_dict[director_id]['movie'] + ' | ' + str(
+            movie_id) + ' Directed by ' + str(director_id) + ' already exists')
 
 
 def get_crew(movie_title, movie_id, moviedb_id):
-    print movie_title + ': db id: ' + str(moviedb_id) + ' ' + str(movie_id)
+    print(movie_title + ': db id: ' + str(moviedb_id) + ' ' + str(movie_id))
     run = True
     while run:
         credits_json = requests.get(
@@ -67,12 +67,12 @@ def get_crew(movie_title, movie_id, moviedb_id):
             crew_json = credits_json['crew']
             run = False
         except KeyError:
-            print credits_json
+            print(credits_json)
             if credits_json['status_code'] == 25:
-                print 'Waiting 5 seconds because went over request limit...'
+                print('Waiting 5 seconds because went over request limit...')
                 time.sleep(5)
                 run = True
-                print 'Waited 5 seconds'
+                print('Waited 5 seconds')
             else:
                 return
 
@@ -95,13 +95,13 @@ def get_crew(movie_title, movie_id, moviedb_id):
             connection.commit()
 
             row = db.fetchone()
-            print row[1] + ' added to database'
+            print(row[1] + ' added to database')
 
             add_cast_movie_relation(row[0], row[3])
         except psycopg2.IntegrityError as e2:
-            print e2
+            print(e2)
             connection.rollback()
-            print cast['name'] + ' might already exist...row had to be rollbacked'
+            print(cast['name'] + ' might already exist...row had to be rollbacked')
             db.execute('SELECT id, moviedb_id FROM casts WHERE moviedb_id=%s', (cast['id'],))
             row = db.fetchone()
             add_cast_movie_relation(row[0], row[1])
@@ -120,16 +120,16 @@ def get_crew(movie_title, movie_id, moviedb_id):
                 connection.commit()
 
                 row = db.fetchone()
-                print str(row[0]) + ' added to database'
+                print(str(row[0]) + ' added to database')
                 director_info_dict[row[0]] = {
                     'movie': movie_title
                 }
 
                 add_director_movie_relation(movie_id, row[0])
         except psycopg2.IntegrityError as e:
-            print e
+            print(e)
             connection.rollback()
-            print crew['name'] + ' might already exist...row had to be rollbacked'
+            print(crew['name'] + ' might already exist...row had to be rollbacked')
             db.execute('SELECT id FROM directors WHERE moviedb_id=%s', (crew['id'],))
             row = db.fetchone()
             director_info_dict[row[0]] = {
@@ -156,4 +156,4 @@ for row in rows:
         if row_check[0] == 0:
             get_crew(row[1], row[0], row[2])
         else:
-            print 'Movie relations already exist'
+            print('Movie relations already exist')

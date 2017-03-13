@@ -38,7 +38,7 @@ def scrape(init):
 args = sys.argv
 database = args[1]
 host = args[2]
-print "Connecting to DB"
+print("Connecting to DB")
 if len(args) > 3:
     username = args[3]
     password = args[4]
@@ -46,7 +46,7 @@ if len(args) > 3:
 else:
     connection = psycopg2.connect(database=database, host=host)
 db = connection.cursor()
-print "Connected to DB"
+print("Connected to DB")
 
 genresDict = {
     28: "Action",
@@ -113,10 +113,10 @@ for movie_json in movie_data:
             connection.commit()
             print(movie['title'] + ' --> ' + str(genreID))
     except psycopg2.IntegrityError as e:
-        print e
+        print(e)
         connection.rollback()
-        print movie['title'] + ' might already exist...row had to be rollbacked'
+        print(movie['title'] + ' might already exist...row had to be rollbacked')
     except psycopg2.InternalError as e2:
-        print e2
+        print(e2)
         connection.rollback()
-        print movie['title'] + ' failed and had to be rollbacked...'
+        print(movie['title'] + ' failed and had to be rollbacked...')

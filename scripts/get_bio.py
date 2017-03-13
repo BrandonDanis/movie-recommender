@@ -6,18 +6,18 @@ import time
 
 
 def get_person(moviedb_id, include_image, table):
-    print moviedb_id
+    print(moviedb_id)
     run = True
     while run:
         try:
             people_json = requests.get(
                 'https://api.themoviedb.org/3/person/' + str(moviedb_id) + '?api_key=' + api_key).json()
-            print people_json
+            print(people_json)
         except ValueError as e:
             if e.message == 'No JSON object could be decoded':
-                print 'A 502 error may have occurred...waiting 5 seconds to see if it will clear up'
+                print('A 502 error may have occurred...waiting 5 seconds to see if it will clear up')
                 time.sleep(5)
-                print 'Waited 5 seconds'
+                print('Waited 5 seconds')
                 run = True
                 continue
         run = False
@@ -25,12 +25,12 @@ def get_person(moviedb_id, include_image, table):
         try:
             test = people_json['profile_path']
         except KeyError:
-            print people_json
+            print(people_json)
             if people_json['status_code'] == 25:
-                print 'Waiting 5 seconds because went over request limit...'
+                print('Waiting 5 seconds because went over request limit...')
                 time.sleep(5)
                 run = True
-                print 'Waited 5 seconds'
+                print('Waited 5 seconds')
             else:
                 return
 
@@ -44,7 +44,8 @@ def get_person(moviedb_id, include_image, table):
             query += ', '
         query += 'bio = %s'
         words.append(people_json['biography'])
-    if query is not 'UPDATE ' + table + ' SET ':
+    print('\'{}\''.format(query))
+    if query != ('UPDATE {} SET '.format(table)):
         query += ' WHERE moviedb_id=%s'
         words.append(moviedb_id)
         db.execute(query, words)
@@ -55,11 +56,11 @@ def begin(table):
     db.execute('SELECT moviedb_id, bio, imageurl FROM ' + table + ' ORDER BY id')
     rows = db.fetchall()
     for row in rows:
-        print row
+        print(row)
         if row[1] is None or row[2] is None:
             get_person(row[0], row[2] is None, table)
         else:
-            print 'Person already modified'
+            print('Person already modified')
 
 
 args = sys.argv
