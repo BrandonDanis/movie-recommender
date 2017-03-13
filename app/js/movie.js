@@ -380,7 +380,7 @@ window.addEventListener('keydown', function (e) {
 });
 
 setTrailerURL = function(key) {
-    var src = 'http://www.youtube.com/embed/' + key + '?enablejsapi=1';
+    var src = 'https://www.youtube.com/embed/' + key + '?enablejsapi=1';
     $('.trailerVideo').prop('src', src);
 };
 
