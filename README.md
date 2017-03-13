@@ -50,3 +50,6 @@ python retrieve_trailers.py DATABASE_NAME localhost DB_USER DB_PASS
 <br>
 <img height="500px" src="http://imgur.com/rREgZgr.png"></img>
 <img height="500px" src="http://imgur.com/E6OpENX.png"></img>
+<img height="500px" src="http://imgur.com/Hxe8C0g.png"></img>
+<img height="500px" src="http://imgur.com/lTFrjsg.png"></img>
+<img height="500px" src="http://imgur.com/fK44FHn.png"></img>
