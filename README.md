@@ -48,4 +48,5 @@ python retrieve_trailers.py DATABASE_NAME localhost DB_USER DB_PASS
 
 <strong>Screenshots:</strong>
 <br>
-<img src="http://imgur.com/rREgZgr.png"></img>
+<img height="500px" src="http://imgur.com/rREgZgr.png"></img>
+<img height="500px" src="http://imgur.com/E6OpENX.png"></img>
