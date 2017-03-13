@@ -123,12 +123,10 @@ module.exports = function(app) {
     app.post('/setup', function (req, res) {
 
         for (var key in req.body) {
-            if (req.body.hasOwnProperty(key)) {
-                var changedKey = key.replace("[]", "");
-                req.body[changedKey] = req.body[key];
-                if (key.indexOf('[]') > -1)
-                    delete req.body[key];
-            }
+            var changedKey = key.replace("[]", "");
+            req.body[changedKey] = req.body[key];
+            if (key.indexOf('[]') > -1)
+                delete req.body[key];
         }
 
         console.log(req.body);
